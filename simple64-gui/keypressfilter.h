@@ -11,6 +11,9 @@ public:
 
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
+
+private:
+    bool m_confirmActive = false;
 };
 
 #endif

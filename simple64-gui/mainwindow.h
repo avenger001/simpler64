@@ -6,6 +6,7 @@
 #include "workerthread.h"
 #include "logviewer.h"
 #include "keypressfilter.h"
+#include "rombrowser.h"
 extern "C"
 {
 #include "osal/osal_dynamiclib.h"
@@ -55,6 +56,8 @@ public:
     int getTest();
     void updatePlugins();
     void resetCore();
+    void stopGame();
+    void updateMenuShortcuts();
     m64p_dynlib_handle getCoreLib();
     struct Discord_Application *getDiscordApp();
     explicit MainWindow(QWidget *parent = 0);
@@ -138,9 +141,12 @@ private slots:
 
     void on_actionOpen_Discord_Channel_triggered();
 
+    void on_actionChoose_ROM_Directory_triggered();
+
+    void on_actionRefresh_ROM_List_triggered();
+
 private:
     void setupDiscord();
-    void stopGame();
     void updateOpenRecent();
     void updateGB(Ui::MainWindow *ui);
     void loadCoreLib();
@@ -158,6 +164,9 @@ private:
 
     QMessageBox *download_message = nullptr;
     VkWindow *my_window = nullptr;
+    RomBrowser *m_romBrowser = nullptr;
+    class QStackedWidget *m_centralStack = nullptr;
+    QWidget *m_vkContainer = nullptr;
     WorkerThread *workerThread = nullptr;
     LogViewer logViewer;
     QSettings *settings = nullptr;
@@ -166,6 +175,12 @@ private:
     QLabel *FPSLabel = nullptr;
     QTimer *kill_timer = nullptr;
     bool m_cheatsEnabled = false;
+
+    QString m_lastRomPath;
+    QString m_lastNetplayIp;
+    int m_lastNetplayPort = 0;
+    int m_lastNetplayPlayer = 0;
+    QJsonObject m_lastCheats;
 
     m64p_dynlib_handle coreLib;
     m64p_dynlib_handle rspPlugin;

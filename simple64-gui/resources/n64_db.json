@@ -1,0 +1,3206 @@
+{
+ "\"DOOM1\"|\u0000\u0000\u0000\u0000": {
+  "display": "64Doom - Doom Port (PD) Jnmartin84 2020-04-11",
+  "region": "Unknown(00)"
+ },
+ "\"DOOM2\"|\u0000\u0000\u0000\u0000": {
+  "display": "Doom 2 (Doom PC Port)",
+  "region": "Unknown(00)"
+ },
+ "\"PLUTONIA\"|\u0000\u0000\u0000\u0000": {
+  "display": "Doom Plutonia (Doom PC Port)",
+  "region": "Unknown(00)"
+ },
+ "\"TNT\"|\u0000\u0000\u0000\u0000": {
+  "display": "Doom TNT (Doom PC Port)",
+  "region": "Unknown(00)"
+ },
+ "\"ULTIMATEDOOM\"|\u0000\u0000\u0000\u0000": {
+  "display": "Ultimate Doom (Doom PC Port)",
+  "region": "Unknown(00)"
+ },
+ "(C) DATEL D&D NU10:0| 98\u0000": {
+  "display": "GameShark Pro (USA) (v2.0) (Unl)",
+  "region": "Unknown(00)"
+ },
+ "(C) MUSHROOM &NU09:5|7 \bp": {
+  "display": "GameShark Pro (USA) (v3.3) (Unl)",
+  "region": "Unknown(70)"
+ },
+ "(C) MUSHROOM &|  98": {
+  "display": "GameBooster 64 (USA) (v1.1) (Unl)",
+  "region": "Unknown(38)"
+ },
+ "0.11 Dev\u0000THERS|NALE": {
+  "display": "Smash Bros 19XXTE (Hack) v0.11 Jorgasms",
+  "region": "USA"
+ },
+ "1080 SNOWBOARDING|NTEA": {
+  "display": "1080 Snowboarding (Japan, USA) (En,Ja)",
+  "region": "Asia (NTSC)"
+ },
+ "1080 SNOWBOARDING|NTEP": {
+  "display": "1080 Snowboarding (E) (M4) [f2] (NTSC)",
+  "region": "Europe"
+ },
+ "40 WINKS|N4WX": {
+  "display": "40 Winks (Europe) (En,Es,It) (Proto) (1999-10-07)",
+  "region": "Europe"
+ },
+ "64 OHZUMOU|NOSJ": {
+  "display": "64 Oozumou (Japan)",
+  "region": "Japan"
+ },
+ "64 TRUMP COLLECTION|NTCJ": {
+  "display": "64 Trump Collection - Alice no Wakuwaku Trump World (Japan)",
+  "region": "Japan"
+ },
+ "77a By Count0|\u0000\u0000\u0000\u0000": {
+  "display": "77a (PD) POM '98 v1 Count0",
+  "region": "Unknown(00)"
+ },
+ "77a-SE By Count0|\u0000C0\u0000": {
+  "display": "77a Special Edition (PD) POM '98 v1 Count0",
+  "region": "Unknown(00)"
+ },
+ "A Bug's Life|NBYE": {
+  "display": "Bug's Life, A (USA)",
+  "region": "USA"
+ },
+ "A Bug's Life|NBYP": {
+  "display": "Bug's Life, A (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "AERO FIGHTERS ASSAUL|NERE": {
+  "display": "AeroFighters Assault (USA)",
+  "region": "USA"
+ },
+ "AERO FIGHTERS ASSAUL|NSAP": {
+  "display": "AeroFighters Assault (E) (M3) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "AEROGAUGE|NAGE": {
+  "display": "AeroGauge (USA)",
+  "region": "USA"
+ },
+ "AEROGAUGE|NAGJ": {
+  "display": "AeroGauge (Japan) (Rev 1)",
+  "region": "Japan"
+ },
+ "AEROGAUGE|NAGP": {
+  "display": "AeroGauge (E) (M3) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "AIDYN_CHRONICLES|NAYE": {
+  "display": "Aidyn Chronicles - The First Mage (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "AIDYN_CHRONICLES|NAYP": {
+  "display": "Aidyn Chronicles - The First Mage (Europe)",
+  "region": "Europe"
+ },
+ "AIR BOARDER 64|NABP": {
+  "display": "Airboarder 64 (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "ALL STAR TENNIS '99|NTNE": {
+  "display": "All Star Tennis 99 (USA)",
+  "region": "USA"
+ },
+ "ALL STAR TENNIS '99|NTNP": {
+  "display": "All Star Tennis '99 (E) (M5) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "ANIMAL FOREST|NAFE": {
+  "display": "Animal Forest - Doubutsu no Mori (J) T-Eng Zoinkity 2010-12-02",
+  "region": "USA"
+ },
+ "ARMYMEN SARGE 2|N32E": {
+  "display": "Army Men - Sarge's Heroes 2 (USA)",
+  "region": "USA"
+ },
+ "ARMYMENAIRCOMBAT|NACE": {
+  "display": "Army Men - Air Combat (USA)",
+  "region": "USA"
+ },
+ "All Star Baseball 99|NBSE": {
+  "display": "All-Star Baseball 99 (USA)",
+  "region": "USA"
+ },
+ "All-Star Baseball '0|NBEE": {
+  "display": "All-Star Baseball 2000 (USA)",
+  "region": "USA"
+ },
+ "All-Star Baseball '0|NBEP": {
+  "display": "All-Star Baseball 2000 (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "All-Star Baseball 20|NASE": {
+  "display": "All-Star Baseball 2001 (USA)",
+  "region": "USA"
+ },
+ "All-Star Baseball 99|NBSP": {
+  "display": "All-Star Baseball 99 (Europe)",
+  "region": "Europe"
+ },
+ "Armorines Project S.|NARE": {
+  "display": "Armorines - Project S.W.A.R.M. (U) [!] Analog Movement Controls_1.02",
+  "region": "USA"
+ },
+ "Armorines Project S.|NARP": {
+  "display": "Armorines - Project S.W.A.R.M. (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "Army Men Sarge|NAME": {
+  "display": "Army Men - Sarge's Heroes (USA)",
+  "region": "USA"
+ },
+ "Army Men Sarge|NAMP": {
+  "display": "Army Men - Sarge's Heroes (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "Asteroids Hyper 64|NAHE": {
+  "display": "Asteroids Hyper 64 (USA)",
+  "region": "USA"
+ },
+ "BAKU-BOMBERMAN|NBMJ": {
+  "display": "Baku Bomberman (Japan)",
+  "region": "Japan"
+ },
+ "BAKUBOMB2|NBVJ": {
+  "display": "Baku Bomberman 2 (Japan)",
+  "region": "Japan"
+ },
+ "BANGAIOH|NBNJ": {
+  "display": "Bakuretsu Muteki Bangaioh (Japan)",
+  "region": "Japan"
+ },
+ "BANJO KAZOOIE 2|NB7J": {
+  "display": "Banjo to Kazooie no Daibouken 2 (Japan)",
+  "region": "Japan"
+ },
+ "BANJO TOOIE|NB7E": {
+  "display": "Banjo-Tooie (U) EverDrive Patched",
+  "region": "USA"
+ },
+ "BANJO TOOIE|NB7P": {
+  "display": "Banjo-Tooie (Europe) (En,Fr,De,Es)",
+  "region": "Europe"
+ },
+ "BASS HUNTER 64|NFHE": {
+  "display": "In-Fisherman - Bass Hunter 64 (USA)",
+  "region": "USA"
+ },
+ "BASS HUNTER 64|NFHP": {
+  "display": "In-Fisherman - Bass Hunter 64 (Europe)",
+  "region": "Europe"
+ },
+ "BASSMASTERS2000|NB4E": {
+  "display": "Bassmasters 2000 (USA)",
+  "region": "USA"
+ },
+ "BATMAN BEYOND RETURN|NJQE": {
+  "display": "Batman Beyond - Return of the Joker (USA)",
+  "region": "USA"
+ },
+ "BATMAN OF THE FUTURE|NJQP": {
+  "display": "Batman of the Future - Return of the Joker (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "BATTLETANXGA|NBQE": {
+  "display": "BattleTanx - Global Assault (USA)",
+  "region": "USA"
+ },
+ "BATTLETANXGA|NBQP": {
+  "display": "BattleTanx - Global Assault (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "BATTLETANX|NBXE": {
+  "display": "BattleTanx (USA)",
+  "region": "USA"
+ },
+ "BATTLEZONE|NZOE": {
+  "display": "Battlezone - Rise of the Black Dogs (USA)",
+  "region": "USA"
+ },
+ "BEAST WARS US|NOHE": {
+  "display": "Transformers - Beast Wars Transmetals (USA)",
+  "region": "USA"
+ },
+ "BEASTWARSMETALS64|NTBJ": {
+  "display": "Transformers - Beast Wars Metals 64 (Japan)",
+  "region": "Japan"
+ },
+ "BEETLE ADVENTURE JP|NB8J": {
+  "display": "Beetle Adventure Racing! (Japan)",
+  "region": "Japan"
+ },
+ "BIOFREAKS|NBFE": {
+  "display": "Bio F.R.E.A.K.S. (USA)",
+  "region": "USA"
+ },
+ "BIOFREAKS|NBFP": {
+  "display": "Bio F.R.E.A.K.S. (Europe)",
+  "region": "Europe"
+ },
+ "BLADES OF STEEL '99|NHOE": {
+  "display": "NHL Blades of Steel '99 (USA)",
+  "region": "USA"
+ },
+ "BLUES BROTHERS 2000|NBPE": {
+  "display": "Blues Brothers 2000 (USA)",
+  "region": "USA"
+ },
+ "BLUES BROTHERS 2000|NBPP": {
+  "display": "Blues Brothers 2000 (Europe) (En,Fr,De,Es,It,Nl)",
+  "region": "Europe"
+ },
+ "BODY HARVEST|NBHE": {
+  "display": "Body Harvest (USA)",
+  "region": "USA"
+ },
+ "BOMBERMAN HERO|NBDE": {
+  "display": "Bomberman Hero (USA)",
+  "region": "USA"
+ },
+ "BOMBERMAN HERO|NBDP": {
+  "display": "Bomberman Hero (Europe)",
+  "region": "Europe"
+ },
+ "BOMBERMAN64E|NBMP": {
+  "display": "Bomberman 64 (Europe)",
+  "region": "Europe"
+ },
+ "BOMBERMAN64U2|NBVE": {
+  "display": "Bomberman 64 - The Second Attack! (USA)",
+  "region": "USA"
+ },
+ "BOMBERMAN64U|NBME": {
+  "display": "Bomberman 64 (USA)",
+  "region": "USA"
+ },
+ "BOMBERMAN64|NHAE": {
+  "display": "Bomberman 64 - Arcade Edition (J) T+Eng v1.2 Zoinkity",
+  "region": "USA"
+ },
+ "BOMBERMAN64|NHAJ": {
+  "display": "Bomberman 64 - Arcade Edition (J) Analog",
+  "region": "Japan"
+ },
+ "BRUNSWICKBOWLING|NOWE": {
+  "display": "Brunswick Circuit Pro Bowling (USA)",
+  "region": "USA"
+ },
+ "BUCK BUMBLE|NBLE": {
+  "display": "Buck Bumble (USA)",
+  "region": "USA"
+ },
+ "BUCK BUMBLE|NBLJ": {
+  "display": "Buck Bumble (Japan)",
+  "region": "Japan"
+ },
+ "BUCK BUMBLE|NBLP": {
+  "display": "Buck Bumble (Europe) (En,Fr,De,Es,It)",
+  "region": "Europe"
+ },
+ "BURABURA POYON|NWBJ": {
+  "display": "Iggy-kun no Bura Bura Poyon (Japan)",
+  "region": "Japan"
+ },
+ "Banjo Kazooie|NBKE": {
+  "display": "Banjo-Kazooie (U) EverDrive Patched",
+  "region": "USA"
+ },
+ "Banjo-Kazooie|NBKJ": {
+  "display": "Banjo to Kazooie no Daibouken (Japan)",
+  "region": "Japan"
+ },
+ "Banjo-Kazooie|NBKP": {
+  "display": "Banjo-Kazooie (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "Bass Rush|NVBJ": {
+  "display": "Bass Rush - ECOGEAR PowerWorm Championship (Japan)",
+  "region": "Japan"
+ },
+ "BassFishingNo.1|NIBJ": {
+  "display": "Itoi Shigesato no Bass Tsuri No. 1 Kettei Ban! (Japan)",
+  "region": "Japan"
+ },
+ "Battle for Naboo|NNAE": {
+  "display": "Star Wars Episode I - Battle for Naboo (USA)",
+  "region": "USA"
+ },
+ "Battle for Naboo|NNAP": {
+  "display": "Star Wars Episode I - Battle for Naboo (Europe)",
+  "region": "Europe"
+ },
+ "BattlePhoenix64|NB6J": {
+  "display": "Super B-Daman - Battle Phoenix 64 (Japan)",
+  "region": "Japan"
+ },
+ "Beetle Adventure Rac|NNSE": {
+  "display": "Beetle Adventure Racing! (USA) (En,Fr,De)",
+  "region": "USA"
+ },
+ "Beetle Adventure Rac|NNSP": {
+  "display": "Beetle Adventure Racing! (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "Big Mountain 2000|NMUE": {
+  "display": "Big Mountain 2000 (USA)",
+  "region": "USA"
+ },
+ "BioHazard II|NB5J": {
+  "display": "Biohazard 2 (Japan)",
+  "region": "Japan"
+ },
+ "Blast Corps|NBCE": {
+  "display": "Blast Corps (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "Blast Corps|NBCP": {
+  "display": "Blast Corps (Europe) (En,De)",
+  "region": "Europe"
+ },
+ "Blastdozer|NBCJ": {
+  "display": "Blastdozer (Japan)",
+  "region": "Japan"
+ },
+ "Body Harvest|NBHP": {
+  "display": "Body Harvest (E) (M3) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "Bomberman Hero|NBDP": {
+  "display": "Bomberman Hero (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "Bottom of the 9th|NBOE": {
+  "display": "Bottom of the 9th (USA)",
+  "region": "USA"
+ },
+ "Bust A Move '99|NB3E": {
+  "display": "Bust-A-Move '99 (USA)",
+  "region": "USA"
+ },
+ "Bust A Move 2|NBUE": {
+  "display": "Bust-A-Move 2 - Arcade Edition (USA)",
+  "region": "USA"
+ },
+ "Bust A Move 2|NBUP": {
+  "display": "Bust-A-Move 2 - Arcade Edition (Europe)",
+  "region": "Europe"
+ },
+ "Bust A Move 3 DX|NB3P": {
+  "display": "Bust-A-Move 3 DX (E) [f1] (NTSC100%)",
+  "region": "Europe"
+ },
+ "CAL SPEED|NCLE": {
+  "display": "California Speed (USA)",
+  "region": "USA"
+ },
+ "CAL SPEED|NCLP": {
+  "display": "California Speed (Europe) (Proto)",
+  "region": "Europe"
+ },
+ "CARMAGEDDON64|NCDE": {
+  "display": "Carmageddon 64 (USA)",
+  "region": "USA"
+ },
+ "CARMAGEDDON64|NCDX": {
+  "display": "Carmageddon 64 (Europe) (En,Fr,De,Es)",
+  "region": "Europe"
+ },
+ "CARMAGEDDON64|NNiP": {
+  "display": "Carmageddon 64 (E) (M4) (Eng-Spa-Fre-Ger) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "CASTLEVANIA2|ND4E": {
+  "display": "Castlevania - Legacy of Darkness (USA)",
+  "region": "USA"
+ },
+ "CASTLEVANIA2|ND4P": {
+  "display": "Castlevania - Legacy of Darkness (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "CASTLEVANIA|ND3E": {
+  "display": "Castlevania (USA) (Rev 2)",
+  "region": "USA"
+ },
+ "CASTLEVANIA|ND3P": {
+  "display": "Castlevania (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "CBFD ECTS|NFUE": {
+  "display": "Conker's Bad Fur Day (USA) (Beta) (ECTS 2000) (2000-08-26)",
+  "region": "USA"
+ },
+ "CENTRE COURT TENNIS|NTSP": {
+  "display": "Centre Court Tennis (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "CHARLIE BLAST'S|NCBE": {
+  "display": "Charlie Blast's Territory (USA)",
+  "region": "USA"
+ },
+ "CHARLIE BLAST'S|NCBP": {
+  "display": "Charlie Blast's Territory (Europe)",
+  "region": "Europe"
+ },
+ "CHOPPER_ATTACK|NCHE": {
+  "display": "Chopper Attack (USA)",
+  "region": "USA"
+ },
+ "CHOPPER_ATTACK|NCHP": {
+  "display": "Chopper Attack (Europe)",
+  "region": "Europe"
+ },
+ "CHOROQ64|NCRJ": {
+  "display": "Choro Q 64 (Japan)",
+  "region": "Japan"
+ },
+ "CITY TOUR GP|NGTJ": {
+  "display": "City-Tour GP - Zen-Nihon GT Senshuken (Japan)",
+  "region": "Japan"
+ },
+ "CLAYFIGHTER 63|NCFE": {
+  "display": "Clay Fighter 63 1-3 (USA) (Beta) (1997-08-21)",
+  "region": "USA"
+ },
+ "CLAYFIGHTER 63|NCFP": {
+  "display": "Clay Fighter 63 1-3 (Europe)",
+  "region": "Europe"
+ },
+ "CONKER BFD DEBUG|NFUE": {
+  "display": "Conker's Bad Fur Day (USA) (Beta) (2000-10-25)",
+  "region": "USA"
+ },
+ "CONKER BFD|NFUE": {
+  "display": "Conker's Bad Fur Day (USA)",
+  "region": "USA"
+ },
+ "CONKER BFD|NFUP": {
+  "display": "Conker's Bad Fur Day (Europe)",
+  "region": "Europe"
+ },
+ "CRUIS'N WORLD|NCWE": {
+  "display": "Cruis'n World (USA)",
+  "region": "USA"
+ },
+ "CRUIS'N WORLD|NCWP": {
+  "display": "Cruis'n World (E) [f3] (NTSC)",
+  "region": "Europe"
+ },
+ "CUSTOMROBOV2|NCZJ": {
+  "display": "Custom Robo V2 (Japan)",
+  "region": "Japan"
+ },
+ "Caribbean Nights|\u0000\u0000\u0000\u0000": {
+  "display": "Caribbean Nights (PD) MegaHawks",
+  "region": "Unknown(00)"
+ },
+ "Chameleon Twist2|N2VE": {
+  "display": "Chameleon Twist 2 (USA)",
+  "region": "USA"
+ },
+ "Chameleon Twist2|N2VP": {
+  "display": "Chameleon Twist 2 (Europe)",
+  "region": "Europe"
+ },
+ "Chameleon Twist2|NV2J": {
+  "display": "Chameleon Twist 2 (Japan)",
+  "region": "Japan"
+ },
+ "Chameleon Twist|NCTA": {
+  "display": "Chameleon Twist (J) T+Eng v1 Zoinkity",
+  "region": "Asia (NTSC)"
+ },
+ "Chameleon Twist|NCTE": {
+  "display": "Chameleon Twist (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "Chameleon Twist|NCTJ": {
+  "display": "Chameleon Twist (Japan)",
+  "region": "Japan"
+ },
+ "Chameleon Twist|NCTP": {
+  "display": "Chameleon Twist (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "Chip8|\u0000\u0000\u0000\u0000": {
+  "display": "Chip8 C64 Emulator (PD) v1 Garrison Brown",
+  "region": "Unknown(00)"
+ },
+ "Clayfighter SC|NC2E": {
+  "display": "Clay Fighter - Sculptor's Cut (USA)",
+  "region": "USA"
+ },
+ "Command&Conquer|NCCE": {
+  "display": "Command & Conquer (USA)",
+  "region": "USA"
+ },
+ "Command&Conquer|NCCP": {
+  "display": "Command & Conquer (Europe) (En,Fr)",
+  "region": "Europe"
+ },
+ "Controller Test|\u0000\u0000\u0000\u0000": {
+  "display": "UltraCIC II Test Rom (PD) saturnu 2016",
+  "region": "Unknown(00)"
+ },
+ "Cruis'n USA|NCUE": {
+  "display": "Cruis'n USA (USA) (Rev 2)",
+  "region": "USA"
+ },
+ "Cruis'n USA|NCUP": {
+  "display": "Cruis'n USA (Europe)",
+  "region": "Europe"
+ },
+ "CruisnExotica|NXOE": {
+  "display": "Cruis'n Exotica (USA)",
+  "region": "USA"
+ },
+ "CyberTiger|NT4E": {
+  "display": "CyberTiger (USA)",
+  "region": "USA"
+ },
+ "CyberTiger|NT4P": {
+  "display": "CyberTiger (Europe)",
+  "region": "Europe"
+ },
+ "DAFFY DUCK STARRING|NDUP": {
+  "display": "Daffy Duck Starring as Duck Dodgers (Europe) (En,Fr,De,Es,It,Nl)",
+  "region": "Europe"
+ },
+ "DAIKATANA|NDWE": {
+  "display": "John Romero's Daikatana (U) [!] Analog Controls",
+  "region": "USA"
+ },
+ "DAIKATANA|NDWJ": {
+  "display": "John Romero's Daikatana (Japan)",
+  "region": "Japan"
+ },
+ "DAIKATANA|NDWP": {
+  "display": "John Romero's Daikatana (E) (M3) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "DARK RIFT|NDKE": {
+  "display": "Dark Rift (USA)",
+  "region": "USA"
+ },
+ "DARK RIFT|NDKP": {
+  "display": "Dark Rift (Europe)",
+  "region": "Europe"
+ },
+ "DAWN AND DUSK|CZLE": {
+  "display": "LoZ Ocarina of Time (USA) (Hack) Dawn & Dusk v2.0 LuigiBlood",
+  "region": "USA"
+ },
+ "DDR DISNEY D MUSEUM|NDFJ": {
+  "display": "Dance Dance Revolution - Disney Dancing Museum (Japan)",
+  "region": "Japan"
+ },
+ "DERBYSTALLION 64|NDAJ": {
+  "display": "Derby Stallion 64 (Japan)",
+  "region": "Japan"
+ },
+ "DESTRUCT DERBY|NDEE": {
+  "display": "Destruction Derby 64 (USA)",
+  "region": "USA"
+ },
+ "DESTRUCT DERBY|NDEP": {
+  "display": "Destruction Derby 64 (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "DEZAEMON3D|CDZJ": {
+  "display": "Dezaemon 3D (Japan)",
+  "region": "Japan"
+ },
+ "DONKEY KONG 64|NDOE": {
+  "display": "Donkey Kong 64 (USA)",
+  "region": "USA"
+ },
+ "DONKEY KONG 64|NDOJ": {
+  "display": "Donkey Kong 64 (Japan)",
+  "region": "Japan"
+ },
+ "DONKEY KONG 64|NDOP": {
+  "display": "Donkey Kong 64 (Europe) (En,Fr,De,Es)",
+  "region": "Europe"
+ },
+ "DOOM64|NDMJ": {
+  "display": "Doom 64 (Japan)",
+  "region": "Japan"
+ },
+ "DOUBUTSUNOMORI|NAFJ": {
+  "display": "Doubutsu no Mori (Japan)",
+  "region": "Japan"
+ },
+ "DR.MARIO 64|NN6E": {
+  "display": "Dr. Mario 64 (USA)",
+  "region": "USA"
+ },
+ "DRACULA MOKUSHIROKU2|ND4J": {
+  "display": "Akumajou Dracula Mokushiroku Gaiden - Legend of Cornell (Japan)",
+  "region": "Japan"
+ },
+ "DRACULA MOKUSHIROKU|ND3J": {
+  "display": "Akumajou Dracula Mokushiroku - Real Action Adventure (Japan)",
+  "region": "Japan"
+ },
+ "DUKE NUKEM ZERO HOUR|NDZE": {
+  "display": "Duke Nukem - Zero Hour (USA)",
+  "region": "USA"
+ },
+ "DUKE NUKEM ZERO HOUR|NDZP": {
+  "display": "Duke Nukem - ZER0 H0UR (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "DUKE NUKEM|NDNE": {
+  "display": "Duke Nukem 64 (U) [!] Movement Controls_1.02",
+  "region": "USA"
+ },
+ "DUKE NUKEM|NDNP": {
+  "display": "Duke Nukem 64 (Europe)",
+  "region": "Europe"
+ },
+ "DeadlyArts|NGAE": {
+  "display": "Deadly Arts (USA)",
+  "region": "USA"
+ },
+ "Dexanoid - ProtestDe|\u0000\u0000\u0000\u0000": {
+  "display": "Dexanoid (PD) R1 Protest Design",
+  "region": "Unknown(00)"
+ },
+ "Dezaemon Wedding ;*)|NDZJ": {
+  "display": "Dezaemon 3D DD (J) Zoinkity patched",
+  "region": "Japan"
+ },
+ "Diddy Kong Racing|NDYE": {
+  "display": "Diddy Kong Racing (USA) (En,Fr) (Rev 1)",
+  "region": "USA"
+ },
+ "Diddy Kong Racing|NDYJ": {
+  "display": "Diddy Kong Racing (Japan)",
+  "region": "Japan"
+ },
+ "Diddy Kong Racing|NDYP": {
+  "display": "Diddy Kong Racing (Europe) (En,Fr,De) (Rev 1)",
+  "region": "Europe"
+ },
+ "Donald Duck Goin' Qu|NDQE": {
+  "display": "Donald Duck - Goin' Quackers (USA) (En,Fr,De,Es,It)",
+  "region": "USA"
+ },
+ "Donald Duck Quack At|NDQP": {
+  "display": "Donald Duck - Quack Attack (E) (M5) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "Doom64|NDME": {
+  "display": "Doom 64 (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "Doom64|NDMP": {
+  "display": "Doom 64 (Europe)",
+  "region": "Europe"
+ },
+ "DragonStorm|\u0000\u0000\u0000\u0000": {
+  "display": "Dragon Sword 64 (USA) (Proto) (1999-08-25)",
+  "region": "Unknown(00)"
+ },
+ "DragonStorm|MGVP": {
+  "display": "Dragon Sword 64 (Europe) (Proto)",
+  "region": "Europe"
+ },
+ "Dual heroes JAPAN|NDHJ": {
+  "display": "Dual Heroes (Japan)",
+  "region": "Japan"
+ },
+ "Dual heroes PAL|NDHP": {
+  "display": "Dual Heroes (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "Dual heroes USA|NDHE": {
+  "display": "Dual Heroes (USA)",
+  "region": "USA"
+ },
+ "EARTHWORM JIM 3D|NJME": {
+  "display": "Earthworm Jim 3D (USA)",
+  "region": "USA"
+ },
+ "EARTHWORM JIM 3D|NJMP": {
+  "display": "Earthworm Jim 3D (Europe) (En,Fr,De,Es,It)",
+  "region": "Europe"
+ },
+ "ECW Hardcore Revolut|NWIE": {
+  "display": "ECW Hardcore Revolution (USA)",
+  "region": "USA"
+ },
+ "ECW Hardcore Revolut|NWIP": {
+  "display": "ECW Hardcore Revolution (Europe)",
+  "region": "Europe"
+ },
+ "ELEVEN BEAT|ZHAJ": {
+  "display": "Eleven Beat (Aleck 64) EverDrive Patched",
+  "region": "Japan"
+ },
+ "EVANGELION|NEVJ": {
+  "display": "Neon Genesis Evangelion (Japan)",
+  "region": "Japan"
+ },
+ "EXCITEBIKE64|NMXE": {
+  "display": "Excitebike 64 (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "EXCITEBIKE64|NMXJ": {
+  "display": "Excitebike 64 (Japan)",
+  "region": "Japan"
+ },
+ "EXCITEBIKE64|NMXP": {
+  "display": "Excitebike 64 (Europe)",
+  "region": "Europe"
+ },
+ "EXTREME-G|NEGJ": {
+  "display": "Extreme-G (Japan)",
+  "region": "Japan"
+ },
+ "Elmo's Letter Advent|NELE": {
+  "display": "Sesame Street - Elmo's Letter Adventure (USA)",
+  "region": "USA"
+ },
+ "Elmo's Number Journe|NENE": {
+  "display": "Sesame Street - Elmo's Number Journey (USA)",
+  "region": "USA"
+ },
+ "Eltail|NETJ": {
+  "display": "Eltale Monsters (Japan)",
+  "region": "Japan"
+ },
+ "Extreme G 2|NG2E": {
+  "display": "Extreme-G XG2 (USA)",
+  "region": "USA"
+ },
+ "Extreme G 2|NG2P": {
+  "display": "Extreme-G XG2 (Europe) (En,Fr,De,Es,It)",
+  "region": "Europe"
+ },
+ "F-ZERO DXP|CFZE": {
+  "display": "F-ZERO X - DXP Track Pack (hack) Dave Phaneuf",
+  "region": "USA"
+ },
+ "F-ZERO PXB 3art 2|CFZE": {
+  "display": "F-ZERO X - PXB 3 (hack) Philippe Brodier",
+  "region": "USA"
+ },
+ "F-ZERO PXB Part 2|CFZE": {
+  "display": "F-ZERO X - PXB Part 2 - RR & DD Tracks (hack) Philippe Brodier",
+  "region": "USA"
+ },
+ "F-ZERO X 10th Anniv.|CFZE": {
+  "display": "F-ZERO X - 10th Anniversary (hack) Philippe Brodier",
+  "region": "USA"
+ },
+ "F-ZERO X 2ND BOOST|CFZE": {
+  "display": "F-ZERO X - 2nd Boost (hack) Relm",
+  "region": "USA"
+ },
+ "F-ZERO X CLIMAX|CFZE": {
+  "display": "F-ZERO X - Climax (Hack) v1.1 Philippe Brodier",
+  "region": "USA"
+ },
+ "F-ZERO X EXP. PACK|CFZE": {
+  "display": "F-ZERO X - Expansion Pack (hack) Philippe Brodier",
+  "region": "USA"
+ },
+ "F-ZERO X NEW LAP|CFZE": {
+  "display": "F-ZERO X - New Lap (hack) Relm",
+  "region": "USA"
+ },
+ "F-ZERO X|CFZE": {
+  "display": "F-ZERO X - UchiX Side B (hack) UchihaSDA",
+  "region": "USA"
+ },
+ "F-ZERO X|CFZJ": {
+  "display": "F-Zero X (Japan)",
+  "region": "Japan"
+ },
+ "F-ZERO X|NFZP": {
+  "display": "F-Zero X (Europe)",
+  "region": "Europe"
+ },
+ "F1 POLE POSITION 64|NHGE": {
+  "display": "F1 Pole Position 64 (USA) (En,Fr,De)",
+  "region": "USA"
+ },
+ "F1 POLE POSITION 64|NHGP": {
+  "display": "F1 Pole Position 64 (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "F1 WORLD GRAND PRIX2|NF2P": {
+  "display": "F-1 World Grand Prix II (E) (M4) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "F1 WORLD GRAND PRIX|NFWE": {
+  "display": "F-1 World Grand Prix (USA)",
+  "region": "USA"
+ },
+ "F1 WORLD GRAND PRIX|NFWJ": {
+  "display": "F-1 World Grand Prix (Japan)",
+  "region": "Japan"
+ },
+ "F1 WORLD GRAND PRIX|NFWP": {
+  "display": "F-1 World Grand Prix (Europe) (Beta)",
+  "region": "Europe"
+ },
+ "F1RacingChampionship|NFRP": {
+  "display": "F1 Racing Championship (E) (M5) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "FIFA 99|N9FE": {
+  "display": "FIFA 99 (USA) (En,Fr,De,Es,It,Nl,Pt,Sv)",
+  "region": "USA"
+ },
+ "FIFA 99|N9FP": {
+  "display": "FIFA 99 (Europe) (En,Fr,De,Es,It,Nl,Pt,Sv)",
+  "region": "Europe"
+ },
+ "FIFA Soccer 64|N7IE": {
+  "display": "FIFA Soccer 64 (USA) (En,Fr,De)",
+  "region": "USA"
+ },
+ "FIFA Soccer 64|N7IP": {
+  "display": "FIFA 64 (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "FIFA: RTWC 98|N8IE": {
+  "display": "FIFA - Road to World Cup 98 (USA) (En,Fr,De,Es,It,Nl,Sv)",
+  "region": "USA"
+ },
+ "FIFA: RTWC 98|N8IP": {
+  "display": "FIFA - Road to World Cup 98 (Europe) (En,Fr,De,Es,It,Nl,Sv)",
+  "region": "Europe"
+ },
+ "FIGHTER DESTINY2|NFGE": {
+  "display": "Fighter Destiny 2 (USA)",
+  "region": "USA"
+ },
+ "FLYING DRAGON|NFDE": {
+  "display": "Flying Dragon (USA)",
+  "region": "USA"
+ },
+ "FLYING DRAGON|NFDP": {
+  "display": "Flying Dragon (Europe)",
+  "region": "Europe"
+ },
+ "Fighter's Destiny|NKAE": {
+  "display": "Fighters Destiny (USA)",
+  "region": "USA"
+ },
+ "Fighter's Destiny|NKAP": {
+  "display": "Fighters Destiny (Europe)",
+  "region": "Europe"
+ },
+ "Fighting Cup|NKAJ": {
+  "display": "Fighting Cup (Japan)",
+  "region": "Japan"
+ },
+ "Fighting Force|NFFE": {
+  "display": "Fighting Force 64 (USA)",
+  "region": "USA"
+ },
+ "Fighting Force|NFFP": {
+  "display": "Fighting Force 64 (Europe)",
+  "region": "Europe"
+ },
+ "Fireworks Demo - OBS|\u0000\u0000\u0000\u0000": {
+  "display": "Fireworks Demo (PD) CrowTRobo",
+  "region": "Unknown(00)"
+ },
+ "FlappyBird64|\u0000\u0000\u0000\u0000": {
+  "display": "Flappy Bird (PD) v1 Christopher Bonhage",
+  "region": "Unknown(00)"
+ },
+ "Forsaken|NFOE": {
+  "display": "Forsaken 64 (U) [!] Analog Controls",
+  "region": "USA"
+ },
+ "Forsaken|NFOP": {
+  "display": "Forsaken (Europe) (En,Fr,Es,It)",
+  "region": "Europe"
+ },
+ "Fox Sports Hoops 99|NF9E": {
+  "display": "Fox Sports College Hoops '99 (USA)",
+  "region": "USA"
+ },
+ "Frogger2|NGVE": {
+  "display": "Frogger 2 (USA) (Proto 2)",
+  "region": "USA"
+ },
+ "G.A.S.P!!Fighters'NE|NGAJ": {
+  "display": "G.A.S.P!! Fighters' NEXTream (Japan)",
+  "region": "Japan"
+ },
+ "G.A.S.P!!Fighters'NE|NGAP": {
+  "display": "G.A.S.P!! Fighters' NEXTream (Europe)",
+  "region": "Europe"
+ },
+ "G1STABLE|NGSJ": {
+  "display": "Jikkyou G1 Stable (Japan) (Rev 1)",
+  "region": "Japan"
+ },
+ "GAUNTLET LEGENDS|NGDJ": {
+  "display": "Gauntlet Legends (Japan)",
+  "region": "Japan"
+ },
+ "GAUNTLET LEGENDS|NGXE": {
+  "display": "Gauntlet Legends (USA)",
+  "region": "USA"
+ },
+ "GAUNTLET LEGENDS|NGXP": {
+  "display": "Gauntlet Legends (Europe)",
+  "region": "Europe"
+ },
+ "GEX: ENTER THE GECKO|NX2E": {
+  "display": "Gex 64 - Enter the Gecko (USA)",
+  "region": "USA"
+ },
+ "GEX: ENTER THE GECKO|NX2P": {
+  "display": "Gex 64 - Enter the Gecko (Europe)",
+  "region": "Europe"
+ },
+ "GOEMON2 DERODERO|NG6J": {
+  "display": "Ganbare Goemon - Dero Dero Douchuu Obake Tenkomori (Japan)",
+  "region": "Japan"
+ },
+ "GOEMONS GREAT ADV|NGME": {
+  "display": "Goemon's Great Adventure (USA)",
+  "region": "USA"
+ },
+ "GOLDEN NUGGET 64|NGNE": {
+  "display": "Golden Nugget 64 (USA)",
+  "region": "USA"
+ },
+ "GOLDENEYE|NGEE": {
+  "display": "GoldenEye 007 - ZX Spectrum Emulator (hack) Zoinkity 2012-04-27",
+  "region": "USA"
+ },
+ "GOLDENEYE|NGEJ": {
+  "display": "GoldenEye 007 (Japan)",
+  "region": "Japan"
+ },
+ "GOLDENEYE|NGEP": {
+  "display": "GoldenEye 007 (Europe)",
+  "region": "Europe"
+ },
+ "GOLDFINGER|NGFE": {
+  "display": "GoldFinger 64 (007 Hack) Save Type=4kB, v1 SubDrag et al",
+  "region": "USA"
+ },
+ "GT64|NGCE": {
+  "display": "GT 64 - Championship Edition (USA) (Beta) (1998-05-25)",
+  "region": "USA"
+ },
+ "GT64|NGCP": {
+  "display": "GT 64 - Championship Edition (E) (M3) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "Getter Love!!|NGLJ": {
+  "display": "Getter Love!! - Cho Renai Party Game Tanjou (Japan)",
+  "region": "Japan"
+ },
+ "Gex 3 Deep Cover Gec|NX3E": {
+  "display": "Gex 3 - Deep Cover Gecko (USA)",
+  "region": "USA"
+ },
+ "Gex 3 Deep Cover Gec|NX3P": {
+  "display": "Gex 3 - Deep Cover Gecko (Europe) (En,Es,It)",
+  "region": "Europe"
+ },
+ "Glover2|NGVE": {
+  "display": "Glover 2 (USA) (Proto 2)",
+  "region": "USA"
+ },
+ "Glover|NGVE": {
+  "display": "Glover (USA)",
+  "region": "USA"
+ },
+ "Glover|NGVP": {
+  "display": "Glover (E) (M3) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "GoldenEye X|NX7E": {
+  "display": "GoldenEye X (Perfect Dark Based) v5e Clouds - GoldenEye Vault",
+  "region": "USA"
+ },
+ "HARVESTMOON64|NYWE": {
+  "display": "Harvest Moon 64 (USA)",
+  "region": "USA"
+ },
+ "HERCULES|NHCE": {
+  "display": "Hercules - The Legendary Journeys (USA)",
+  "region": "USA"
+ },
+ "HERCULES|NHCP": {
+  "display": "Hercules - The Legendary Journeys (Europe) (En,Fr,De,Es,It,Nl)",
+  "region": "Europe"
+ },
+ "HEXEN|NHXE": {
+  "display": "Hexen (U) [!] - Movement Controls_1.01",
+  "region": "USA"
+ },
+ "HEXEN|NHXJ": {
+  "display": "Hexen (Japan)",
+  "region": "Japan"
+ },
+ "HEXEN|NHXP": {
+  "display": "Hexen (Europe)",
+  "region": "Europe"
+ },
+ "HOT WHEELS TURBO|NHWE": {
+  "display": "Hot Wheels - Turbo Racing (USA)",
+  "region": "USA"
+ },
+ "HOT WHEELS TURBO|NHWP": {
+  "display": "Hot Wheels - Turbo Racing (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "HUMAN GRAND PRIX|NHGJ": {
+  "display": "Human Grand Prix - The New Generation (Japan)",
+  "region": "Japan"
+ },
+ "HYBRID HEAVEN JP|NHYJ": {
+  "display": "Hybrid Heaven (Japan)",
+  "region": "Japan"
+ },
+ "HYBRID HEAVEN PAL|NHVP": {
+  "display": "Hybrid Heaven (E) (M3) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "HYBRID HEAVEN USA|NHVE": {
+  "display": "Hybrid Heaven (USA)",
+  "region": "USA"
+ },
+ "HYDRO THUNDER|NHTE": {
+  "display": "Hydro Thunder (USA)",
+  "region": "USA"
+ },
+ "Hard|\u0000\u0000\u0000\u0000": {
+  "display": "Pom '99 (PD) Hackers Against Rap & Disco",
+  "region": "Unknown(00)"
+ },
+ "Holy Magic Century|NETP": {
+  "display": "Holy Magic Century (Europe)",
+  "region": "Europe"
+ },
+ "Hydro Thunder|NHTP": {
+  "display": "Hydro Thunder (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "I S S 64|NJPE": {
+  "display": "International Superstar Soccer 64 (USA)",
+  "region": "USA"
+ },
+ "I S S 64|NJPP": {
+  "display": "International Superstar Soccer 64 (Europe)",
+  "region": "Europe"
+ },
+ "I'm The Best In Show|CZLE": {
+  "display": "LoZ Ocarina of Time (USA) (Hack) The Fate of Bombiwa v1.0.3 DezZival",
+  "region": "USA"
+ },
+ "I.S.S.2000|NISE": {
+  "display": "International Superstar Soccer 2000 (USA) (En,Es) (Rev 1)",
+  "region": "USA"
+ },
+ "I.S.S.2000|NISX": {
+  "display": "International Superstar Soccer 2000 (Europe) (En,De)",
+  "region": "Europe"
+ },
+ "I.S.S.98|NWSE": {
+  "display": "International Superstar Soccer '98 (USA)",
+  "region": "USA"
+ },
+ "I.S.S.98|NWSP": {
+  "display": "International Superstar Soccer '98 (Europe)",
+  "region": "Europe"
+ },
+ "INDY RACING 2000|NICE": {
+  "display": "Indy Racing 2000 (USA)",
+  "region": "USA"
+ },
+ "IT&F SUMMERGAMES|N3HP": {
+  "display": "International Track & Field - Summer Games (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "ITF 2000|N3HE": {
+  "display": "International Track & Field 2000 (USA)",
+  "region": "USA"
+ },
+ "Iggy's Reckin' Balls|NWBE": {
+  "display": "Iggy's Reckin' Balls (USA)",
+  "region": "USA"
+ },
+ "Iggy's Reckin' Balls|NWBP": {
+  "display": "Iggy's Reckin' Balls (Europe)",
+  "region": "Europe"
+ },
+ "Indiana Jones|NIJE": {
+  "display": "Indiana Jones and the Infernal Machine (USA)",
+  "region": "USA"
+ },
+ "Indiana Jones|NIJP": {
+  "display": "Indiana Jones and the Infernal Machine (Australia) (Proto)",
+  "region": "Europe"
+ },
+ "J F G DISPLAY|NJDE": {
+  "display": "Jet Force Gemini - Kiosk (U) [f1] (Save)",
+  "region": "USA"
+ },
+ "J LEAGUE LIVE 64|NJLJ": {
+  "display": "J.League Live 64 (Japan)",
+  "region": "Japan"
+ },
+ "J WORLD SOCCER3|NJ3J": {
+  "display": "Jikkyou World Soccer 3 (Japan)",
+  "region": "Japan"
+ },
+ "J.WORLD CUP 98|NWSJ": {
+  "display": "Jikkyou World Soccer - World Cup France '98 (Japan) (Rev 2)",
+  "region": "Japan"
+ },
+ "JEOPARDY!|NJOE": {
+  "display": "Jeopardy! (USA)",
+  "region": "USA"
+ },
+ "JET FORCE GEMINI|NJFE": {
+  "display": "Jet Force Gemini - Trainer and Co-Op (hack) Hextator 20110327",
+  "region": "USA"
+ },
+ "JET FORCE GEMINI|NJFP": {
+  "display": "Jet Force Gemini (E) (M4) [f1] SRAM Patched",
+  "region": "Europe"
+ },
+ "JINSEI-GAME64|NJGJ": {
+  "display": "Jinsei Game 64 (Japan)",
+  "region": "Japan"
+ },
+ "Jeremy McGrath Super|NCOE": {
+  "display": "Jeremy McGrath Supercross 2000 (USA)",
+  "region": "USA"
+ },
+ "Jeremy McGrath Super|NCOP": {
+  "display": "Jeremy McGrath Supercross 2000 (Europe)",
+  "region": "Europe"
+ },
+ "KAKUTOU DENSHOU|NFYJ": {
+  "display": "Kakutou Denshou - F-Cup Maniax (Japan)",
+  "region": "Japan"
+ },
+ "KEN GRIFFEY SLUGFEST|NKJE": {
+  "display": "Ken Griffey Jr.'s Slugfest (USA)",
+  "region": "USA"
+ },
+ "KING HILL 64|NSBJ": {
+  "display": "King Hill 64 - Extreme Snowboarding (Japan)",
+  "region": "Japan"
+ },
+ "KIWAME 64|NKMJ": {
+  "display": "Pro Mahjong Kiwame 64 (Japan) (Rev 1)",
+  "region": "Japan"
+ },
+ "KNIFE EDGE|NKEE": {
+  "display": "Knife Edge - Nose Gunner (USA)",
+  "region": "USA"
+ },
+ "KNIFE EDGE|NKEJ": {
+  "display": "Knife Edge - Nose Gunner (Japan)",
+  "region": "Japan"
+ },
+ "KNIFE EDGE|NKEP": {
+  "display": "Knife Edge - Nose Gunner (Europe)",
+  "region": "Europe"
+ },
+ "Killer Instinct Gold|NKIE": {
+  "display": "Killer Instinct Gold (USA) (Rev 2)",
+  "region": "USA"
+ },
+ "Killer Instinct Gold|NKIP": {
+  "display": "Killer Instinct Gold (Europe)",
+  "region": "Europe"
+ },
+ "Kirby64|NK4E": {
+  "display": "Kirby 64 - The Crystal Shards (U) [!] Analog Controls",
+  "region": "USA"
+ },
+ "Kirby64|NK4J": {
+  "display": "Hoshi no Kirby 64 (Japan) (Rev 3)",
+  "region": "Japan"
+ },
+ "Kirby64|NK4P": {
+  "display": "Kirby 64 - The Crystal Shards (Europe)",
+  "region": "Europe"
+ },
+ "Knockout Kings 2000|NKKE": {
+  "display": "Knockout Kings 2000 (USA)",
+  "region": "USA"
+ },
+ "Knockout Kings 2000|NKKP": {
+  "display": "Knockout Kings 2000 (Europe)",
+  "region": "Europe"
+ },
+ "LALA|NNiE": {
+  "display": "Tommy Thunder (USA) (Proto) (1997-10-01)",
+  "region": "USA"
+ },
+ "LAMBORGHINI|NLCE": {
+  "display": "Automobili Lamborghini (USA)",
+  "region": "USA"
+ },
+ "LAMBORGHINI|NLCP": {
+  "display": "Automobili Lamborghini (Europe)",
+  "region": "Europe"
+ },
+ "LASTLEGION UX|NLLJ": {
+  "display": "Last Legion UX (Japan)",
+  "region": "Japan"
+ },
+ "LEGORacers|NLGE": {
+  "display": "LEGO Racers (USA) (En,Fr,De,Es,It,Nl,Sv,No,Da,Fi)",
+  "region": "USA"
+ },
+ "LEGORacers|NLGP": {
+  "display": "LEGO Racers (Europe) (En,Fr,De,Es,It,Nl,Sv,No,Da,Fi)",
+  "region": "Europe"
+ },
+ "LET'S SMASH|NTSJ": {
+  "display": "Let's Smash (Japan)",
+  "region": "Japan"
+ },
+ "LT DUCK DODGERS|NDUE": {
+  "display": "Duck Dodgers Starring Daffy Duck (USA) (En,Fr,Es) (Beta)",
+  "region": "USA"
+ },
+ "Live suxx!|\u0000\u0000\u0000\u0000": {
+  "display": "Pom TRSI Intro (PD) Tristar & Red Sector",
+  "region": "Unknown(00)"
+ },
+ "Lode Runner 3D|NLRE": {
+  "display": "Lode Runner 3-D (USA)",
+  "region": "USA"
+ },
+ "Lode Runner 3D|NLRJ": {
+  "display": "Lode Runner 3-D (Japan)",
+  "region": "Japan"
+ },
+ "Lode Runner 3D|NLRP": {
+  "display": "Lode Runner 3-D (Europe) (En,Fr,De,Es,It)",
+  "region": "Europe"
+ },
+ "MACE|NMEE": {
+  "display": "Mace - The Dark Age (USA)",
+  "region": "USA"
+ },
+ "MACE|NMEP": {
+  "display": "Mace - The Dark Age (Europe)",
+  "region": "Europe"
+ },
+ "MADDEN 64|N8ME": {
+  "display": "Madden Football 64 (USA)",
+  "region": "USA"
+ },
+ "MADDEN 64|N8MP": {
+  "display": "Madden Football 64 (Europe)",
+  "region": "Europe"
+ },
+ "MADDEN NFL 99|N9ME": {
+  "display": "Madden NFL 99 (USA) (Beta) (1998-08-05)",
+  "region": "USA"
+ },
+ "MADDEN NFL 99|N9MP": {
+  "display": "Madden NFL 99 (Europe)",
+  "region": "Europe"
+ },
+ "MAGICAL TETRIS|NMTE": {
+  "display": "Magical Tetris Challenge (USA)",
+  "region": "USA"
+ },
+ "MAGICAL TETRIS|NMTJ": {
+  "display": "Magical Tetris Challenge featuring Mickey (Japan)",
+  "region": "Japan"
+ },
+ "MAGICAL TETRIS|NMTP": {
+  "display": "Magical Tetris Challenge (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "MAGICAL TETRIS|ZCAJ": {
+  "display": "Magical Tetris Challenge (Aleck 64) EverDrive Patched",
+  "region": "Japan"
+ },
+ "MAHJONG64|NMJJ": {
+  "display": "Mahjong 64 (Japan)",
+  "region": "Japan"
+ },
+ "MAME-64 beta3|\u0000\u0000\u0000\u0000": {
+  "display": "MAME 64 PAL (PD) Paladin Beta 3",
+  "region": "Unknown(00)"
+ },
+ "MARIO STORY|NMQJ": {
+  "display": "Mario Story (Japan)",
+  "region": "Japan"
+ },
+ "MARIOKART64|NKTE": {
+  "display": "Mario Kart 64 (USA)",
+  "region": "USA"
+ },
+ "MARIOKART64|NKTJ": {
+  "display": "Mario Kart 64 (Japan) (Rev 1)",
+  "region": "Japan"
+ },
+ "MARIOKART64|NKTP": {
+  "display": "Mario Kart 64 (Europe) (Rev 1)",
+  "region": "Europe"
+ },
+ "MASTERS'98|NM9J": {
+  "display": "Harukanaru Augusta - Masters '98 (Japan)",
+  "region": "Japan"
+ },
+ "MCT by WH|\u0000C0\u0000": {
+  "display": "Money Creates Taste (PD) Warehouse & Camelot",
+  "region": "Unknown(00)"
+ },
+ "MGAH VOL1|NAIE": {
+  "display": "Midway's Greatest Arcade Hits - Volume 1 (USA)",
+  "region": "USA"
+ },
+ "MICKEY USA PAL|NMLP": {
+  "display": "Mickey's Speedway USA (Europe) (En,Fr,De,Es,It)",
+  "region": "Europe"
+ },
+ "MICKEY USA|NMLE": {
+  "display": "Mickey's Speedway USA (USA)",
+  "region": "USA"
+ },
+ "MICKEY USA|NMLJ": {
+  "display": "Mickey no Racing Challenge USA (Japan)",
+  "region": "Japan"
+ },
+ "MICROMACHINES64TURBO|NV3E": {
+  "display": "Micro Machines 64 Turbo (USA)",
+  "region": "USA"
+ },
+ "MICROMACHINES64TURBO|NV3P": {
+  "display": "Micro Machines 64 Turbo (Europe) (En,Fr,De,Es,It)",
+  "region": "Europe"
+ },
+ "MISCHIEF MAKERS|NTME": {
+  "display": "Mischief Makers (U) [!] Analog Controls",
+  "region": "USA"
+ },
+ "MISCHIEF MAKERS|NTMP": {
+  "display": "Mischief Makers (Europe)",
+  "region": "Europe"
+ },
+ "MISSION IMPOSSIBLE|NMIE": {
+  "display": "Mission - Impossible (USA)",
+  "region": "USA"
+ },
+ "MISSION IMPOSSIBLE|NMIP": {
+  "display": "Mission - Impossible (Europe)",
+  "region": "Europe"
+ },
+ "MISSION IMPOSSIBLE|NMIS": {
+  "display": "Mission - Impossible (Spain) (Rev 1)",
+  "region": "Spain"
+ },
+ "MK_MYTHOLOGIES|NMYE": {
+  "display": "Mortal Kombat Mythologies - Sub-Zero (U) [!] Control Modification",
+  "region": "USA"
+ },
+ "MK_MYTHOLOGIES|NMYP": {
+  "display": "Mortal Kombat Mythologies - Sub-Zero (Europe)",
+  "region": "Europe"
+ },
+ "MLB FEATURING K G JR|NKGE": {
+  "display": "Major League Baseball featuring Ken Griffey Jr. (USA)",
+  "region": "USA"
+ },
+ "MO WORLD LEAGUE SOCC|NWKX": {
+  "display": "Michael Owens WLS 2000 (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "MORTAL KOMBAT 4|NM4E": {
+  "display": "Mortal Kombat 4 (USA)",
+  "region": "USA"
+ },
+ "MORTAL KOMBAT 4|NM4P": {
+  "display": "Mortal Kombat 4 (Europe)",
+  "region": "Europe"
+ },
+ "MS. PAC-MAN MM|NP9E": {
+  "display": "Ms. Pac-Man - Maze Madness (USA)",
+  "region": "USA"
+ },
+ "MTM64|NM3E": {
+  "display": "Monster Truck Madness 64 (USA)",
+  "region": "USA"
+ },
+ "MTM64|NM3P": {
+  "display": "Monster Truck Madness 64 (E) (M5) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "MULTI RACING|NMRE": {
+  "display": "MRC - Multi-Racing Championship (USA)",
+  "region": "USA"
+ },
+ "MULTI RACING|NMRJ": {
+  "display": "MRC - Multi-Racing Championship (Japan)",
+  "region": "Japan"
+ },
+ "MULTI RACING|NMRP": {
+  "display": "MRC - Multi-Racing Championship (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "MYSTICAL NINJA2 SG|NGMP": {
+  "display": "Mystical Ninja 2 Starring Goemon (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "MYSTICAL NINJA|NG5E": {
+  "display": "Mystical Ninja Starring Goemon (USA)",
+  "region": "USA"
+ },
+ "MYSTICAL NINJA|NG5P": {
+  "display": "Mystical Ninja Starring Goemon (Europe)",
+  "region": "Europe"
+ },
+ "Madden NFL 2000|NMDE": {
+  "display": "Madden NFL 2000 (USA)",
+  "region": "USA"
+ },
+ "Madden NFL 2001|NFLE": {
+  "display": "Madden NFL 2001 (USA)",
+  "region": "USA"
+ },
+ "Madden NFL 2002|N2ME": {
+  "display": "Madden NFL 2002 (USA)",
+  "region": "USA"
+ },
+ "MarioGolf64|NMFE": {
+  "display": "Mario Golf (USA)",
+  "region": "USA"
+ },
+ "MarioGolf64|NMFJ": {
+  "display": "Mario Golf 64 (Japan) (Rev 1)",
+  "region": "Japan"
+ },
+ "MarioGolf64|NMFP": {
+  "display": "Mario Golf (Europe)",
+  "region": "Europe"
+ },
+ "MarioParty2|NMWE": {
+  "display": "Mario Party 2 (USA)",
+  "region": "USA"
+ },
+ "MarioParty2|NMWJ": {
+  "display": "Mario Party 2 (Japan)",
+  "region": "Japan"
+ },
+ "MarioParty2|NMWP": {
+  "display": "Mario Party 2 (Europe) (En,Fr,De,Es,It)",
+  "region": "Europe"
+ },
+ "MarioParty3|NMVE": {
+  "display": "Mario Party 3 (USA)",
+  "region": "USA"
+ },
+ "MarioParty3|NMVJ": {
+  "display": "Mario Party 3 (Japan)",
+  "region": "Japan"
+ },
+ "MarioParty3|NMVP": {
+  "display": "Mario Party 3 (Europe) (En,Fr,De,Es)",
+  "region": "Europe"
+ },
+ "MarioParty|CLBE": {
+  "display": "Mario Party (USA)",
+  "region": "USA"
+ },
+ "MarioParty|CLBJ": {
+  "display": "Mario Party (Japan)",
+  "region": "Japan"
+ },
+ "MarioParty|NLBP": {
+  "display": "Mario Party (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "MarioTennis64|NM8J": {
+  "display": "Mario Tennis 64 (Japan)",
+  "region": "Japan"
+ },
+ "MarioTennis|NM8E": {
+  "display": "Mario Tennis (USA)",
+  "region": "USA"
+ },
+ "MarioTennis|NM8P": {
+  "display": "Mario Tennis (Europe)",
+  "region": "Europe"
+ },
+ "Mega Man 64|NM6E": {
+  "display": "Mega Man 64 (USA)",
+  "region": "USA"
+ },
+ "MegaHawks inc|\u0000\u0000\u0000\u0000": {
+  "display": "Ultrafox64 (PD) MegaHawks",
+  "region": "Unknown(00)"
+ },
+ "MegaHawks music|\u0000\u0000\u0000\u0000": {
+  "display": "MegaHawks Music Disk (PD) MegaHawks",
+  "region": "Unknown(00)"
+ },
+ "Mia Hamm Soccer 64|NHME": {
+  "display": "Mia Hamm Soccer 64 (USA) (En,Es)",
+  "region": "USA"
+ },
+ "Milos_Astro_Lanes|NBRE": {
+  "display": "Milo's Astro Lanes (USA)",
+  "region": "USA"
+ },
+ "Milos_Astro_Lanes|NBRP": {
+  "display": "Milo's Astro Lanes (Europe)",
+  "region": "Europe"
+ },
+ "Monaco GP Racing 2|NMGP": {
+  "display": "Monaco Grand Prix - Racing Simulation 2 (Europe) (En,Fr,Es,It)",
+  "region": "Europe"
+ },
+ "Monaco Grand Prix|NMGE": {
+  "display": "Monaco Grand Prix (USA)",
+  "region": "USA"
+ },
+ "MortalKombatTrilogy|NMKE": {
+  "display": "Mortal Kombat Trilogy (USA) (Rev 2)",
+  "region": "USA"
+ },
+ "MortalKombatTrilogy|NMKP": {
+  "display": "Mortal Kombat Trilogy (Europe)",
+  "region": "Europe"
+ },
+ "N64 Demo|\u0000\u0000\u0000\u0000": {
+  "display": "Evil Australians (PD) v3 gameblabla",
+  "region": "Unknown(00)"
+ },
+ "NACHO64|\u0000\u0000\u0000\u0000": {
+  "display": "Nacho64 Demo (PD)",
+  "region": "Unknown(00)"
+ },
+ "NAGANO OLYMPICS|NH5E": {
+  "display": "Nagano Winter Olympics '98 (USA)",
+  "region": "USA"
+ },
+ "NAGANO OLYMPICS|NH5J": {
+  "display": "Hyper Olympics in Nagano 64 (Japan)",
+  "region": "Japan"
+ },
+ "NAGANO OLYMPICS|NH5P": {
+  "display": "Nagano Winter Olympics '98 (Europe)",
+  "region": "Europe"
+ },
+ "NAMCOMUSEUM64|NNME": {
+  "display": "Namco Museum 64 (USA)",
+  "region": "USA"
+ },
+ "NASCAR 2000|NN2E": {
+  "display": "NASCAR 2000 (USA)",
+  "region": "USA"
+ },
+ "NASCAR 99|N9CE": {
+  "display": "NASCAR 99 (USA)",
+  "region": "USA"
+ },
+ "NASCAR 99|N9CP": {
+  "display": "NASCAR 99 (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "NBA COURTSIDE|NNBE": {
+  "display": "Kobe Bryant in NBA Courtside (USA)",
+  "region": "USA"
+ },
+ "NBA COURTSIDE|NNBP": {
+  "display": "Kobe Bryant in NBA Courtside (Europe)",
+  "region": "Europe"
+ },
+ "NBA Courtside 2|NCKE": {
+  "display": "NBA Courtside 2 featuring Kobe Bryant (USA)",
+  "region": "USA"
+ },
+ "NBA HANGTIME|NXGE": {
+  "display": "NBA Hangtime (USA)",
+  "region": "USA"
+ },
+ "NBA HANGTIME|NXGP": {
+  "display": "NBA Hangtime (Europe)",
+  "region": "Europe"
+ },
+ "NBA IN THE ZONE '98|NBAE": {
+  "display": "NBA in the Zone '98 (USA)",
+  "region": "USA"
+ },
+ "NBA IN THE ZONE '98|NBAJ": {
+  "display": "NBA in the Zone '98 (Japan)",
+  "region": "Japan"
+ },
+ "NBA IN THE ZONE '99|NB2E": {
+  "display": "NBA in the Zone '99 (USA)",
+  "region": "USA"
+ },
+ "NBA IN THE ZONE 2000|NWZE": {
+  "display": "NBA in the Zone 2000 (USA)",
+  "region": "USA"
+ },
+ "NBA IN THE ZONE 2000|NWZP": {
+  "display": "NBA in the Zone 2000 (Europe)",
+  "region": "Europe"
+ },
+ "NBA IN THE ZONE 2|NB2J": {
+  "display": "NBA in the Zone 2 (Japan)",
+  "region": "Japan"
+ },
+ "NBA JAM 2000|NJAE": {
+  "display": "NBA Jam 2000 (USA)",
+  "region": "USA"
+ },
+ "NBA JAM 2000|NJAP": {
+  "display": "NBA Jam 2000 (Europe)",
+  "region": "Europe"
+ },
+ "NBA JAM 99|NB9E": {
+  "display": "NBA Jam 99 (USA)",
+  "region": "USA"
+ },
+ "NBA JAM 99|NB9P": {
+  "display": "NBA Jam 99 (Europe)",
+  "region": "Europe"
+ },
+ "NBA LIVE 2000|NNLE": {
+  "display": "NBA Live 2000 (USA) (En,Fr,De,Es)",
+  "region": "USA"
+ },
+ "NBA LIVE 2000|NNLP": {
+  "display": "NBA Live 2000 (Europe) (En,Fr,De,Es)",
+  "region": "Europe"
+ },
+ "NBA Live 99|N9BE": {
+  "display": "NBA Live 99 (USA) (En,Fr,De,Es,It)",
+  "region": "USA"
+ },
+ "NBA Live 99|N9BP": {
+  "display": "NBA Live 99 (Europe) (En,Fr,De,Es,It)",
+  "region": "Europe"
+ },
+ "NBA PRO 98|NBAP": {
+  "display": "NBA Pro 98 (Europe)",
+  "region": "Europe"
+ },
+ "NBA PRO 99|NB2P": {
+  "display": "NBA Pro 99 (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "NBA SHOWTIME|NSOE": {
+  "display": "NBA Showtime - NBA on NBC (USA)",
+  "region": "USA"
+ },
+ "NEWTETRIS|NRIE": {
+  "display": "New Tetris, The (USA)",
+  "region": "USA"
+ },
+ "NEWTETRIS|NRIP": {
+  "display": "New Tetris, The (Europe)",
+  "region": "Europe"
+ },
+ "NFL BLITZ 2001|NFBE": {
+  "display": "NFL Blitz 2001 (USA)",
+  "region": "USA"
+ },
+ "NFL BLITZ SPECIAL ED|NSZE": {
+  "display": "NFL Blitz - Special Edition (USA)",
+  "region": "USA"
+ },
+ "NFL BLITZ|NBZE": {
+  "display": "NFL Blitz (USA)",
+  "region": "USA"
+ },
+ "NFL QBC '99|NQ9E": {
+  "display": "NFL Quarterback Club 99 (USA)",
+  "region": "USA"
+ },
+ "NFL QBC '99|NQ9P": {
+  "display": "NFL Quarterback Club 99 (Europe)",
+  "region": "Europe"
+ },
+ "NFL QBC 2000|NQBE": {
+  "display": "NFL Quarterback Club 2000 (USA)",
+  "region": "USA"
+ },
+ "NFL QBC 2000|NQBP": {
+  "display": "NFL Quarterback Club 2000 (Europe)",
+  "region": "Europe"
+ },
+ "NFL Quarterback Club|NQCE": {
+  "display": "NFL QB Club 2001 (USA)",
+  "region": "USA"
+ },
+ "NHL 99|N9HE": {
+  "display": "NHL 99 (USA)",
+  "region": "USA"
+ },
+ "NHL 99|N9HP": {
+  "display": "NHL 99 (Europe) (En,De,Sv,Fi)",
+  "region": "Europe"
+ },
+ "NHL Breakaway '99|NH9E": {
+  "display": "NHL Breakaway 99 (USA)",
+  "region": "USA"
+ },
+ "NHL Breakaway '99|NH9P": {
+  "display": "NHL Breakaway 99 (Europe)",
+  "region": "Europe"
+ },
+ "NHL PRO 99|NHOP": {
+  "display": "NHL Pro 99 (Europe)",
+  "region": "Europe"
+ },
+ "NHL_BREAKAWAY_98|NHLE": {
+  "display": "NHL Breakaway 98 (USA)",
+  "region": "USA"
+ },
+ "NHL_BREAKAWAY_98|NHLP": {
+  "display": "NHL Breakaway 98 (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "NIGHTMARE CREATURES|NNCE": {
+  "display": "Nightmare Creatures (USA)",
+  "region": "USA"
+ },
+ "NINTAMAGAMEGALLERY64|NHBJ": {
+  "display": "Nintama Rantarou 64 Game Gallery (Japan)",
+  "region": "Japan"
+ },
+ "NITRO64|NW3E": {
+  "display": "WCW Nitro (USA)",
+  "region": "USA"
+ },
+ "NUCLEARSTRIKE64|NCEE": {
+  "display": "Nuclear Strike 64 (USA)",
+  "region": "USA"
+ },
+ "NUCLEARSTRIKE64|NCEP": {
+  "display": "Nuclear Strike 64 (Europe) (En,Fr)",
+  "region": "Europe"
+ },
+ "O.D.T|NTDE": {
+  "display": "O.D.T. (USA) (En,Fr,Es) (Proto)",
+  "region": "USA"
+ },
+ "O.D.T|NTDP": {
+  "display": "O.D.T. (Europe) (En,Fr,De,Es,It) (Proto)",
+  "region": "Europe"
+ },
+ "OBS-Y2KD|\u0000\u0000\u0000\u0000": {
+  "display": "Y2K Demo (PD) WT_Riker",
+  "region": "Unknown(00)"
+ },
+ "OFFROAD|NOFE": {
+  "display": "Off Road Challenge (USA)",
+  "region": "USA"
+ },
+ "OFFROAD|NOFP": {
+  "display": "Off Road Challenge (Europe)",
+  "region": "Europe"
+ },
+ "OLYMPIC 2000|N3HJ": {
+  "display": "Ganbare! Nippon! Olympics 2000 (Japan)",
+  "region": "Japan"
+ },
+ "OLYMPIC HOCKEY|NHNE": {
+  "display": "Olympic Hockey 98 (USA)",
+  "region": "USA"
+ },
+ "OLYMPIC HOCKEY|NHNJ": {
+  "display": "Olympic Hockey 98 (Japan)",
+  "region": "Japan"
+ },
+ "OLYMPIC HOCKEY|NHNP": {
+  "display": "Olympic Hockey 98 (Europe) (En,Fr,De,Es)",
+  "region": "Europe"
+ },
+ "ONEGAI MONSTER|NOMJ": {
+  "display": "Onegai Monsters (Japan)",
+  "region": "Japan"
+ },
+ "OPERATION WINBACK|NWDP": {
+  "display": "Operation WinBack (Europe) (En,Fr,De,Es,It)",
+  "region": "Europe"
+ },
+ "OgreBattle64|NOBE": {
+  "display": "Ogre Battle 64 (U) Lycanthropy Patch v1 Zoinkity",
+  "region": "USA"
+ },
+ "OgreBattle64|NOBJ": {
+  "display": "Ogre Battle 64 - Person of Lordly Caliber (Japan) (Rev 1)",
+  "region": "Japan"
+ },
+ "PACHINKO365NICHI|NPCJ": {
+  "display": "Pachinko 365 Debugs (Hack) v1.0 Zoinkity",
+  "region": "Japan"
+ },
+ "PAPER MARIO|NMQE": {
+  "display": "Paper Mario (USA)",
+  "region": "USA"
+ },
+ "PAPER MARIO|NMQP": {
+  "display": "Paper Mario (Europe) (En,Fr,De,Es)",
+  "region": "Europe"
+ },
+ "PAPERBOY|NYPE": {
+  "display": "Paperboy (USA)",
+  "region": "USA"
+ },
+ "PAPERBOY|NYPP": {
+  "display": "Paperboy (Europe)",
+  "region": "Europe"
+ },
+ "PAWAFURU PUROYAKYU4|NP4J": {
+  "display": "Jikkyou Powerful Pro Yakyuu 4 (Japan) (Rev 1)",
+  "region": "Japan"
+ },
+ "PAWAFURU PUROYAKYU5|NJ5J": {
+  "display": "Jikkyou Powerful Pro Yakyuu 5 (Japan) (Rev 2)",
+  "region": "Japan"
+ },
+ "PAWAFURU PUROYAKYU6|NP6J": {
+  "display": "Jikkyou Powerful Pro Yakyuu 6 (Japan) (Rev 2)",
+  "region": "Japan"
+ },
+ "PAWAPURO 2000|NPAJ": {
+  "display": "Jikkyou Powerful Pro Yakyuu 2000 (Japan) (Rev 1)",
+  "region": "Japan"
+ },
+ "PAWAPURO 2001B|NPEJ": {
+  "display": "Jikkyou Powerful Pro Yakyuu - Basic Ban 2001 (Japan) (Rev 1)",
+  "region": "Japan"
+ },
+ "PENNY RACERS|NCRE": {
+  "display": "Penny Racers (USA)",
+  "region": "USA"
+ },
+ "PENNY RACERS|NCRP": {
+  "display": "Penny Racers (Europe)",
+  "region": "Europe"
+ },
+ "PERFECT DARK|NPDJ": {
+  "display": "Perfect Dark (Japan)",
+  "region": "Japan"
+ },
+ "PERFECT STRIKER2|NPSJ": {
+  "display": "Jikkyou J.League 1999 - Perfect Striker 2 (Japan) (Rev 1)",
+  "region": "Japan"
+ },
+ "PERFECT STRIKER|NJPJ": {
+  "display": "Jikkyou J.League Perfect Striker (Japan)",
+  "region": "Japan"
+ },
+ "PGA European Tour Go|NEAP": {
+  "display": "PGA European Tour (E) (M5) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "PGA European Tour|NEAE": {
+  "display": "PGA European Tour (USA)",
+  "region": "USA"
+ },
+ "PIAZZA STRIKEZONE|NMBE": {
+  "display": "Mike Piazza's Strike Zone (USA)",
+  "region": "USA"
+ },
+ "PIKACHU GENKIDECHU|NPGJ": {
+  "display": "Pikachuu Genki de Chuu (Japan)",
+  "region": "Japan"
+ },
+ "POKEMON SNAP|NPFE": {
+  "display": "Pokemon Snap (USA)",
+  "region": "USA"
+ },
+ "POKEMON SNAP|NPFJ": {
+  "display": "Pokemon Snap (Japan)",
+  "region": "Japan"
+ },
+ "POKEMON SNAP|NPFP": {
+  "display": "Pokemon Snap (Europe)",
+  "region": "Europe"
+ },
+ "POKEMON SNAP|NPFS": {
+  "display": "Pokemon Snap (Spain)",
+  "region": "Spain"
+ },
+ "POKEMON STADIUM 2|CP2J": {
+  "display": "Pokemon Stadium 2 (Japan)",
+  "region": "Japan"
+ },
+ "POKEMON STADIUM 2|NP3E": {
+  "display": "Pokemon Stadium 2 - Mord's Moveset (Hack) v1.01 Mord_Fustang",
+  "region": "USA"
+ },
+ "POKEMON STADIUM 2|NP3P": {
+  "display": "Pokemon Stadium 2 (Europe)",
+  "region": "Europe"
+ },
+ "POKEMON STADIUM 2|NP3S": {
+  "display": "Pokemon Stadium 2 (Spain)",
+  "region": "Spain"
+ },
+ "POKEMON STADIUM G&S|NP3J": {
+  "display": "Pokemon Stadium Kin Gin (Japan)",
+  "region": "Japan"
+ },
+ "POKEMON STADIUM|CPSJ": {
+  "display": "Pokemon Stadium (Japan)",
+  "region": "Japan"
+ },
+ "POKEMON STADIUM|NPOE": {
+  "display": "Pokemon Stadium Kaizo (Hack) v1 SinisterHoodedFigure",
+  "region": "USA"
+ },
+ "POKEMON STADIUM|NPOP": {
+  "display": "Pokemon Stadium (Europe) (Rev 1)",
+  "region": "Europe"
+ },
+ "POKEMON STADIUM|NPOS": {
+  "display": "Pokemon Stadium (Spain)",
+  "region": "Spain"
+ },
+ "POLARISSNOCROSS|NPXE": {
+  "display": "Polaris SnoCross (USA)",
+  "region": "USA"
+ },
+ "POM99 - CAN-BETA|NUnP": {
+  "display": "Wet Dreams Part 4 (PD) Dynamix",
+  "region": "Europe"
+ },
+ "POM99 - MADEIRAGAMES|NNiP": {
+  "display": "Wet Dreams Part 2 (PD) Dynamix",
+  "region": "Europe"
+ },
+ "POM99 - README|NUnP": {
+  "display": "Wet Dreams Part 1 (PD) Dynamix",
+  "region": "Europe"
+ },
+ "POM99 - WET DREAMS|NUnP": {
+  "display": "Wet Dreams Part 3 (PD) Dynamix",
+  "region": "Europe"
+ },
+ "POWER RANGERS|NPUE": {
+  "display": "Power Rangers - Lightspeed Rescue (USA)",
+  "region": "USA"
+ },
+ "POWER RANGERS|NPUP": {
+  "display": "Power Rangers - Lightspeed Rescue (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "PPG CHEMICAL X|NPQE": {
+  "display": "Powerpuff Girls, The - Chemical X-Traction (USA)",
+  "region": "USA"
+ },
+ "PROYAKYUKING|NPKJ": {
+  "display": "Chou Kuukan Nighter Pro Yakyuu King (Japan)",
+  "region": "Japan"
+ },
+ "PUYO PUYO SUN 64|NPYJ": {
+  "display": "Puyo Puyo Sun 64 (Japan)",
+  "region": "Japan"
+ },
+ "PUYOPUYO4|NPTJ": {
+  "display": "Puyo Puyoon Party (Japan)",
+  "region": "Japan"
+ },
+ "PUZZLE LEAGUE N64|NPNE": {
+  "display": "Pokemon Puzzle League (USA)",
+  "region": "USA"
+ },
+ "PUZZLE LEAGUE N64|NPNP": {
+  "display": "Pokemon Puzzle League (Europe)",
+  "region": "Europe"
+ },
+ "PUZZLEBOBBLE64|NPBJ": {
+  "display": "Puzzle Bobble 64 (Japan)",
+  "region": "Japan"
+ },
+ "Parlor PRO 64|NPPJ": {
+  "display": "Parlor! Pro 64 - Pachinko Jikki Simulation Game (Japan)",
+  "region": "Japan"
+ },
+ "Perfect Dark|NPDE": {
+  "display": "Perfect Dark - Kakariko Village (hack) Sogun 20120402",
+  "region": "USA"
+ },
+ "Perfect Dark|NPDP": {
+  "display": "Perfect Dark (Europe) (En,Fr,De,Es,It)",
+  "region": "Europe"
+ },
+ "Pilot Wings64|NPWE": {
+  "display": "Pilotwings 64 (USA)",
+  "region": "USA"
+ },
+ "Pilot Wings64|NPWJ": {
+  "display": "Pilotwings 64 (Japan)",
+  "region": "Japan"
+ },
+ "Pilot Wings64|NPWP": {
+  "display": "Pilotwings 64 (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "PowerLeague64|NPLJ": {
+  "display": "Power League 64 (Japan)",
+  "region": "Japan"
+ },
+ "Premier Manager 64|NPMP": {
+  "display": "Premier Manager 64 (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "Puzzle Master 64|\u0000\u0000\u0000\u0000": {
+  "display": "Puzzle Master 64 (PD) Michael Searl",
+  "region": "Unknown(00)"
+ },
+ "QUAKE II|NQ2E": {
+  "display": "Quake II (USA)",
+  "region": "USA"
+ },
+ "QUAKE II|NQ2P": {
+  "display": "Quake II (Europe)",
+  "region": "Europe"
+ },
+ "Quake|NQKE": {
+  "display": "Quake (USA)",
+  "region": "USA"
+ },
+ "Quake|NQKP": {
+  "display": "Quake (Europe)",
+  "region": "Europe"
+ },
+ "Quest 64|NETE": {
+  "display": "Quest 64 (USA)",
+  "region": "USA"
+ },
+ "RAINBOW SIX|NR6E": {
+  "display": "Tom Clancy's Rainbow Six (U) [!] - Analog Movement Controls_1.01",
+  "region": "USA"
+ },
+ "RAINBOW SIX|NR6P": {
+  "display": "Tom Clancy's Rainbow Six (Europe)",
+  "region": "Europe"
+ },
+ "RAKUGAKIDS|NKRJ": {
+  "display": "Rakugakids (Japan)",
+  "region": "Japan"
+ },
+ "RAKUGAKIDS|NKRP": {
+  "display": "Rakuga Kids (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "RAKUGAKIDS|NKRZ": {
+  "display": "Rakugakids Region-Free (Hack) v1 Zoinkity",
+  "region": "Unknown(5A)"
+ },
+ "RALLY CHALLENGE|NWQE": {
+  "display": "Rally Challenge 2000 (USA)",
+  "region": "USA"
+ },
+ "RAMPAGE2|N2PE": {
+  "display": "Rampage 2 - Universal Tour (USA)",
+  "region": "USA"
+ },
+ "RAMPAGE2|N2PP": {
+  "display": "Rampage 2 - Universal Tour (Europe)",
+  "region": "Europe"
+ },
+ "RAMPAGE|NRPE": {
+  "display": "Rampage - World Tour (USA)",
+  "region": "USA"
+ },
+ "RAMPAGE|NRPP": {
+  "display": "Rampage - World Tour (Europe)",
+  "region": "Europe"
+ },
+ "RAT ATTACK|NRTE": {
+  "display": "Rat Attack! (USA) (En,Fr,De,Es,It,Nl)",
+  "region": "USA"
+ },
+ "RAT ATTACK|NRTP": {
+  "display": "Rat Attack (E) (M6) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "RAZOR FREESTYLE|NFQE": {
+  "display": "Razor Freestyle Scooter (USA)",
+  "region": "USA"
+ },
+ "READY 2 RUMBLE|NRDE": {
+  "display": "Ready 2 Rumble Boxing (USA)",
+  "region": "USA"
+ },
+ "READY 2 RUMBLE|NRDP": {
+  "display": "Ready 2 Rumble Boxing (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "RIDGE RACER 64|NRZE": {
+  "display": "RR64 - Ridge Racer 64 (USA)",
+  "region": "USA"
+ },
+ "RIDGE RACER 64|NRZP": {
+  "display": "RR64 - Ridge Racer 64 (Europe)",
+  "region": "Europe"
+ },
+ "ROAD RASH 64|NROE": {
+  "display": "Road Rash 64 (USA)",
+  "region": "USA"
+ },
+ "ROAD RASH 64|NROP": {
+  "display": "Road Rash 64 (Europe)",
+  "region": "Europe"
+ },
+ "ROADSTERS TROPHY|NRRE": {
+  "display": "Roadsters (USA) (En,Fr,Es)",
+  "region": "USA"
+ },
+ "ROADSTERS TROPHY|NRRP": {
+  "display": "Roadsters (Europe) (En,Fr,De,Es,It,Nl)",
+  "region": "Europe"
+ },
+ "ROBOTRON-64|NRXE": {
+  "display": "Robotron 64 (USA)",
+  "region": "USA"
+ },
+ "ROBOTRON-64|NRXP": {
+  "display": "Robotron 64 (Europe)",
+  "region": "Europe"
+ },
+ "ROCKETROBOTONWHEELS|NSUE": {
+  "display": "Rocket - Robot on Wheels (USA)",
+  "region": "USA"
+ },
+ "ROCKETROBOTONWHEELS|NSUP": {
+  "display": "Rocket - Robot on Wheels (Europe) (Beta)",
+  "region": "Europe"
+ },
+ "RONALDINHO SOCCER|NJPE": {
+  "display": "Ronaldinho's Soccer 64 (Brazil) (Unl) (Pirate)",
+  "region": "USA"
+ },
+ "RUGRATS IN PARIS|NRKE": {
+  "display": "Rugrats in Paris - The Movie (USA)",
+  "region": "USA"
+ },
+ "RUGRATS IN PARIS|NRKP": {
+  "display": "Rugrats in Paris - The Movie (Europe)",
+  "region": "Europe"
+ },
+ "RUGRATSSCAVENGERHUNT|NRGE": {
+  "display": "Rugrats - Scavenger Hunt (USA)",
+  "region": "USA"
+ },
+ "RUGRATSTREASUREHUNT|NRGP": {
+  "display": "Rugrats - Treasure Hunt (Europe)",
+  "region": "Europe"
+ },
+ "RUSH 2049|NRUP": {
+  "display": "San Francisco Rush 2049 (Europe) (En,Fr,De,Es,It,Nl)",
+  "region": "Europe"
+ },
+ "RUSH 2|NR2E": {
+  "display": "Rush 2 - Extreme Racing USA (USA)",
+  "region": "USA"
+ },
+ "RUSH 2|NR2P": {
+  "display": "Rush 2 - Extreme Racing USA (Europe) (En,Fr,De,Es,It,Nl)",
+  "region": "Europe"
+ },
+ "Rally'99|NRAJ": {
+  "display": "Rally '99 (Japan)",
+  "region": "Japan"
+ },
+ "Rayman 2|NY2E": {
+  "display": "Rayman 2 - The Great Escape (USA) (En,Fr,De,Es,It)",
+  "region": "USA"
+ },
+ "Rayman 2|NY2P": {
+  "display": "Rayman 2 - The Great Escape (E) (M5) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "Re-Volt|NRVE": {
+  "display": "Re-Volt (USA)",
+  "region": "USA"
+ },
+ "Re-Volt|NRVP": {
+  "display": "Re-Volt (Europe) (En,Fr,De,Es)",
+  "region": "Europe"
+ },
+ "ReNdErMaN|\u0000\u0000\u0000\u0000": {
+  "display": "High Society Intro (PD) High Society",
+  "region": "Unknown(00)"
+ },
+ "Ready to Rumble|N22E": {
+  "display": "Ready 2 Rumble Boxing - Round 2 (USA)",
+  "region": "USA"
+ },
+ "Resident Evil II|NREE": {
+  "display": "Resident Evil 2 (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "Resident Evil II|NREP": {
+  "display": "Resident Evil 2 (Europe) (En,Fr)",
+  "region": "Europe"
+ },
+ "RoadToWorldCup98|N8IJ": {
+  "display": "FIFA - Road to World Cup 98 - World Cup e no Michi (Japan)",
+  "region": "Japan"
+ },
+ "Robopon64|NR7J": {
+  "display": "Robot Poncots 64 - 7tsu no Umi no Caramel (Japan)",
+  "region": "Japan"
+ },
+ "RockMan Dash|NRHJ": {
+  "display": "Rockman Dash - Hagane no Boukenshin (Japan)",
+  "region": "Japan"
+ },
+ "Rush 2049|NRUE": {
+  "display": "San Francisco Rush 2049 (USA)",
+  "region": "USA"
+ },
+ "S.F. RUSH|NSFE": {
+  "display": "San Francisco Rush - Extreme Racing (USA) (En,Fr,De) (Rev 1)",
+  "region": "USA"
+ },
+ "S.F.RUSH|NSFP": {
+  "display": "San Francisco Rush - Extreme Racing (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "SCARS|NCSE": {
+  "display": "S.C.A.R.S. (USA)",
+  "region": "USA"
+ },
+ "SCARS|NCSP": {
+  "display": "S.C.A.R.S. (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "SCOOBY-DOO|NSYE": {
+  "display": "Scooby-Doo! - Classic Creep Capers (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "SCOOBY-DOO|NSYP": {
+  "display": "Scooby-Doo! - Classic Creep Capers (Europe)",
+  "region": "Europe"
+ },
+ "SD HIRYU STADIUM|NDCJ": {
+  "display": "SD Hiryuu no Ken Densetsu (Japan)",
+  "region": "Japan"
+ },
+ "SHADOWGATE64|NSGE": {
+  "display": "Shadowgate 64 - Trials Of The Four Towers (U) (M2) [!] Analog Controls",
+  "region": "USA"
+ },
+ "SHADOWGATE64|NSGJ": {
+  "display": "Shadowgate 64 - Trials of the Four Towers (Japan)",
+  "region": "Japan"
+ },
+ "SHADOWGATE64|NSGP": {
+  "display": "Shadowgate 64 - Trials of The Four Towers (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "SIM CITY 2000|NS2J": {
+  "display": "SimCity 2000 (Japan)",
+  "region": "Japan"
+ },
+ "SKY STORIES|NSME": {
+  "display": "SM64 - Sky Stories (hack)",
+  "region": "USA"
+ },
+ "SM MARVEL ADVENTURE|NSME": {
+  "display": "SM64 - SM and the Marvel Adventure (hack)",
+  "region": "USA"
+ },
+ "SM64 Multiplayer 1.0|NSME": {
+  "display": "SM64 - Multiplayer (hack) v1.0",
+  "region": "USA"
+ },
+ "SM64 Star Road|NSME": {
+  "display": "SM64 - Star Road (hack)",
+  "region": "USA"
+ },
+ "SM64_TWISTED_ADV|NSME": {
+  "display": "SM64 - Twisted Adventures 2.0 (hack)",
+  "region": "USA"
+ },
+ "SMASH BROTHERS|NALE": {
+  "display": "Smash Bros Falco Mod (Hack) v1.01 Nick Mang",
+  "region": "USA"
+ },
+ "SMASH BROTHERS|NALJ": {
+  "display": "Nintendo All-Star! Dairantou Smash Brothers (Japan)",
+  "region": "Japan"
+ },
+ "SMASH BROTHERS|NALP": {
+  "display": "Super Smash Bros. (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "SNOWBOARD KIDS2|NK2E": {
+  "display": "Snowboard Kids 2 (USA)",
+  "region": "USA"
+ },
+ "SNOWBOARD KIDS|NSKE": {
+  "display": "Snowboard Kids (USA)",
+  "region": "USA"
+ },
+ "SNOWBOARD KIDS|NSKP": {
+  "display": "Snowboard Kids (Europe)",
+  "region": "Europe"
+ },
+ "SONIC WINGS ASSAULT|NSAJ": {
+  "display": "Sonic Wings Assault (Japan)",
+  "region": "Japan"
+ },
+ "SPACE DYNAMITES|NDKJ": {
+  "display": "Space Dynamites (Japan)",
+  "region": "Japan"
+ },
+ "SPACE INVADERS|NIVE": {
+  "display": "Space Invaders (USA)",
+  "region": "USA"
+ },
+ "SPIDERMAN|NSLE": {
+  "display": "Spider-Man (USA)",
+  "region": "USA"
+ },
+ "STAR SOLDIER|NS6E": {
+  "display": "Star Soldier - Vanishing Earth (USA)",
+  "region": "USA"
+ },
+ "STAR SOLDIER|NS6J": {
+  "display": "Star Soldier - Vanishing Earth (Japan)",
+  "region": "Japan"
+ },
+ "STAR SOLDIER|ZHBJ": {
+  "display": "Star Soldier Vanishing Earth (Aleck 64) EverDrive Patched",
+  "region": "Japan"
+ },
+ "STAR TWINS|NJFJ": {
+  "display": "Star Twins (Japan)",
+  "region": "Japan"
+ },
+ "STAR WARS EP1 RACER|NEPE": {
+  "display": "Star Wars Episode I - Racer (U) [f1] (Save)",
+  "region": "USA"
+ },
+ "STAR WARS EP1 RACER|NEPJ": {
+  "display": "Star Wars Episode I - Racer (Japan)",
+  "region": "Japan"
+ },
+ "STAR WARS EP1 RACER|NEPP": {
+  "display": "Star Wars Episode I - Racer (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "STARCRAFT 64|NSQD": {
+  "display": "StarCraft 64 (Germany) (Proto)",
+  "region": "Germany"
+ },
+ "STARCRAFT 64|NSQE": {
+  "display": "StarCraft 64 (USA)",
+  "region": "USA"
+ },
+ "STARCRAFT 64|NSQP": {
+  "display": "StarCraft 64 (E) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "STARFOX64|NFXE": {
+  "display": "Star Fox 64 (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "STARFOX64|NFXJ": {
+  "display": "Star Fox 64 (Japan)",
+  "region": "Japan"
+ },
+ "STARFOX64|NFXP": {
+  "display": "Lylat Wars (E) (M3) [f2] (NTSC)",
+  "region": "Europe"
+ },
+ "SUPEERW00TINGMKART64|NHHE": {
+  "display": "Mario Kart 64 - Super W00ting (Hack)",
+  "region": "USA"
+ },
+ "SUPER BOWLING|NBWE": {
+  "display": "Super Bowling (USA)",
+  "region": "USA"
+ },
+ "SUPER BOWLING|NBWJ": {
+  "display": "Super Bowling (Japan)",
+  "region": "Japan"
+ },
+ "SUPER LUIGI 64|NSME": {
+  "display": "SM64 - Super Luigi 64 (hack) v2.0",
+  "region": "USA"
+ },
+ "SUPER MARIO 64|NSME": {
+  "display": "SM64 - Wacky World v1.0 (hack)",
+  "region": "USA"
+ },
+ "SUPER MARIO 64|NSMJ": {
+  "display": "SM64 - Reduced Lag (J) (Hack) v1 Nintendo 64 Wizard",
+  "region": "Japan"
+ },
+ "SUPER MARIO 64|NSMP": {
+  "display": "Super Mario 64 (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "SUPER MARIO 74EE|NSME": {
+  "display": "SM64 - Super Mario 74 Extreme Edition (hack)",
+  "region": "USA"
+ },
+ "SUPER SPEED RACE 64|NLCJ": {
+  "display": "Super Speed Race 64 (Japan)",
+  "region": "Japan"
+ },
+ "SUPERMAN|NSPE": {
+  "display": "Superman - The New Superman Aventures (USA) (En,Fr,Es)",
+  "region": "USA"
+ },
+ "SUPERMAN|NSPP": {
+  "display": "Superman (Europe) (En,Fr,De,Es,It,Nl)",
+  "region": "Europe"
+ },
+ "SUPERMARIO64|NSMJ": {
+  "display": "SM64 - Shindou Improvement (Hack) v1 SupremoMemeo",
+  "region": "Japan"
+ },
+ "SUPERROBOTSPIRITS|NSSJ": {
+  "display": "Super Robot Spirits (Japan)",
+  "region": "Japan"
+ },
+ "Shadow of the Empire|NSWE": {
+  "display": "Star Wars - Shadows of the Empire (USA) (Beta) (1996-10-15)",
+  "region": "USA"
+ },
+ "Shadow of the Empire|NSWJ": {
+  "display": "Star Wars - Teikoku no Kage (Japan)",
+  "region": "Japan"
+ },
+ "Shadow of the Empire|NSWP": {
+  "display": "Star Wars - Shadows of the Empire (Europe)",
+  "region": "Europe"
+ },
+ "Shadowman|NSDE": {
+  "display": "Shadow Man (USA)",
+  "region": "USA"
+ },
+ "Shadowman|NSDP": {
+  "display": "Shadow Man (Europe) (En,Es,It)",
+  "region": "Europe"
+ },
+ "Shufflepuck 64|\u0000\u0000\u0000\u0000": {
+  "display": "Shufflepuck 64 (PD) Noisy Boyz Crew Germany & High Society",
+  "region": "Unknown(00)"
+ },
+ "Silicon Valley|NSVE": {
+  "display": "SpaceStation Silicon Valley (U) Exp+FBM+LSelect (Hack) v1.2 ozidual",
+  "region": "USA"
+ },
+ "Silicon Valley|NSVJ": {
+  "display": "SpaceStation Silicon Valley (J) (Proto) Exp+FBM (Hack) v1.2 ozidual",
+  "region": "Japan"
+ },
+ "Silicon Valley|NSVP": {
+  "display": "SpaceStation Silicon Valley (E) FBM (Hack) v1.2 ozidual",
+  "region": "Europe"
+ },
+ "Sin and Punishment|NGUE": {
+  "display": "Sin And Punishment (J) English T-Eng v1 Zoinkity",
+  "region": "USA"
+ },
+ "SinAndPunishmentESP|NGUJ": {
+  "display": "Sin and Punishment Spanish Subtitles (J) T-Spa v1.0b Tio Vctor",
+  "region": "Japan"
+ },
+ "Snow Speeder|NSNJ": {
+  "display": "Snow Speeder (Japan)",
+  "region": "Japan"
+ },
+ "South Park Chef's Lu|NCYP": {
+  "display": "South Park - Chef's Luv Shack (Europe)",
+  "region": "Europe"
+ },
+ "South Park Rally|NPRE": {
+  "display": "South Park Rally (USA)",
+  "region": "USA"
+ },
+ "South Park Rally|NPRP": {
+  "display": "South Park Rally (Europe)",
+  "region": "Europe"
+ },
+ "South Park: Chef's L|NCYE": {
+  "display": "South Park - Chef's Luv Shack (USA)",
+  "region": "USA"
+ },
+ "South Park|NDTE": {
+  "display": "South Park (USA)",
+  "region": "USA"
+ },
+ "South Park|NDTP": {
+  "display": "South Park (Europe) (En,Fr,Es)",
+  "region": "Europe"
+ },
+ "Starshot|NSCE": {
+  "display": "Starshot - Space Circus Fever (USA) (En,Fr,Es)",
+  "region": "USA"
+ },
+ "Starshot|NSCP": {
+  "display": "Starshot - Space Circus Fever (E) (M3) [f1] (NTSC100%)",
+  "region": "Europe"
+ },
+ "Stunt Racer 64|NR3E": {
+  "display": "Stunt Racer 64 (USA)",
+  "region": "USA"
+ },
+ "Super Real Majan VS|ZSEJ": {
+  "display": "Super Real Mahjong VS (Aleck 64) EverDrive Patched",
+  "region": "Japan"
+ },
+ "Supercross|NSXE": {
+  "display": "Supercross 2000 (USA)",
+  "region": "USA"
+ },
+ "Supercross|NSXP": {
+  "display": "Supercross 2000 (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "Syd2k GBR|\u0000\u0000\u0000\u0000": {
+  "display": "Sydney 2000 (Europe) (Proto)",
+  "region": "Unknown(00)"
+ },
+ "Syd2k USA|\u0000\u0000\u0000\u0000": {
+  "display": "Sydney 2000 (USA) (Proto)",
+  "region": "Unknown(00)"
+ },
+ "TACTICS SOCCER|NSJJ": {
+  "display": "J.League Tactics Soccer (Japan) (Rev 1)",
+  "region": "Japan"
+ },
+ "TARZAN|NTAE": {
+  "display": "Tarzan (USA)",
+  "region": "USA"
+ },
+ "TARZAN|NTAP": {
+  "display": "Tarzan (Europe)",
+  "region": "Europe"
+ },
+ "TELEFOOT SOCCER 2000|NWKF": {
+  "display": "Telefoot Soccer 2000 (F) [f1] (NTSC)",
+  "region": "France"
+ },
+ "TETRIS64|NT6J": {
+  "display": "Tetris 64 (Japan) (En)",
+  "region": "Japan"
+ },
+ "TETRISPHERE|NTPE": {
+  "display": "Tetrisphere (USA)",
+  "region": "USA"
+ },
+ "TETRISPHERE|NTPP": {
+  "display": "Tetrisphere (Europe)",
+  "region": "Europe"
+ },
+ "TG RALLY 2|NL2X": {
+  "display": "TG Rally 2 (Europe)",
+  "region": "Europe"
+ },
+ "THE LEGEND OF ZELDA|CZLE": {
+  "display": "LoZ Ocarina of Time - Play as Ganondorf (Hack) v1 XModxGodX",
+  "region": "USA"
+ },
+ "THE LEGEND OF ZELDA|CZLJ": {
+  "display": "Zelda no Densetsu - Toki no Ocarina Ura (Japan) Aroenai 4-2017",
+  "region": "Japan"
+ },
+ "THE LEGEND OF ZELDA|NZLE": {
+  "display": "LoZ Ocarina of Time (Europe) Aroenai 4-2017",
+  "region": "USA"
+ },
+ "THE LEGEND OF ZELDA|NZLP": {
+  "display": "Legend of Zelda, The - Ocarina of Time - Master Quest (Europe) (GameCube)",
+  "region": "Europe"
+ },
+ "THE MASK OF MUJURA|NZSJ": {
+  "display": "Zelda no Densetsu - Mujura no Kamen (Japan) (Rev 1)",
+  "region": "Japan"
+ },
+ "THE MASTER OF TIME|CZLE": {
+  "display": "LoZ Ocarina of Time (USA) (Hack) Master of Time v1.0 Don Camilo",
+  "region": "USA"
+ },
+ "THPS2|NTQE": {
+  "display": "Tony Hawk's Pro Skater 2 (USA)",
+  "region": "USA"
+ },
+ "THPS2|NTQP": {
+  "display": "Tony Hawk's Pro Skater 2 (Europe)",
+  "region": "Europe"
+ },
+ "THPS3|N3TE": {
+  "display": "Tony Hawk's Pro Skater 3 (USA)",
+  "region": "USA"
+ },
+ "TOM AND JERRY|NTJE": {
+  "display": "Tom and Jerry in Fists of Furry (USA)",
+  "region": "USA"
+ },
+ "TOM AND JERRY|NTJP": {
+  "display": "Tom and Jerry in Fists of Furry (E) (M6) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "TONY HAWK PRO SKATER|NTFE": {
+  "display": "Tony Hawk's Pro Skater (USA) (Beta)",
+  "region": "USA"
+ },
+ "TONY HAWK SKATEBOARD|NTFP": {
+  "display": "Tony Hawk's Skateboarding (Europe)",
+  "region": "Europe"
+ },
+ "TOP GEAR RALLY 2|NL2E": {
+  "display": "Top Gear Rally 2 (USA)",
+  "region": "USA"
+ },
+ "TOP GEAR RALLY 2|NL2J": {
+  "display": "Top Gear Rally 2 (Japan)",
+  "region": "Japan"
+ },
+ "TOP GEAR RALLY 2|NL2P": {
+  "display": "Top Gear Rally 2 (Europe)",
+  "region": "Europe"
+ },
+ "TOP GEAR RALLY|NGRE": {
+  "display": "Top Gear Rally (USA)",
+  "region": "USA"
+ },
+ "TOP GEAR RALLY|NGRX": {
+  "display": "Top Gear Rally (Asia) (En)",
+  "region": "Europe"
+ },
+ "TOP GEAR RALLY|NTRJ": {
+  "display": "Top Gear Rally (Japan)",
+  "region": "Japan"
+ },
+ "TOP GEAR RALLY|NTRP": {
+  "display": "Top Gear Rally (Europe)",
+  "region": "Europe"
+ },
+ "TOUKON ROAD2|NT3J": {
+  "display": "Shin Nihon Pro Wrestling Toukon Road 2 - The Next Generation (Japan)",
+  "region": "Japan"
+ },
+ "TOUKON ROAD|NTOJ": {
+  "display": "Shin Nihon Pro Wrestling Toukon Road - Brave Spirits (Japan)",
+  "region": "Japan"
+ },
+ "TRIPLE PLAY 2000|N3PE": {
+  "display": "Triple Play 2000 (USA)",
+  "region": "USA"
+ },
+ "TROUBLE MAKERS|NTMJ": {
+  "display": "Yuke Yuke!! Trouble Makers (Japan)",
+  "region": "Japan"
+ },
+ "TSUMI TO BATSU|NGUJ": {
+  "display": "Tsumi to Batsu - Hoshi no Keishousha (Japan)",
+  "region": "Japan"
+ },
+ "TSUWAMONO64|NNRJ": {
+  "display": "Pro Mahjong Tsuwamono 64 - Jansou Battle ni Chousen (Japan)",
+  "region": "Japan"
+ },
+ "TUROK3|ABCD": {
+  "display": "Turok 3 - Shadow of Oblivion (Europe) (Beta) (2000-06-06)",
+  "region": "Germany"
+ },
+ "TUROK_DINOSAUR_HUNTE|NTUE": {
+  "display": "Turok - Dinosaur Hunter (U) (V1.0) [!] No Invert Only",
+  "region": "USA"
+ },
+ "TUROK_DINOSAUR_HUNTE|NTUP": {
+  "display": "Turok - Dinosaur Hunter (E) (V1.0) [!] No Invert Only",
+  "region": "Europe"
+ },
+ "TWINE|NM4E": {
+  "display": "007 - The World Is Not Enough (USA) (v2) (Beta)",
+  "region": "USA"
+ },
+ "TWINE|NO7E": {
+  "display": "007 - The World Is Not Enough (USA) (v21) (Beta)",
+  "region": "USA"
+ },
+ "TWINE|NO7P": {
+  "display": "007 - The World Is Not Enough (Europe) (En,Fr,De)",
+  "region": "Europe"
+ },
+ "TWISTED EDGE|NSBE": {
+  "display": "Twisted Edge - Extreme Snowboarding (USA)",
+  "region": "USA"
+ },
+ "TWISTED EDGE|NSBP": {
+  "display": "Twisted Edge - Snowboarding (Europe)",
+  "region": "Europe"
+ },
+ "Taz Express|NTXE": {
+  "display": "Taz Express (USA) (Proto) (2000-05-15)",
+  "region": "USA"
+ },
+ "Taz Express|NTXP": {
+  "display": "Taz Express (E) (M6) [f2] (NTSC)",
+  "region": "Europe"
+ },
+ "The Muscular Demo|\u0000\u0000\u0000\u0000": {
+  "display": "The Muscular Demo (PD) MegaHawks",
+  "region": "Unknown(00)"
+ },
+ "The Nintendo Family|\u0000\u0000\u0000\u0000": {
+  "display": "The Nintendo Family (PD) Noisy Boyz Crew Germany",
+  "region": "Unknown(00)"
+ },
+ "Tigger's Honey Hunt|NT9E": {
+  "display": "Tigger's Honey Hunt (USA)",
+  "region": "USA"
+ },
+ "Tigger's Honey Hunt|NT9P": {
+  "display": "Tigger's Honey Hunt (Europe) (En,Fr,De,Es,It,Nl,Da)",
+  "region": "Europe"
+ },
+ "Tonic Trouble|NTTE": {
+  "display": "Tonic Trouble (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "Tonic Trouble|NTTP": {
+  "display": "Tonic Trouble (Europe) (En,Fr,De,Es,It)",
+  "region": "Europe"
+ },
+ "Top Gear Hyper Bike|NGBE": {
+  "display": "Top Gear Hyper-Bike (USA)",
+  "region": "USA"
+ },
+ "Top Gear Hyper Bike|NGBJ": {
+  "display": "Top Gear Hyper Bike (Japan)",
+  "region": "Japan"
+ },
+ "Top Gear Hyper Bike|NGBP": {
+  "display": "Top Gear Hyper Bike (Europe)",
+  "region": "Europe"
+ },
+ "Top Gear Overdrive|NRCE": {
+  "display": "Top Gear Overdrive (USA)",
+  "region": "USA"
+ },
+ "Top Gear Overdrive|NRCJ": {
+  "display": "Top Gear Overdrive (Japan)",
+  "region": "Japan"
+ },
+ "Top Gear Overdrive|NRCP": {
+  "display": "Top Gear Overdrive (Europe)",
+  "region": "Europe"
+ },
+ "Toy Story 2|NTHE": {
+  "display": "Toy Story 2 - Buzz Lightyear to the Rescue! (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "Toy Story 2|NTHP": {
+  "display": "Toy Story 2 - Buzz Lightyear to the Rescue! (Europe)",
+  "region": "Europe"
+ },
+ "Turok 2: Kiosk|NTYE": {
+  "display": "Turok 2 - Gore On Hack (hack)",
+  "region": "USA"
+ },
+ "Turok 2: Seeds of Ev|NT2E": {
+  "display": "Turok 2 - Seeds of Evil (U) [!] No Invert",
+  "region": "USA"
+ },
+ "Turok 2: Seeds of Ev|NT2P": {
+  "display": "Turok 2 - Seeds of Evil (Europe)",
+  "region": "Europe"
+ },
+ "Turok 3: Shadow of O|NTKE": {
+  "display": "Turok 3 - Shadow of Oblivion (USA)",
+  "region": "USA"
+ },
+ "Turok 3: Shadow of O|NTKP": {
+  "display": "Turok 3 - Shadow of Oblivion (Europe)",
+  "region": "Europe"
+ },
+ "Turok: Rage Wars|NRWE": {
+  "display": "Turok - Rage Wars (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "Turok: Rage Wars|NRWP": {
+  "display": "Turok - Rage Wars (Europe)",
+  "region": "Europe"
+ },
+ "Twintris|NSME": {
+  "display": "Twintris (PD) POM '98 v1 Twinsen",
+  "region": "USA"
+ },
+ "Ultraman Battle JAPA|NUBJ": {
+  "display": "PD Ultraman Battle Collection 64 (Japan)",
+  "region": "Japan"
+ },
+ "V-RALLY|NVLE": {
+  "display": "V-Rally Edition 99 (USA)",
+  "region": "USA"
+ },
+ "V-RALLY|NVLP": {
+  "display": "V-Rally Edition 99 (E) (M3) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "V-RALLY|NVYJ": {
+  "display": "V-Rally Edition 99 (Japan)",
+  "region": "Japan"
+ },
+ "V8: SECOND OFFENSE|NVGE": {
+  "display": "Vigilante 8 - 2nd Offense (USA)",
+  "region": "USA"
+ },
+ "V8: SECOND OFFENSE|NVGP": {
+  "display": "Vigilante 8 - 2nd Offense (Europe)",
+  "region": "Europe"
+ },
+ "VIGILANTE 8|NV8E": {
+  "display": "Vigilante 8 (USA)",
+  "region": "USA"
+ },
+ "VIGILANTE 8|NV8P": {
+  "display": "Vigilante 8 (Europe)",
+  "region": "Europe"
+ },
+ "VIOLENCEKILLER|NT2J": {
+  "display": "Violence Killer - Turok New Generation (Japan)",
+  "region": "Japan"
+ },
+ "VIRTUALCHESS|NVCE": {
+  "display": "Virtual Chess 64 (USA) (En,Fr,Es)",
+  "region": "USA"
+ },
+ "VIRTUALCHESS|NVCP": {
+  "display": "Virtual Chess 64 (Europe) (En,Fr,De,Es,It,Nl)",
+  "region": "Europe"
+ },
+ "VIVID DOLLS|ZSAJ": {
+  "display": "Vivid Dolls (Aleck 64) EverDrive Patched",
+  "region": "Japan"
+ },
+ "Video Test|\u0000\u0000\u0000\u0000": {
+  "display": "Asteroid Shooter (PD) v1 Garrison Brown",
+  "region": "Unknown(00)"
+ },
+ "Virtual Pool 64|NVRE": {
+  "display": "Virtual Pool 64 (USA)",
+  "region": "USA"
+ },
+ "Virtual Pool 64|NVRP": {
+  "display": "Virtual Pool 64 (Europe)",
+  "region": "Europe"
+ },
+ "W.G. 3DHOCKEY98|NW8E": {
+  "display": "Wayne Gretzky's 3D Hockey '98 (USA)",
+  "region": "USA"
+ },
+ "W.G. 3DHOCKEY|NWGE": {
+  "display": "Wayne Gretzky's 3D Hockey (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "W.G. 3DHOCKEY|NWGP": {
+  "display": "Wayne Gretzky's 3D Hockey (Europe) (En,Fr,De,Es)",
+  "region": "Europe"
+ },
+ "W.G. 3DHockey98|NW8P": {
+  "display": "Wayne Gretzky's 3D Hockey '98 (Europe) (En,Fr,De,Es)",
+  "region": "Europe"
+ },
+ "WAR GODS|NWAE": {
+  "display": "War Gods (USA)",
+  "region": "USA"
+ },
+ "WAR GODS|NWAP": {
+  "display": "War Gods (Europe)",
+  "region": "Europe"
+ },
+ "WAVE RACE 64|NWRE": {
+  "display": "Wave Race 64 - Kawasaki Jet Ski (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "WAVE RACE 64|NWRJ": {
+  "display": "Wave Race 64 - Kawasaki Jet Ski (Japan) (Rev 2) (Shindou Edition)",
+  "region": "Japan"
+ },
+ "WAVE RACE 64|NWRP": {
+  "display": "Wave Race 64 - Kawasaki Jet Ski (Europe) (En,De)",
+  "region": "Europe"
+ },
+ "WCW / nWo  REVENGE|NW2E": {
+  "display": "WCW-nWo Revenge (USA)",
+  "region": "USA"
+ },
+ "WCW / nWo  REVENGE|NW2P": {
+  "display": "WCW-nWo Revenge (Europe)",
+  "region": "Europe"
+ },
+ "WCW BACKSTAGE|NWVE": {
+  "display": "WCW Backstage Assault (USA)",
+  "region": "USA"
+ },
+ "WCW MAYHEM|NWME": {
+  "display": "WCW Mayhem (USA)",
+  "region": "USA"
+ },
+ "WCW MAYHEM|NWMP": {
+  "display": "WCW Mayhem (Europe)",
+  "region": "Europe"
+ },
+ "WCWvs.NWO:World Tour|NWNE": {
+  "display": "WCW vs. nWo - World Tour (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "WCWvs.NWO:World Tour|NWNP": {
+  "display": "WCW vs. nWo - World Tour (Europe)",
+  "region": "Europe"
+ },
+ "WGHOCKEY|NWGJ": {
+  "display": "Wayne Gretzky's 3D Hockey (Japan)",
+  "region": "Japan"
+ },
+ "WHEEL OF FORTUNE|NWFE": {
+  "display": "Wheel of Fortune (USA)",
+  "region": "USA"
+ },
+ "WILD CHOPPERS|NWCJ": {
+  "display": "Wild Choppers (Japan)",
+  "region": "Japan"
+ },
+ "WIN BACK|NWDE": {
+  "display": "WinBack - Covert Operations (USA)",
+  "region": "USA"
+ },
+ "WIN BACK|NWDJ": {
+  "display": "WinBack (Japan) (Rev 1)",
+  "region": "Japan"
+ },
+ "WONDER PROJECT J2|NJ2J": {
+  "display": "Wonder Project J2 - Koruro no Mori no Jozet (J) T+Eng v1 Ryu",
+  "region": "Japan"
+ },
+ "WORLD DRIVER CHAMP|NWOE": {
+  "display": "World Driver Championship (USA)",
+  "region": "USA"
+ },
+ "WORLD DRIVER CHAMP|NWOP": {
+  "display": "World Driver Championship (Europe) (En,Fr,De,Es,It)",
+  "region": "Europe"
+ },
+ "WORMS ARMAGEDDON|NADE": {
+  "display": "Worms Armageddon (USA) (En,Fr,Es)",
+  "region": "USA"
+ },
+ "WORMS N64|NWUP": {
+  "display": "Worms - Armageddon (E) (M6) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "WRESTLEMANIA 2000|NWXE": {
+  "display": "WWF WrestleMania 2000 (USA)",
+  "region": "USA"
+ },
+ "WRESTLEMANIA2000|NWXP": {
+  "display": "WWF WrestleMania 2000 (Europe)",
+  "region": "Europe"
+ },
+ "WWF No Mercy|NW4E": {
+  "display": "WWF No Mercy (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "WWF No Mercy|NW4P": {
+  "display": "WWF No Mercy (Europe) (Rev 1)",
+  "region": "Europe"
+ },
+ "WWF War Zone|NWWE": {
+  "display": "WWF War Zone (USA)",
+  "region": "USA"
+ },
+ "WWF War Zone|NWWP": {
+  "display": "WWF War Zone (Europe)",
+  "region": "Europe"
+ },
+ "WWF: Attitude|NTIE": {
+  "display": "WWF Attitude (USA)",
+  "region": "USA"
+ },
+ "WWF: Attitude|NTIP": {
+  "display": "WWF Attitude (Europe)",
+  "region": "Europe"
+ },
+ "Waialae Country Club|NWLE": {
+  "display": "Waialae Country Club - True Golf Classics (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "Waialae Country Club|NWLP": {
+  "display": "Waialae Country Club - True Golf Classics (Europe) (Rev 1)",
+  "region": "Europe"
+ },
+ "Wetrix|NWTE": {
+  "display": "Wetrix (USA) (En,Fr,De,Es,It,Nl)",
+  "region": "USA"
+ },
+ "Wetrix|NWTP": {
+  "display": "Wetrix (E) (M6) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "Wipeout 64|NWPE": {
+  "display": "Wipeout 64 (USA)",
+  "region": "USA"
+ },
+ "Wipeout 64|NWPP": {
+  "display": "Wipeout 64 (Europe) (Beta)",
+  "region": "Europe"
+ },
+ "World Cup 98|N8WE": {
+  "display": "World Cup 98 (USA) (En,Fr,De,Es,It,Nl,Sv,Da)",
+  "region": "USA"
+ },
+ "World Cup 98|N8WP": {
+  "display": "World Cup 98 (E) (M8) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "XENAWARRIORPRINCESS|NXFE": {
+  "display": "Xena - Warrior Princess - The Talisman of Fate (USA)",
+  "region": "USA"
+ },
+ "XENAWARRIORPRINCESS|NXFP": {
+  "display": "Xena - Warrior Princess - The Talisman of Fate (Europe)",
+  "region": "Europe"
+ },
+ "YAKOUTYUU2|NYKJ": {
+  "display": "Yakouchuu II - Satsujin Kouro (Japan)",
+  "region": "Japan"
+ },
+ "YOSHI STORY|NYSE": {
+  "display": "Yoshi's Story (U) (M2) [!] D-Pad Controls",
+  "region": "USA"
+ },
+ "YOSHI STORY|NYSJ": {
+  "display": "Yoshi Story (Japan)",
+  "region": "Japan"
+ },
+ "YOSHI STORY|NYSP": {
+  "display": "Yoshi's Story (E) (M3) [f1] (NTSC)",
+  "region": "Europe"
+ },
+ "Yeti3D Pro|\u0000\u0000\u0000\u0000": {
+  "display": "Yeti3D Pro (PD) ChillyWilly 2012-08-17",
+  "region": "Unknown(00)"
+ },
+ "ZELDA MAJORA'S MASK|NZSE": {
+  "display": "LOZ Majora's Mask Item Randomizer (U) 2013-10-25",
+  "region": "USA"
+ },
+ "ZELDA MAJORA'S MASK|NZSJ": {
+  "display": "Zelda no Densetsu - Mujura no Kamen (Japan) Aroenai 5-2017",
+  "region": "Japan"
+ },
+ "ZELDA MAJORA'S MASK|NZSP": {
+  "display": "Legend of Zelda, The - Majora's Mask (Europe) (En,Fr,De,Es) (Rev 1)",
+  "region": "Europe"
+ },
+ "ZELDA MASTER QUEST|NZLE": {
+  "display": "Legend of Zelda, The - Ocarina of Time - Master Quest (E) (GC) [f1] (NTSC)",
+  "region": "USA"
+ },
+ "Zelda Petrie's Chall|NZLE": {
+  "display": "LOZ Petries Challenge (hack) petrie911",
+  "region": "USA"
+ },
+ "blitz2k|NBIE": {
+  "display": "NFL Blitz 2000 (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "custom robo|NCXE": {
+  "display": "Custom Robo (J) T+Eng v1 Binkers87",
+  "region": "USA"
+ },
+ "custom robo|NCXJ": {
+  "display": "Custom Robo (Japan)",
+  "region": "Japan"
+ },
+ "duke|NMSE": {
+  "display": "Duke Nukem 64 (Europe) (Beta)",
+  "region": "USA"
+ },
+ "extreme_g|NEGP": {
+  "display": "Extreme-G (Europe) (En,Fr,De,Es,It)",
+  "region": "Europe"
+ },
+ "extremeg|NEGE": {
+  "display": "Extreme-G (USA)",
+  "region": "USA"
+ },
+ "funnelcube|\u0000\u0000\u0000\u0000": {
+  "display": "Funnelcube (PD) v1 Marshall",
+  "region": "Unknown(00)"
+ },
+ "hey you, pikachu|NPGE": {
+  "display": "Hey You, Pikachu! (USA)",
+  "region": "USA"
+ },
+ "monopoly|NMOE": {
+  "display": "Monopoly (USA)",
+  "region": "USA"
+ },
+ "quarterback_club_98|NQ8E": {
+  "display": "NFL Quarterback Club 98 (USA)",
+  "region": "USA"
+ },
+ "quarterback_club_98|NQ8P": {
+  "display": "NFL Quarterback Club 98 (Europe)",
+  "region": "Europe"
+ },
+ "rogue squadron|NRSE": {
+  "display": "Star Wars - Rogue Squadron (USA) (Rev 1)",
+  "region": "USA"
+ },
+ "rogue squadron|NRSJ": {
+  "display": "Star Wars - Shutsugeki! Rogue Chuutai (Japan)",
+  "region": "Japan"
+ },
+ "rogue squadron|NRSP": {
+  "display": "Star Wars - Rogue Squadron (Europe) (En,Fr,De) (Rev 1)",
+  "region": "Europe"
+ },
+ "shut up and code|\u0000\u0000\u0000\u0000": {
+  "display": "MGC 2011 (PD) Retroactive",
+  "region": "Unknown(00)"
+ },
+ "turok3|ABCD": {
+  "display": "Turok 3 - Shadow of Oblivion (USA) (Beta)",
+  "region": "Germany"
+ },
+ "turok_dinosaur_hunte|NTUJ": {
+  "display": "Jikuu Senshi Turok (Japan)",
+  "region": "Japan"
+ },
+ "turok|NSED": {
+  "display": "Turok 3 - Shadow of Oblivion (Europe) (Beta) (2000-07-10)",
+  "region": "Germany"
+ },
+ "wetrix|NWTJ": {
+  "display": "Wetrix (Japan)",
+  "region": "Japan"
+ },
+ "whack 'n' roll|\u0000\u0000\u0000\u0000": {
+  "display": "Glover (USA) (Beta) (1998-07-16)",
+  "region": "Unknown(00)"
+ }
+}

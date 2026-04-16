@@ -3,10 +3,12 @@
 #include <QCloseEvent>
 #include <QActionGroup>
 #include <QDesktopServices>
+#include <QStackedWidget>
 #include "settingsdialog.h"
 #include "plugindialog.h"
 #include "hotkeydialog.h"
 #include "cheats.h"
+#include "interface/sdl_key_converter.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "interface/common.h"
@@ -313,6 +315,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     inputPlugin = nullptr;
     loadCoreLib();
     loadPlugins();
+    updateMenuShortcuts();
 
     if (coreLib)
     {
@@ -328,6 +331,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     setupDiscord();
     FPSLabel = new QLabel(this);
     statusBar()->addPermanentWidget(FPSLabel);
+
+    m_centralStack = new QStackedWidget(this);
+    m_romBrowser = new RomBrowser(settings, this);
+    m_centralStack->addWidget(m_romBrowser);
+    setCentralWidget(m_centralStack);
+    m_centralStack->setCurrentWidget(m_romBrowser);
+    connect(m_romBrowser, &RomBrowser::romActivated, this,
+            [this](const QString &path)
+            { openROM(path, "", 0, 0, QJsonObject()); });
 }
 
 MainWindow::~MainWindow()
@@ -505,6 +517,8 @@ int MainWindow::getVerbose()
 
 void MainWindow::resizeMainWindow(int Width, int Height)
 {
+    if (isMaximized() || isFullScreen())
+        return;
     QSize size = this->size();
     Height += (menuBar()->isNativeMenuBar() ? 0 : ui->menuBar->height()) + ui->statusBar->height();
     if (size.width() != Width || size.height() != Height)
@@ -603,12 +617,13 @@ void MainWindow::createVkWindow(QVulkanInstance *vulkan_inst)
     my_window = new VkWindow;
     my_window->setVulkanInstance(vulkan_inst);
 
-    QWidget *container = QWidget::createWindowContainer(my_window, this);
-    container->setFocusPolicy(Qt::StrongFocus);
+    m_vkContainer = QWidget::createWindowContainer(my_window, this);
+    m_vkContainer->setFocusPolicy(Qt::StrongFocus);
 
     my_window->setCursor(Qt::BlankCursor);
 
-    setCentralWidget(container);
+    m_centralStack->addWidget(m_vkContainer);
+    m_centralStack->setCurrentWidget(m_vkContainer);
 
     my_window->installEventFilter(&keyPressFilter);
     this->installEventFilter(&keyPressFilter);
@@ -620,9 +635,15 @@ void MainWindow::createVkWindow(QVulkanInstance *vulkan_inst)
 
 void MainWindow::deleteVkWindow()
 {
-    QWidget *container = new QWidget(this);
-    setCentralWidget(container);
+    if (m_vkContainer)
+    {
+        m_centralStack->removeWidget(m_vkContainer);
+        m_vkContainer->deleteLater();
+        m_vkContainer = nullptr;
+    }
+    m_centralStack->setCurrentWidget(m_romBrowser);
     delete my_window;
+    my_window = nullptr;
     frame_timer->stop();
     frame_timer->deleteLater();
     FPSLabel->clear();
@@ -632,6 +653,50 @@ void MainWindow::killThread()
 {
     printf("Application hung, exiting\n");
     exit(1); // Force kill the application, it's stuck
+}
+
+void MainWindow::updateMenuShortcuts()
+{
+    if (!coreLib || !ConfigOpenSection || !ConfigGetParamInt)
+        return;
+
+    m64p_handle handle = nullptr;
+    if ((*ConfigOpenSection)("CoreEvents", &handle) != M64ERR_SUCCESS || handle == nullptr)
+        return;
+
+    struct { QAction *action; const char *param; } map[] = {
+        { ui->actionStop_Game,            "Kbd Mapping Stop" },
+        { ui->actionToggle_Fullscreen,    "Kbd Mapping Fullscreen" },
+        { ui->actionPause_Game,           "Kbd Mapping Pause" },
+        { ui->actionSave_State,           "Kbd Mapping Save State" },
+        { ui->actionLoad_State,           "Kbd Mapping Load State" },
+        { ui->actionHard_Reset,           "Kbd Mapping Reset" },
+        { ui->actionTake_Screenshot,      "Kbd Mapping Screenshot" },
+        { ui->actionMute,                 "Kbd Mapping Mute" },
+        { ui->actionToggle_Speed_Limiter, "Kbd Mapping Speed Limiter Toggle" },
+    };
+
+    for (auto &entry : map)
+    {
+        if (!entry.action)
+            continue;
+        QString base = entry.action->text();
+        int tabIdx = base.indexOf(QLatin1Char('\t'));
+        if (tabIdx >= 0)
+            base = base.left(tabIdx);
+        int keysym = (*ConfigGetParamInt)(handle, entry.param);
+        QString shortcutText;
+        if (keysym != 0)
+        {
+            int qtKey = SDL22QT(sdl_keysym2scancode(keysym));
+            if (qtKey != 0)
+                shortcutText = QKeySequence(qtKey).toString(QKeySequence::NativeText);
+        }
+        if (!shortcutText.isEmpty())
+            entry.action->setText(base + QLatin1Char('\t') + shortcutText);
+        else
+            entry.action->setText(base);
+    }
 }
 
 void MainWindow::stopGame()
@@ -672,6 +737,12 @@ void MainWindow::openROM(QString filename, QString netplay_ip, int netplay_port,
 
     resetCore();
 
+    m_lastRomPath = filename;
+    m_lastNetplayIp = netplay_ip;
+    m_lastNetplayPort = netplay_port;
+    m_lastNetplayPlayer = netplay_player;
+    m_lastCheats = cheats;
+
     workerThread = new WorkerThread(netplay_ip, netplay_port, netplay_player, cheats, this);
     workerThread->setFileName(filename);
 
@@ -698,6 +769,26 @@ void MainWindow::on_actionOpen_ROM_triggered()
         settings->setValue("ROMdir", info.absoluteDir().absolutePath());
         openROM(filename, "", 0, 0, QJsonObject());
     }
+}
+
+void MainWindow::on_actionChoose_ROM_Directory_triggered()
+{
+    QString dir = QFileDialog::getExistingDirectory(this,
+                                                    tr("Choose ROM Directory"),
+                                                    settings->value("ROMDirectory").toString(),
+                                                    QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+    if (!dir.isNull())
+    {
+        settings->setValue("ROMDirectory", dir);
+        if (m_romBrowser)
+            m_romBrowser->refresh();
+    }
+}
+
+void MainWindow::on_actionRefresh_ROM_List_triggered()
+{
+    if (m_romBrowser)
+        m_romBrowser->refresh();
 }
 
 void MainWindow::on_actionPlugin_Paths_triggered()
@@ -750,7 +841,9 @@ void MainWindow::on_actionMute_triggered()
 
 void MainWindow::on_actionHard_Reset_triggered()
 {
-    (*CoreDoCommand)(M64CMD_RESET, 1, NULL);
+    if (m_lastRomPath.isEmpty() || m_lastNetplayPort > 0)
+        return;
+    openROM(m_lastRomPath, m_lastNetplayIp, m_lastNetplayPort, m_lastNetplayPlayer, m_lastCheats);
 }
 
 void MainWindow::on_actionSoft_Reset_triggered()
@@ -846,6 +939,7 @@ void MainWindow::on_actionController_Configuration_triggered()
 void MainWindow::on_actionHotkey_Configuration_triggered()
 {
     HotkeyDialog *settings = new HotkeyDialog(this);
+    connect(settings, &QDialog::finished, this, [this](int) { updateMenuShortcuts(); });
     settings->show();
 }
 

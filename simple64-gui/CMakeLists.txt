@@ -28,7 +28,7 @@ endif()
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets WebSockets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets WebSockets Network)
 if (UNIX)
     find_package(Qt6 REQUIRED COMPONENTS DBus)
 endif (UNIX)
@@ -52,6 +52,8 @@ qt_add_executable(simple64-gui
     interface/sdl_key_converter.c
     logviewer.cpp
     keypressfilter.cpp
+    rombrowser.cpp
+    resources.qrc
     netplay/createroom.cpp
     netplay/joinroom.cpp
     netplay/waitroom.cpp
@@ -94,7 +96,7 @@ if (NOT APPLE AND NOT WIN32)
     target_link_options(simple64-gui PRIVATE -Wl,-Bsymbolic -Wl,-Bsymbolic-functions)
 endif ()
 
-target_link_libraries(simple64-gui PRIVATE Qt6::Widgets Qt6::WebSockets ${CMAKE_DL_LIBS})
+target_link_libraries(simple64-gui PRIVATE Qt6::Widgets Qt6::WebSockets Qt6::Network ${CMAKE_DL_LIBS})
 
 set_target_properties(simple64-gui PROPERTIES
     WIN32_EXECUTABLE ON

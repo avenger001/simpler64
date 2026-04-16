@@ -31,6 +31,9 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen_ROM"/>
+    <addaction name="actionChoose_ROM_Directory"/>
+    <addaction name="actionRefresh_ROM_List"/>
+    <addaction name="separator"/>
     <addaction name="actionSave_State"/>
     <addaction name="actionLoad_State"/>
     <addaction name="actionSave_State_To"/>
@@ -85,7 +88,7 @@
    <addaction name="menuFile"/>
    <addaction name="menuEmulation"/>
    <addaction name="menuSettings"/>
-   <addaction name="menuNetplay"/>
+   <!-- <addaction name="menuNetplay"/> -->
    <addaction name="menuCommunity"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -222,6 +225,16 @@
   <action name="actionOpen_Discord_Channel">
    <property name="text">
     <string>Join Discord Server</string>
+   </property>
+  </action>
+  <action name="actionChoose_ROM_Directory">
+   <property name="text">
+    <string>Choose ROM Directory...</string>
+   </property>
+  </action>
+  <action name="actionRefresh_ROM_List">
+   <property name="text">
+    <string>Refresh ROM list</string>
    </property>
   </action>
  </widget>
