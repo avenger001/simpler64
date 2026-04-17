@@ -276,7 +276,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     restoreState(settings->value("windowState").toByteArray());
 
     QActionGroup *my_slots_group = new QActionGroup(this);
-    QAction *my_slots[10];
     OpenRecent = new QMenu(this);
     QMenu *SaveSlot = new QMenu(this);
     OpenRecent->setTitle("Open Recent");
@@ -287,12 +286,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->menuFile->insertSeparator(ui->actionSave_State_To);
     for (int i = 0; i < 10; ++i)
     {
-        my_slots[i] = new QAction(this);
-        my_slots[i]->setCheckable(true);
-        my_slots[i]->setText("Slot " + QString::number(i));
-        my_slots[i]->setActionGroup(my_slots_group);
-        SaveSlot->addAction(my_slots[i]);
-        QAction *temp_slot = my_slots[i];
+        m_saveSlotActions[i] = new QAction(this);
+        m_saveSlotActions[i]->setCheckable(true);
+        m_saveSlotActions[i]->setText("Slot " + QString::number(i));
+        m_saveSlotActions[i]->setActionGroup(my_slots_group);
+        SaveSlot->addAction(m_saveSlotActions[i]);
+        QAction *temp_slot = m_saveSlotActions[i];
         connect(temp_slot, &QAction::triggered, [=](bool checked)
                 {
             if (checked) {
@@ -337,7 +336,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
         if (res == M64ERR_SUCCESS)
         {
             int current_slot = (*ConfigGetParamInt)(coreConfigHandle, "CurrentStateSlot");
-            my_slots[current_slot]->setChecked(true);
+            if (current_slot >= 0 && current_slot < 10 && m_saveSlotActions[current_slot])
+                m_saveSlotActions[current_slot]->setChecked(true);
         }
     }
 
@@ -1856,7 +1856,8 @@ void MainWindow::on_actionTake_Screenshot_triggered()
 
 void MainWindow::on_actionSave_State_triggered()
 {
-    (*CoreDoCommand)(M64CMD_STATE_SAVE, 1, NULL);
+    if ((*CoreDoCommand)(M64CMD_STATE_SAVE, 1, NULL) == M64ERR_SUCCESS)
+        captureSlotThumbnail();
 }
 
 void MainWindow::on_actionLoad_State_triggered()
@@ -1927,6 +1928,7 @@ void MainWindow::applyPerGameSettings(QString md5)
 {
     if (md5.isEmpty())
         return;
+    m_currentRomMd5 = md5;
     settings->beginGroup("PerGame");
     settings->beginGroup(md5);
     const QString symbolFile = settings->value("symbolFilePath").toString();
@@ -1935,6 +1937,61 @@ void MainWindow::applyPerGameSettings(QString md5)
 
     if (!symbolFile.isEmpty() && QFile::exists(symbolFile))
         SymbolTable::instance()->loadFromFile(symbolFile, nullptr);
+
+    refreshSlotThumbnails();
+}
+
+static QString thumbnailDirFor(const QString &md5)
+{
+    QString dir = QDir(QCoreApplication::applicationDirPath()).filePath("thumbs/" + md5);
+    QDir().mkpath(dir);
+    return dir;
+}
+
+void MainWindow::captureSlotThumbnail()
+{
+    if (m_currentRomMd5.isEmpty() || !coreLib || !CoreDoCommand)
+        return;
+
+    int slot = 0;
+    if ((*CoreDoCommand)(M64CMD_CORE_STATE_QUERY, M64CORE_SAVESTATE_SLOT, &slot) != M64ERR_SUCCESS)
+        return;
+
+    int sizePacked = 0;
+    if ((*CoreDoCommand)(M64CMD_CORE_STATE_QUERY, M64CORE_VIDEO_SIZE, &sizePacked) != M64ERR_SUCCESS)
+        return;
+    const int w = (sizePacked >> 16) & 0xffff;
+    const int h = sizePacked & 0xffff;
+    if (w <= 0 || h <= 0)
+        return;
+
+    QByteArray buf(w * h * 3, 0);
+    if ((*CoreDoCommand)(M64CMD_READ_SCREEN, 0, buf.data()) != M64ERR_SUCCESS)
+        return;
+
+    QImage img(reinterpret_cast<const uchar *>(buf.constData()), w, h, w * 3, QImage::Format_RGB888);
+    QImage flipped = img.flipped(Qt::Vertical);
+    QImage thumb = flipped.scaled(QSize(160, 120), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+    const QString path = thumbnailDirFor(m_currentRomMd5) + QString("/slot%1.png").arg(slot);
+    thumb.save(path, "PNG");
+
+    refreshSlotThumbnails();
+}
+
+void MainWindow::refreshSlotThumbnails()
+{
+    const QString dir = m_currentRomMd5.isEmpty() ? QString() : thumbnailDirFor(m_currentRomMd5);
+    for (int i = 0; i < 10; ++i)
+    {
+        if (!m_saveSlotActions[i])
+            continue;
+        const QString path = dir.isEmpty() ? QString() : QString("%1/slot%2.png").arg(dir).arg(i);
+        if (!path.isEmpty() && QFile::exists(path))
+            m_saveSlotActions[i]->setIcon(QIcon(path));
+        else
+            m_saveSlotActions[i]->setIcon(QIcon());
+    }
 }
 
 void MainWindow::on_actionSave_State_To_triggered()

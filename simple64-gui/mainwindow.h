@@ -76,6 +76,8 @@ public:
     void updateMenuShortcuts();
     void updateDebugMenuVisibility();
     void applyPerGameSettings(QString md5);
+    void captureSlotThumbnail();
+    void refreshSlotThumbnails();
     m64p_dynlib_handle getCoreLib();
     struct Discord_Application *getDiscordApp();
     explicit MainWindow(QWidget *parent = 0);
@@ -202,6 +204,8 @@ private:
     void simulateInput();
     Ui::MainWindow *ui;
     QMenu *OpenRecent;
+    QAction *m_saveSlotActions[10] = {};
+    QString m_currentRomMd5;
     int verbose;
     int nogui;
     int run_test;
