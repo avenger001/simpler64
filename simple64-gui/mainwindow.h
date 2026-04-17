@@ -69,6 +69,7 @@ public:
     void setMaxFrames(int n);
     void setCrashReportPrefix(const QString &prefix);
     void setJsonOutput(bool enable);
+    void setThreadListAddr(uint32_t addr);
     void updatePlugins();
     void resetCore();
     void stopGame();
@@ -260,6 +261,7 @@ private:
     void writeCrashReport(const QString &reason);
     QString m_crashReportPrefix;
     bool m_jsonOutput = false;
+    uint32_t m_threadListAddr = 0;
     QString resolveOutputPath(const QString &base) const;
 
     m64p_dynlib_handle coreLib;

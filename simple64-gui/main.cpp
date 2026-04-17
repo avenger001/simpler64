@@ -44,6 +44,9 @@ int main(int argc, char *argv[])
         "Emit JSON instead of human-readable text for --dump-mem, --dump-regs, and "
         "--crash-report. Output files get a .json extension if their path has no "
         "extension.");
+    QCommandLineOption threadListAddrOption("thread-list-addr",
+        "Seed OSThread discovery by walking the list starting at ADDR (hex, 0x-prefixed). "
+        "If omitted, --crash-report performs a full-RDRAM heuristic scan.", "ADDR");
     parser.addOption(verboseOption);
     parser.addOption(noGUIOption);
     parser.addOption(testOption);
@@ -56,6 +59,7 @@ int main(int argc, char *argv[])
     parser.addOption(maxFramesOption);
     parser.addOption(crashReportOption);
     parser.addOption(jsonOption);
+    parser.addOption(threadListAddrOption);
     parser.addPositionalArgument("ROM", QCoreApplication::translate("main", "ROM to open."));
     parser.process(a);
     const QStringList args = parser.positionalArguments();
@@ -90,6 +94,11 @@ int main(int argc, char *argv[])
         w->setCrashReportPrefix(parser.value(crashReportOption));
     if (parser.isSet(jsonOption))
         w->setJsonOutput(true);
+    if (parser.isSet(threadListAddrOption)) {
+        bool ok = false;
+        uint32_t addr = parser.value(threadListAddrOption).toUInt(&ok, 0);
+        if (ok) w->setThreadListAddr(addr);
+    }
 
     if (args.size() > 0)
         w->openROM(args.at(0), "", 0, 0, QJsonObject());

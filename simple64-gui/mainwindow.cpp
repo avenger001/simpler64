@@ -10,6 +10,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QSet>
 #include "settingsdialog.h"
 #include "plugindialog.h"
 #include "hotkeydialog.h"
@@ -555,6 +556,11 @@ void MainWindow::setJsonOutput(bool enable)
     m_jsonOutput = enable;
 }
 
+void MainWindow::setThreadListAddr(uint32_t addr)
+{
+    m_threadListAddr = addr;
+}
+
 // Upgrade a dump path to .json when --json is set and the user didn't pick
 // an extension. Leaves explicit filenames alone so "foo.bin" stays "foo.bin".
 QString MainWindow::resolveOutputPath(const QString &base) const
@@ -603,6 +609,190 @@ static QString mipsExceptionName(uint32_t excCode)
     }
 }
 
+// Canonical libultra layout.
+//   OSThread:             next=0x00, priority=0x04, queue=0x08, tlnext=0x0C,
+//                         state=0x10 (u16), flags=0x12 (u16), id=0x14 (s32),
+//                         fp=0x18 (s32), context=0x1C (size 0x18C)
+//   __OSThreadContext @ +0x00: at,v0,v1,a0..a3  (7 * u64)   -> 0x00..0x38
+//                     @ +0x38: t0..t7           (8 * u64)   -> 0x38..0x78
+//                     @ +0x78: s0..s7           (8 * u64)   -> 0x78..0xB8
+//                     @ +0xB8: t8,t9            (2 * u64)   -> 0xB8..0xC8
+//                     @ +0xC8: gp,sp,s8,ra      (4 * u64)   -> 0xC8..0xE8
+//                     @ +0xE8: lo,hi            (2 * u64)   -> 0xE8..0xF8
+//                     @ +0xF8: sr,pc,badvaddr,cause,fpcsr (5 * u32) -> 0xF8..0x10C
+//                     @ +0x10C: fp0..fp31       (32 * f32)  -> 0x10C..0x18C
+static const int OS_CTX = 0x1C;
+static const int OS_CTX_GP   = OS_CTX + 0xC8;
+static const int OS_CTX_SP   = OS_CTX + 0xD0;
+static const int OS_CTX_S8   = OS_CTX + 0xD8;
+static const int OS_CTX_RA   = OS_CTX + 0xE0;
+static const int OS_CTX_LO   = OS_CTX + 0xE8;
+static const int OS_CTX_HI   = OS_CTX + 0xF0;
+static const int OS_CTX_SR   = OS_CTX + 0xF8;
+static const int OS_CTX_PC   = OS_CTX + 0xFC;
+static const int OS_CTX_BADV = OS_CTX + 0x100;
+static const int OS_CTX_CAUSE= OS_CTX + 0x104;
+static const int OS_STRUCT_SIZE = 0x1A8;
+
+struct ThreadInfo {
+    uint32_t addr;
+    uint32_t next;
+    uint32_t queue;
+    int32_t  priority;
+    uint16_t state;
+    uint16_t flags;
+    int32_t  id;
+    uint32_t pc;
+    uint32_t sr;
+    uint32_t cause;
+    uint32_t badvaddr;
+    uint32_t ra;
+    uint32_t sp;
+    quint64  gprs[32];
+    quint64  hi;
+    quint64  lo;
+};
+
+static QString osThreadStateName(uint16_t s)
+{
+    switch (s) {
+        case 1:  return "STOPPED";
+        case 2:  return "RUNNABLE";
+        case 4:  return "RUNNING";
+        case 8:  return "WAITING";
+        default: return QStringLiteral("UNKNOWN(0x%1)").arg(s, 4, 16, QChar('0'));
+    }
+}
+
+static inline uint32_t rdramRd32(const QByteArray &ram, int off)
+{
+    if (off < 0 || off + 4 > ram.size()) return 0;
+    const uint8_t *b = reinterpret_cast<const uint8_t *>(ram.constData()) + off;
+    return ((uint32_t)b[0] << 24) | ((uint32_t)b[1] << 16)
+         | ((uint32_t)b[2] <<  8) | (uint32_t)b[3];
+}
+static inline uint16_t rdramRd16(const QByteArray &ram, int off)
+{
+    if (off < 0 || off + 2 > ram.size()) return 0;
+    const uint8_t *b = reinterpret_cast<const uint8_t *>(ram.constData()) + off;
+    return ((uint16_t)b[0] << 8) | (uint16_t)b[1];
+}
+static inline quint64 rdramRd64(const QByteArray &ram, int off)
+{
+    return ((quint64)rdramRd32(ram, off) << 32) | (quint64)rdramRd32(ram, off + 4);
+}
+
+// Reasonable sanity filter on a candidate OSThread header.
+static bool looksLikeOSThread(const QByteArray &ram, int off,
+                              uint32_t ramBase, int ramSize)
+{
+    if (off < 0 || off + OS_STRUCT_SIZE > ram.size()) return false;
+    uint16_t state = rdramRd16(ram, off + 0x10);
+    if (state == 0 || state > 8 || (state & (state - 1)) != 0) return false;
+    uint16_t flags = rdramRd16(ram, off + 0x12);
+    if (flags > 0xFF) return false;
+    int32_t pri = (int32_t)rdramRd32(ram, off + 0x04);
+    if (pri < 0 || pri > 255) return false;
+    int32_t id = (int32_t)rdramRd32(ram, off + 0x14);
+    if (id < -1 || id > 0x10000) return false;
+    auto okPtr = [&](uint32_t p) {
+        if (p == 0) return true;
+        if ((p & 3u) != 0u) return false;
+        return p >= ramBase && p < ramBase + (uint32_t)ramSize;
+    };
+    if (!okPtr(rdramRd32(ram, off + 0x00))) return false;  // next
+    if (!okPtr(rdramRd32(ram, off + 0x08))) return false;  // queue
+    if (!okPtr(rdramRd32(ram, off + 0x0C))) return false;  // tlnext
+    uint32_t tpc = rdramRd32(ram, off + OS_CTX_PC);
+    if (tpc != 0 && (tpc < 0x80000000u || tpc >= 0x80800000u || (tpc & 3u) != 0u))
+        return false;
+    return true;
+}
+
+static ThreadInfo readThreadInfo(const QByteArray &ram, int off, uint32_t ramBase)
+{
+    ThreadInfo t{};
+    t.addr     = ramBase + (uint32_t)off;
+    t.next     = rdramRd32(ram, off + 0x00);
+    t.priority = (int32_t)rdramRd32(ram, off + 0x04);
+    t.queue    = rdramRd32(ram, off + 0x08);
+    t.state    = rdramRd16(ram, off + 0x10);
+    t.flags    = rdramRd16(ram, off + 0x12);
+    t.id       = (int32_t)rdramRd32(ram, off + 0x14);
+    t.pc       = rdramRd32(ram, off + OS_CTX_PC);
+    t.sr       = rdramRd32(ram, off + OS_CTX_SR);
+    t.cause    = rdramRd32(ram, off + OS_CTX_CAUSE);
+    t.badvaddr = rdramRd32(ram, off + OS_CTX_BADV);
+    t.ra       = (uint32_t)(rdramRd64(ram, off + OS_CTX_RA) & 0xFFFFFFFFULL);
+    t.sp       = (uint32_t)(rdramRd64(ram, off + OS_CTX_SP) & 0xFFFFFFFFULL);
+    t.hi       = rdramRd64(ram, off + OS_CTX_HI);
+    t.lo       = rdramRd64(ram, off + OS_CTX_LO);
+
+    // GPRs in the saved context: at, v0..v1, a0..a3, t0..t7, s0..s7, t8..t9,
+    // gp, sp, s8(=fp), ra. r0 and k0/k1 are not saved — leave zero.
+    int g = OS_CTX; // at at +0x00 within context
+    t.gprs[0]  = 0;              // r0
+    t.gprs[1]  = rdramRd64(ram, g + 0x00); // at
+    t.gprs[2]  = rdramRd64(ram, g + 0x08); // v0
+    t.gprs[3]  = rdramRd64(ram, g + 0x10); // v1
+    t.gprs[4]  = rdramRd64(ram, g + 0x18); // a0
+    t.gprs[5]  = rdramRd64(ram, g + 0x20); // a1
+    t.gprs[6]  = rdramRd64(ram, g + 0x28); // a2
+    t.gprs[7]  = rdramRd64(ram, g + 0x30); // a3
+    for (int i = 0; i < 8; ++i) t.gprs[8 + i]  = rdramRd64(ram, g + 0x38 + i * 8); // t0..t7
+    for (int i = 0; i < 8; ++i) t.gprs[16 + i] = rdramRd64(ram, g + 0x78 + i * 8); // s0..s7
+    t.gprs[24] = rdramRd64(ram, g + 0xB8); // t8
+    t.gprs[25] = rdramRd64(ram, g + 0xC0); // t9
+    t.gprs[26] = 0;              // k0
+    t.gprs[27] = 0;              // k1
+    t.gprs[28] = rdramRd64(ram, g + 0xC8); // gp
+    t.gprs[29] = rdramRd64(ram, g + 0xD0); // sp
+    t.gprs[30] = rdramRd64(ram, g + 0xD8); // s8/fp
+    t.gprs[31] = rdramRd64(ram, g + 0xE0); // ra
+    return t;
+}
+
+// Discovery strategies:
+//   seedAddr != 0: walk next-chain starting at seedAddr until NULL, cycle, or cap.
+//   else:          scan entire RDRAM at 4-byte alignment for candidate headers.
+static QList<ThreadInfo> discoverOSThreads(DebuggerState *ds, uint32_t seedAddr)
+{
+    QList<ThreadInfo> out;
+    const uint32_t ramBase = 0x80000000u;
+    const int ramSize = 0x00800000; // 8MB (RCP expansion pak max)
+    QByteArray ram = ds->readBlock(ramBase, ramSize);
+    if (ram.isEmpty()) return out;
+
+    auto ptrToOffset = [&](uint32_t p) -> int {
+        if (p < ramBase) return -1;
+        uint32_t d = p - ramBase;
+        if ((int)d + OS_STRUCT_SIZE > ram.size()) return -1;
+        if ((d & 3u) != 0u) return -1;
+        return (int)d;
+    };
+
+    QSet<uint32_t> seen;
+    if (seedAddr != 0) {
+        uint32_t cur = seedAddr;
+        for (int steps = 0; steps < 64 && cur != 0; ++steps) {
+            if (seen.contains(cur)) break;
+            int off = ptrToOffset(cur);
+            if (off < 0 || !looksLikeOSThread(ram, off, ramBase, ramSize)) break;
+            seen.insert(cur);
+            ThreadInfo t = readThreadInfo(ram, off, ramBase);
+            out.append(t);
+            cur = t.next;
+        }
+    } else {
+        for (int off = 0; off + OS_STRUCT_SIZE <= ram.size(); off += 4) {
+            if (!looksLikeOSThread(ram, off, ramBase, ramSize)) continue;
+            out.append(readThreadInfo(ram, off, ramBase));
+            if (out.size() >= 64) break;
+        }
+    }
+    return out;
+}
+
 void MainWindow::writeCrashReport(const QString &reason)
 {
     if (m_crashReportPrefix.isEmpty())
@@ -648,6 +838,8 @@ void MainWindow::writeCrashReport(const QString &reason)
             }
         }
     }
+
+    QList<ThreadInfo> threads = discoverOSThreads(ds, m_threadListAddr);
 
     QString path = resolveOutputPath(m_crashReportPrefix + (m_jsonOutput ? "" : ".txt"));
     QFile f(path);
@@ -707,6 +899,48 @@ void MainWindow::writeCrashReport(const QString &reason)
         stackObj["candidates"] = hitsArr;
         root["stack_walk"] = stackObj;
 
+        QJsonObject threadsObj;
+        threadsObj["discovery"] = m_threadListAddr ? QStringLiteral("seed_walk")
+                                                    : QStringLiteral("heuristic_scan");
+        if (m_threadListAddr) threadsObj["seed_addr"] = hex32(m_threadListAddr);
+        threadsObj["count"] = threads.size();
+        QJsonArray tArr;
+        for (const ThreadInfo &t : threads) {
+            QJsonObject to;
+            to["addr"] = hex32(t.addr);
+            to["id"] = (int)t.id;
+            to["priority"] = (int)t.priority;
+            to["state"] = osThreadStateName(t.state);
+            to["state_raw"] = (int)t.state;
+            to["flags"] = (int)t.flags;
+            to["next"] = hex32(t.next);
+            to["queue"] = hex32(t.queue);
+            to["pc"] = hex32(t.pc);
+            to["pc_symbol"] = st->annotate(t.pc);
+            to["ra"] = hex32(t.ra);
+            to["ra_symbol"] = st->annotate(t.ra);
+            to["sp"] = hex32(t.sp);
+            to["sr"] = hex32(t.sr);
+            to["cause"] = hex32(t.cause);
+            to["exc_code"] = (int)((t.cause >> 2) & 0x1F);
+            to["exception"] = mipsExceptionName((t.cause >> 2) & 0x1F);
+            to["badvaddr"] = hex32(t.badvaddr);
+            to["hi"] = hex64(t.hi);
+            to["lo"] = hex64(t.lo);
+            QJsonArray tg;
+            for (int i = 0; i < 32; ++i) {
+                QJsonObject r;
+                r["name"] = k_gprNames[i];
+                r["value"] = hex64(t.gprs[i]);
+                r["symbol"] = st->annotate((uint32_t)(t.gprs[i] & 0xFFFFFFFFULL));
+                tg.append(r);
+            }
+            to["gprs"] = tg;
+            tArr.append(to);
+        }
+        threadsObj["threads"] = tArr;
+        root["os_threads"] = threadsObj;
+
         f.write(QJsonDocument(root).toJson(QJsonDocument::Indented));
     } else {
         QTextStream out(&f);
@@ -752,6 +986,39 @@ void MainWindow::writeCrashReport(const QString &reason)
                            .arg(h.offset, 3, 16, QChar('0'))
                            .arg(hex32(h.value))
                            .arg(h.symbol);
+            }
+        }
+
+        out << "\n## OS threads\n";
+        out << QString("discovery: %1")
+                   .arg(m_threadListAddr ? QStringLiteral("seed-walk from %1\n").arg(hex32(m_threadListAddr))
+                                         : QStringLiteral("heuristic RDRAM scan\n"));
+        out << QString("found:     %1 thread(s)\n").arg(threads.size());
+        for (int ti = 0; ti < threads.size(); ++ti) {
+            const ThreadInfo &t = threads[ti];
+            out << QString("\n### Thread %1 @ %2  (id=%3, pri=%4, %5)\n")
+                       .arg(ti).arg(hex32(t.addr)).arg(t.id).arg(t.priority)
+                       .arg(osThreadStateName(t.state));
+            out << QString("  next=%1  queue=%2  flags=0x%3\n")
+                       .arg(hex32(t.next)).arg(hex32(t.queue))
+                       .arg(t.flags, 4, 16, QChar('0'));
+            out << QString("  pc:       %1  %2\n").arg(hex32(t.pc)).arg(st->annotate(t.pc));
+            out << QString("  ra:       %1  %2\n").arg(hex32(t.ra)).arg(st->annotate(t.ra));
+            out << QString("  sp:       %1\n").arg(hex32(t.sp));
+            out << QString("  sr:       %1\n").arg(hex32(t.sr));
+            uint32_t tExc = (t.cause >> 2) & 0x1F;
+            out << QString("  cause:    %1  (%2)\n").arg(hex32(t.cause))
+                       .arg(mipsExceptionName(tExc));
+            out << QString("  badvaddr: %1\n").arg(hex32(t.badvaddr));
+            out << QString("  hi/lo:    %1 / %2\n").arg(hex64(t.hi)).arg(hex64(t.lo));
+            out << "  gprs:\n";
+            for (int i = 0; i < 32; ++i) {
+                if (i == 0 || i == 26 || i == 27) continue; // r0/k0/k1 not saved
+                QString sym = st->annotate((uint32_t)(t.gprs[i] & 0xFFFFFFFFULL));
+                out << QString("    %1 = %2%3\n")
+                           .arg(QString(k_gprNames[i]).leftJustified(3))
+                           .arg(hex64(t.gprs[i]))
+                           .arg(sym.isEmpty() ? QString() : QString("  [%1]").arg(sym));
             }
         }
     }
