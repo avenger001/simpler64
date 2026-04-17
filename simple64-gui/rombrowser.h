@@ -29,6 +29,8 @@ struct RomEntry
     QString displayName;
     QString title;
     QString region;
+    qint64 fileSize = 0;
+    qint64 fileMtime = 0;
 };
 
 class RomBrowser : public QWidget
@@ -68,6 +70,9 @@ private:
     void enqueueCover(int entryIndex);
     QString libretroFilename(const QString &displayName) const;
     QString cacheDir() const;
+    QString scanCachePath() const;
+    QHash<QString, RomEntry> loadScanCache(const QString &romDir) const;
+    void saveScanCache(const QString &romDir) const;
     QString iconLabel(const RomEntry &e) const;
     static QString parseTitle(const QString &displayName);
 

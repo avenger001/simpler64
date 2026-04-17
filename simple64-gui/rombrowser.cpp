@@ -1,6 +1,7 @@
 #include "rombrowser.h"
 
 #include <QBoxLayout>
+#include <QDateTime>
 #include <QComboBox>
 #include <QDir>
 #include <QDirIterator>
@@ -8,6 +9,7 @@
 #include <QFileInfo>
 #include <QHeaderView>
 #include <QLineEdit>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QLabel>
 #include <QListWidget>
@@ -407,6 +409,68 @@ QString RomBrowser::cacheDir() const
     return dir;
 }
 
+QString RomBrowser::scanCachePath() const
+{
+    QString base = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+    QDir().mkpath(base);
+    return base + "/rom_scan_cache.json";
+}
+
+QHash<QString, RomEntry> RomBrowser::loadScanCache(const QString &romDir) const
+{
+    QHash<QString, RomEntry> out;
+    QFile f(scanCachePath());
+    if (!f.open(QIODevice::ReadOnly))
+        return out;
+    QJsonParseError err;
+    QJsonDocument doc = QJsonDocument::fromJson(f.readAll(), &err);
+    f.close();
+    if (err.error != QJsonParseError::NoError || !doc.isObject())
+        return out;
+    QJsonObject root = doc.object();
+    if (root.value("romDir").toString() != romDir)
+        return out;
+    QJsonArray arr = root.value("entries").toArray();
+    for (const QJsonValue &v : arr)
+    {
+        QJsonObject o = v.toObject();
+        RomEntry e;
+        e.filePath = o.value("path").toString();
+        e.displayName = o.value("displayName").toString();
+        e.title = o.value("title").toString();
+        e.region = o.value("region").toString();
+        e.fileSize = static_cast<qint64>(o.value("size").toDouble());
+        e.fileMtime = static_cast<qint64>(o.value("mtime").toDouble());
+        if (!e.filePath.isEmpty())
+            out.insert(e.filePath, e);
+    }
+    return out;
+}
+
+void RomBrowser::saveScanCache(const QString &romDir) const
+{
+    QJsonArray arr;
+    for (const RomEntry &e : m_entries)
+    {
+        QJsonObject o;
+        o.insert("path", e.filePath);
+        o.insert("displayName", e.displayName);
+        o.insert("title", e.title);
+        o.insert("region", e.region);
+        o.insert("size", static_cast<double>(e.fileSize));
+        o.insert("mtime", static_cast<double>(e.fileMtime));
+        arr.append(o);
+    }
+    QJsonObject root;
+    root.insert("romDir", romDir);
+    root.insert("entries", arr);
+    QFile f(scanCachePath());
+    if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate))
+        return;
+    f.write(QJsonDocument(root).toJson(QJsonDocument::Compact));
+    f.close();
+}
+
 void RomBrowser::refresh()
 {
     m_coverQueue.clear();
@@ -497,15 +561,38 @@ void RomBrowser::applyFilters()
 void RomBrowser::scanRoms()
 {
     QString romDir = m_settings->value("ROMDirectory").toString();
+    QHash<QString, RomEntry> cache = loadScanCache(romDir);
+    bool cacheChanged = false;
+
     QStringList filters{"*.z64", "*.n64", "*.v64"};
     QDirIterator it(romDir, filters, QDir::Files, QDirIterator::Subdirectories);
     while (it.hasNext())
     {
         QString path = it.next();
+        QFileInfo fi(path);
+        qint64 size = fi.size();
+        qint64 mtime = fi.lastModified().toSecsSinceEpoch();
+
+        auto cit = cache.find(path);
+        if (cit != cache.end() && cit->fileSize == size && cit->fileMtime == mtime
+            && !cit->displayName.isEmpty())
+        {
+            m_entries.append(*cit);
+            continue;
+        }
+
         RomEntry e = readRom(path);
-        if (!e.filePath.isEmpty())
-            m_entries.append(e);
+        if (e.filePath.isEmpty())
+            continue;
+        e.fileSize = size;
+        e.fileMtime = mtime;
+        m_entries.append(e);
+        cacheChanged = true;
     }
+
+    if (cacheChanged || cache.size() != m_entries.size())
+        saveScanCache(romDir);
+
     std::sort(m_entries.begin(), m_entries.end(),
               [](const RomEntry &a, const RomEntry &b)
               { return a.title.compare(b.title, Qt::CaseInsensitive) < 0; });
