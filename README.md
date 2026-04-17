@@ -85,9 +85,9 @@ A convenience script `_rebuild_gui.sh` chains the mupen64plus-core and simple64-
 
 ## Status and scope
 
-This fork is maintained to the extent needed for a specific debugging project (an in-progress Japanese-to-English translation patch). Features are added as the workflow demands them. No release builds, no binary downloads, no support guarantees.
+This fork is maintained to the extent needed for ongoing ROM-hacking and reverse-engineering work. Features are added as the workflow demands them. No release builds, no binary downloads, no support guarantees.
 
-If you're doing a similar ROM-hacking or translation project and any of this is useful, you're welcome to use it, fork it, or pull pieces into your own tree. If you want a general-purpose N64 emulator, use gopher64 or RMG.
+If you're doing similar work and any of this is useful, you're welcome to use it, fork it, or pull pieces into your own tree. If you want a general-purpose N64 emulator, use gopher64 or RMG.
 
 ## Credits
 
