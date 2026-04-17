@@ -20,4 +20,5 @@ cd /f/Projects/simpler64/simple64-gui/build
 echo "--- copying to install dir ---"
 cp /f/Projects/simpler64/simple64-gui/build/simple64-gui.exe /f/Projects/simpler64/simple64/simple64-gui.exe \
     && cp /f/Projects/simpler64/mupen64plus-core/build/libmupen64plus.dll /f/Projects/simpler64/simple64/libmupen64plus.dll \
+    && cp /f/Projects/simpler64/mupen64plus-core/data/mupen64plus.ini /f/Projects/simpler64/simple64/mupen64plus.ini \
     && echo "copied OK"
