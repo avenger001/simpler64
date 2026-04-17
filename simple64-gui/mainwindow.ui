@@ -127,7 +127,7 @@
   </action>
   <action name="actionPlugin_Paths">
    <property name="text">
-    <string>Input Plugin and Config Path Selection</string>
+    <string>Settings...</string>
    </property>
   </action>
   <action name="actionStop_Game">

@@ -301,6 +301,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     updateOpenRecent();
     updateGB(ui);
+    updateDebugMenuVisibility();
 
     // migrate from old $CONFIG_PATH$ default
     if (settings->value("configDirPath").toString().startsWith("$"))
@@ -1409,6 +1410,13 @@ void MainWindow::killThread()
 {
     printf("Application hung, exiting\n");
     exit(1); // Force kill the application, it's stuck
+}
+
+void MainWindow::updateDebugMenuVisibility()
+{
+    const bool enabled = settings->value("debugModeEnabled", true).toBool();
+    ui->menuDebugger->setVisible(enabled);
+    ui->menuDebugger->menuAction()->setVisible(enabled);
 }
 
 void MainWindow::updateMenuShortcuts()

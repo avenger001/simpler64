@@ -74,6 +74,7 @@ public:
     void resetCore();
     void stopGame();
     void updateMenuShortcuts();
+    void updateDebugMenuVisibility();
     m64p_dynlib_handle getCoreLib();
     struct Discord_Application *getDiscordApp();
     explicit MainWindow(QWidget *parent = 0);

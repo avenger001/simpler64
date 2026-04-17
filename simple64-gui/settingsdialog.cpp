@@ -3,6 +3,7 @@
 #include "interface/core_commands.h"
 
 #include <QPushButton>
+#include <QCheckBox>
 #include <QSettings>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -95,6 +96,14 @@ void SettingsDialog::initStuff()
                 w->updatePlugins();
             });
     layout->addWidget(inputChoice, 5, 1);
+
+    QCheckBox *debugModeCheckbox = new QCheckBox("Enable debugger menu", this);
+    debugModeCheckbox->setChecked(w->getSettings()->value("debugModeEnabled", true).toBool());
+    connect(debugModeCheckbox, &QCheckBox::toggled, this, [=](bool checked) {
+        w->getSettings()->setValue("debugModeEnabled", checked);
+        w->updateDebugMenuVisibility();
+    });
+    layout->addWidget(debugModeCheckbox, 6, 0, 1, -1);
 
     setLayout(layout);
 }
