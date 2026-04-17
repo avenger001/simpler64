@@ -23,7 +23,7 @@ include_directories(
     ${SDL2_INCLUDE_DIRS}
 )
 
-add_definitions(-DM64P_PARALLEL -DM64P_NETPLAY -DNO_ASM)
+add_definitions(-DM64P_PARALLEL -DM64P_NETPLAY -DNO_ASM -DDBG)
 
 add_library(mupen64plus SHARED
     src/api/callbacks.c
@@ -32,6 +32,10 @@ add_library(mupen64plus SHARED
     src/api/debugger.c
     src/api/frontend.c
     src/api/vidext.c
+    src/debugger/dbg_breakpoints.c
+    src/debugger/dbg_debugger.c
+    src/debugger/dbg_decoder.c
+    src/debugger/dbg_memory.c
     src/backends/api/video_capture_backend.c
     src/backends/plugins_compat/audio_plugin_compat.c
     src/backends/plugins_compat/input_plugin_compat.c
@@ -86,6 +90,7 @@ add_library(mupen64plus SHARED
     src/main/util.c
     src/main/cheat.c
     src/main/eventloop.c
+    src/main/input_record.c
     src/main/rom.c
     src/main/savestates.c
     src/main/screenshot.c

@@ -78,6 +78,7 @@
 #include "screenshot.h"
 #include "util.h"
 #include "netplay.h"
+#include "input_record.h"
 
 #ifdef DBG
 #include "debugger/dbg_debugger.h"
@@ -2017,6 +2018,7 @@ m64p_error main_run(void)
     gfx.romClosed();
 
     // clean up
+    input_record_on_stop();
     g_EmulatorRunning = 0;
     StateChanged(M64CORE_EMU_STATE, M64EMU_STOPPED);
 
