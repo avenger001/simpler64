@@ -4,6 +4,12 @@
 #include <QActionGroup>
 #include <QDesktopServices>
 #include <QStackedWidget>
+#include <QApplication>
+#include <QTextStream>
+#include <QThread>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 #include "settingsdialog.h"
 #include "plugindialog.h"
 #include "hotkeydialog.h"
@@ -21,6 +27,10 @@
 #include "interface/version.h"
 #include "m64p_common.h"
 #include "version.h"
+#include "debugger/debuggerstate.h"
+#include "debugger/memoryviewer.h"
+#include "debugger/breakpointsdialog.h"
+#include "debugger/symboltable.h"
 
 #define RECENT_SIZE 10
 
@@ -510,6 +520,485 @@ int MainWindow::getTest()
     return run_test;
 }
 
+void MainWindow::setPendingPlaybackFile(const QString &path)
+{
+    m_pendingPlaybackFile = path;
+}
+
+void MainWindow::setPendingRecordFile(const QString &path)
+{
+    m_pendingRecordFile = path;
+}
+
+void MainWindow::setExitAfterPlayback(bool enable)
+{
+    m_exitAfterPlayback = enable;
+}
+
+void MainWindow::setStallFrames(int n)
+{
+    m_stallFrames = n;
+}
+
+void MainWindow::setMaxFrames(int n)
+{
+    m_maxFrames = n;
+}
+
+void MainWindow::setCrashReportPrefix(const QString &prefix)
+{
+    m_crashReportPrefix = prefix;
+}
+
+void MainWindow::setJsonOutput(bool enable)
+{
+    m_jsonOutput = enable;
+}
+
+// Upgrade a dump path to .json when --json is set and the user didn't pick
+// an extension. Leaves explicit filenames alone so "foo.bin" stays "foo.bin".
+QString MainWindow::resolveOutputPath(const QString &base) const
+{
+    if (!m_jsonOutput) return base;
+    QFileInfo fi(base);
+    if (fi.suffix().isEmpty())
+        return base + ".json";
+    return base;
+}
+
+static QString hex32(uint32_t v) {
+    return QStringLiteral("0x%1").arg(v, 8, 16, QChar('0'));
+}
+static QString hex64(quint64 v) {
+    return QStringLiteral("0x%1").arg(v, 16, 16, QChar('0'));
+}
+
+static const char *k_gprNames[32] = {
+    "r0","at","v0","v1","a0","a1","a2","a3",
+    "t0","t1","t2","t3","t4","t5","t6","t7",
+    "s0","s1","s2","s3","s4","s5","s6","s7",
+    "t8","t9","k0","k1","gp","sp","fp","ra"
+};
+
+static QString mipsExceptionName(uint32_t excCode)
+{
+    switch (excCode) {
+        case 0:  return "Int (interrupt)";
+        case 1:  return "Mod (TLB modification)";
+        case 2:  return "TLBL (TLB load miss)";
+        case 3:  return "TLBS (TLB store miss)";
+        case 4:  return "AdEL (address error on load)";
+        case 5:  return "AdES (address error on store)";
+        case 6:  return "IBE (bus error on instruction fetch)";
+        case 7:  return "DBE (bus error on data access)";
+        case 8:  return "Sys (syscall)";
+        case 9:  return "Bp (breakpoint)";
+        case 10: return "RI (reserved instruction)";
+        case 11: return "CpU (coprocessor unusable)";
+        case 12: return "Ov (integer overflow)";
+        case 13: return "Tr (trap)";
+        case 15: return "FPE (floating-point exception)";
+        case 23: return "WATCH";
+        default: return QString("(unknown exception code %1)").arg(excCode);
+    }
+}
+
+void MainWindow::writeCrashReport(const QString &reason)
+{
+    if (m_crashReportPrefix.isEmpty())
+        return;
+
+    DebuggerState *ds = DebuggerState::instance();
+    SymbolTable *st = SymbolTable::instance();
+
+    uint32_t pc = ds->readPC();
+    qint64 gprs[32] = {0};
+    qint64 hi = 0, lo = 0;
+    uint32_t cp0[32] = {0};
+    ds->readGPRs(gprs);
+    ds->readHiLo(hi, lo);
+    bool haveCP0 = ds->readCP0(cp0);
+
+    // Standard MIPS R4300 CP0 indices
+    const uint32_t cause     = haveCP0 ? cp0[13] : 0;
+    const uint32_t epc       = haveCP0 ? cp0[14] : 0;
+    const uint32_t badvaddr  = haveCP0 ? cp0[8]  : 0;
+    const uint32_t status    = haveCP0 ? cp0[12] : 0;
+    const uint32_t excCode   = (cause >> 2) & 0x1F;
+    const bool bdSlot        = (cause >> 31) & 1;
+
+    // Build the stack-walk list once, shared by text and JSON.
+    struct StackHit { int offset; uint32_t value; QString symbol; };
+    QList<StackHit> stackHits;
+    uint32_t sp = (uint32_t)(gprs[29] & 0xFFFFFFFFULL);
+    bool spInRDRAM = (sp >= 0x80000000u && sp < 0x80800000u);
+    if (spInRDRAM) {
+        const int wordsToScan = 256;
+        QByteArray stack = ds->readBlock(sp, wordsToScan * 4);
+        const uint8_t *b = reinterpret_cast<const uint8_t *>(stack.constData());
+        for (int i = 0; i < stack.size() && stackHits.size() < 32; i += 4) {
+            uint32_t w = ((uint32_t)b[i] << 24) | ((uint32_t)b[i+1] << 16)
+                       | ((uint32_t)b[i+2] <<  8) | (uint32_t)b[i+3];
+            if (w >= 0x80000000u && w < 0x80800000u && (w & 3u) == 0u) {
+                QString sym = st->annotate(w);
+                if (!sym.isEmpty() || (w & 0xFFF00000u) == 0x80000000u
+                                   || (w & 0xFF000000u) == 0x80000000u) {
+                    stackHits.append({i, w, sym});
+                }
+            }
+        }
+    }
+
+    QString path = resolveOutputPath(m_crashReportPrefix + (m_jsonOutput ? "" : ".txt"));
+    QFile f(path);
+    if (!f.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        fprintf(stderr, "crash-report: cannot open '%s' for writing\n",
+                path.toUtf8().constData());
+        return;
+    }
+
+    if (m_jsonOutput) {
+        QJsonObject root;
+        root["reason"] = reason;
+        root["frame"] = (qint64)m_totalFrames;
+
+        QJsonObject cp0Obj;
+        cp0Obj["available"] = haveCP0;
+        if (haveCP0) {
+            cp0Obj["exception"] = mipsExceptionName(excCode);
+            cp0Obj["exc_code"] = (int)excCode;
+            cp0Obj["in_branch_delay_slot"] = bdSlot;
+            cp0Obj["cause"] = hex32(cause);
+            cp0Obj["epc"] = hex32(epc);
+            cp0Obj["epc_symbol"] = st->annotate(epc);
+            cp0Obj["badvaddr"] = hex32(badvaddr);
+            cp0Obj["status"] = hex32(status);
+        }
+        root["cp0"] = cp0Obj;
+
+        QJsonObject cpuObj;
+        cpuObj["pc"] = hex32(pc);
+        cpuObj["pc_symbol"] = st->annotate(pc);
+        cpuObj["hi"] = hex64((quint64)hi);
+        cpuObj["lo"] = hex64((quint64)lo);
+        root["cpu"] = cpuObj;
+
+        QJsonArray gprsArr;
+        for (int i = 0; i < 32; ++i) {
+            QJsonObject r;
+            r["name"] = k_gprNames[i];
+            r["value"] = hex64((quint64)gprs[i]);
+            r["symbol"] = st->annotate((quint32)(gprs[i] & 0xFFFFFFFFULL));
+            gprsArr.append(r);
+        }
+        root["gprs"] = gprsArr;
+
+        QJsonObject stackObj;
+        stackObj["sp"] = hex32(sp);
+        stackObj["sp_in_rdram"] = spInRDRAM;
+        QJsonArray hitsArr;
+        for (const auto &h : stackHits) {
+            QJsonObject e;
+            e["offset"] = h.offset;
+            e["value"] = hex32(h.value);
+            e["symbol"] = h.symbol;
+            hitsArr.append(e);
+        }
+        stackObj["candidates"] = hitsArr;
+        root["stack_walk"] = stackObj;
+
+        f.write(QJsonDocument(root).toJson(QJsonDocument::Indented));
+    } else {
+        QTextStream out(&f);
+        out << "# simple64 crash report\n";
+        out << QString("reason: %1\n").arg(reason);
+        out << QString("frame: %1\n").arg(m_totalFrames);
+
+        out << "\n## Exception (CP0)\n";
+        if (haveCP0) {
+            out << QString("exception: %1\n").arg(mipsExceptionName(excCode));
+            out << QString("cause:    %1  (ExcCode=%2%3)\n")
+                       .arg(hex32(cause)).arg(excCode)
+                       .arg(bdSlot ? ", in branch delay slot" : "");
+            out << QString("epc:      %1  %2\n").arg(hex32(epc)).arg(st->annotate(epc));
+            out << QString("badvaddr: %1\n").arg(hex32(badvaddr));
+            out << QString("status:   %1\n").arg(hex32(status));
+        } else {
+            out << "(CP0 not available)\n";
+        }
+
+        out << "\n## CPU\n";
+        out << QString("pc: %1  %2\n").arg(hex32(pc)).arg(st->annotate(pc));
+        out << QString("hi: %1\n").arg(hex64((quint64)hi));
+        out << QString("lo: %1\n").arg(hex64((quint64)lo));
+
+        out << "\n## GPRs\n";
+        for (int i = 0; i < 32; ++i) {
+            QString sym = st->annotate((quint32)(gprs[i] & 0xFFFFFFFFULL));
+            out << QString("%1 = %2%3\n")
+                       .arg(QString(k_gprNames[i]).leftJustified(3))
+                       .arg(hex64((quint64)gprs[i]))
+                       .arg(sym.isEmpty() ? QString() : QString("  [%1]").arg(sym));
+        }
+
+        out << "\n## Stack walk (return-address candidates)\n";
+        if (!spInRDRAM) {
+            out << QString("  (SP=%1 not in RDRAM — skipping)\n").arg(hex32(sp));
+        } else if (stackHits.isEmpty()) {
+            out << "  (no code-like pointers in top 256 words)\n";
+        } else {
+            for (const auto &h : stackHits) {
+                out << QString("  sp+0x%1: %2  %3\n")
+                           .arg(h.offset, 3, 16, QChar('0'))
+                           .arg(hex32(h.value))
+                           .arg(h.symbol);
+            }
+        }
+    }
+
+    fprintf(stderr, "crash-report: wrote %s\n", path.toUtf8().constData());
+}
+
+// Parse "ADDR:LEN:FILE[@FRAME]". FRAME -1 => at playback end.
+void MainWindow::addScheduledMemDump(const QString &spec)
+{
+    QString s = spec;
+    int frame = -1;
+    int at = s.lastIndexOf('@');
+    // We want '@' that's not inside the path — accept only if what follows is a number.
+    if (at > 0)
+    {
+        bool ok = false;
+        int f = s.mid(at + 1).toInt(&ok, 0);
+        if (ok) {
+            frame = f;
+            s = s.left(at);
+        }
+    }
+    QStringList parts = s.split(':');
+    if (parts.size() < 3) {
+        fprintf(stderr, "dump-mem: malformed spec '%s'\n", spec.toUtf8().constData());
+        return;
+    }
+    // FILE may itself contain ':' (Windows drive letters). Rejoin after index 2.
+    bool ok1 = false, ok2 = false;
+    uint32_t addr = parts[0].toUInt(&ok1, 0);
+    uint32_t len = parts[1].toUInt(&ok2, 0);
+    QString file = QStringList(parts.mid(2)).join(':');
+    if (!ok1 || !ok2 || file.isEmpty()) {
+        fprintf(stderr, "dump-mem: malformed spec '%s'\n", spec.toUtf8().constData());
+        return;
+    }
+    MemDumpSpec d{addr, len, file, frame};
+    m_memDumps.append(d);
+}
+
+// Parse "FILE[@FRAME]".
+void MainWindow::addScheduledRegDump(const QString &spec)
+{
+    QString s = spec;
+    int frame = -1;
+    int at = s.lastIndexOf('@');
+    if (at > 0)
+    {
+        bool ok = false;
+        int f = s.mid(at + 1).toInt(&ok, 0);
+        if (ok) {
+            frame = f;
+            s = s.left(at);
+        }
+    }
+    if (s.isEmpty()) {
+        fprintf(stderr, "dump-regs: malformed spec '%s'\n", spec.toUtf8().constData());
+        return;
+    }
+    RegDumpSpec d{s, frame};
+    m_regDumps.append(d);
+}
+
+void MainWindow::executeMemDump(const MemDumpSpec &spec)
+{
+    QByteArray bytes = DebuggerState::instance()->readBlock(spec.addr, spec.length);
+    QString path = resolveOutputPath(spec.file);
+    QFile f(path);
+    if (!f.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        fprintf(stderr, "dump-mem: cannot open '%s' for writing\n", path.toUtf8().constData());
+        return;
+    }
+
+    if (m_jsonOutput) {
+        QJsonObject obj;
+        obj["addr"] = hex32(spec.addr);
+        obj["length"] = (int)bytes.size();
+        obj["bytes_hex"] = QString(bytes.toHex());
+        f.write(QJsonDocument(obj).toJson(QJsonDocument::Indented));
+    } else {
+        QTextStream out(&f);
+        out << QString("# simple64 memory dump\n");
+        out << QString("# addr=0x%1 length=%2\n").arg(spec.addr, 8, 16, QChar('0')).arg(spec.length);
+        const int width = 16;
+        for (int i = 0; i < bytes.size(); i += width) {
+            out << QString("%1: ").arg(spec.addr + i, 8, 16, QChar('0')).toUpper();
+            QString ascii;
+            for (int j = 0; j < width; ++j) {
+                if (i + j < bytes.size()) {
+                    unsigned char b = static_cast<unsigned char>(bytes[i + j]);
+                    out << QString("%1 ").arg(b, 2, 16, QChar('0')).toUpper();
+                    ascii += (b >= 32 && b < 127) ? QChar(b) : QChar('.');
+                } else {
+                    out << "   ";
+                    ascii += ' ';
+                }
+            }
+            out << " " << ascii << "\n";
+        }
+    }
+    fprintf(stderr, "dump-mem: wrote %lld bytes to %s\n",
+            (long long)bytes.size(), path.toUtf8().constData());
+}
+
+void MainWindow::executeRegDump(const RegDumpSpec &spec)
+{
+    DebuggerState *ds = DebuggerState::instance();
+    qint64 gprs[32] = {0};
+    qint64 hi = 0, lo = 0;
+    uint32_t pc = ds->readPC();
+    ds->readGPRs(gprs);
+    ds->readHiLo(hi, lo);
+
+    QString path = resolveOutputPath(spec.file);
+    QFile f(path);
+    if (!f.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        fprintf(stderr, "dump-regs: cannot open '%s' for writing\n", path.toUtf8().constData());
+        return;
+    }
+
+    if (m_jsonOutput) {
+        QJsonObject obj;
+        obj["pc"] = hex32(pc);
+        obj["hi"] = hex64((quint64)hi);
+        obj["lo"] = hex64((quint64)lo);
+        QJsonObject gprsObj;
+        for (int i = 0; i < 32; ++i)
+            gprsObj[k_gprNames[i]] = hex64((quint64)gprs[i]);
+        obj["gprs"] = gprsObj;
+        f.write(QJsonDocument(obj).toJson(QJsonDocument::Indented));
+    } else {
+        QTextStream out(&f);
+        out << QString("# simple64 register dump\n");
+        out << QString("pc=0x%1\n").arg(pc, 8, 16, QChar('0'));
+        out << QString("hi=0x%1\n").arg((quint64)hi, 16, 16, QChar('0'));
+        out << QString("lo=0x%1\n").arg((quint64)lo, 16, 16, QChar('0'));
+        for (int i = 0; i < 32; ++i) {
+            out << QString("%1=0x%2\n")
+                       .arg(QString(k_gprNames[i]))
+                       .arg((quint64)gprs[i], 16, 16, QChar('0'));
+        }
+    }
+    fprintf(stderr, "dump-regs: wrote registers to %s\n", path.toUtf8().constData());
+}
+
+void MainWindow::processScheduledDumpsAndPlayback()
+{
+    ++m_totalFrames;
+
+    // Start pending recording / playback once the game has actually begun polling inputs.
+    const uint64_t startupGraceFrames = 10;
+    if (m_totalFrames == startupGraceFrames)
+    {
+        if (!m_pendingPlaybackFile.isEmpty() && InputPlaybackStart)
+        {
+            QString stateFile = m_pendingPlaybackFile + ".state";
+            if (QFile::exists(stateFile) && CoreDoCommand)
+            {
+                (*CoreDoCommand)(M64CMD_STATE_LOAD, 1,
+                    const_cast<char *>(stateFile.toUtf8().constData()));
+            }
+            (*InputPlaybackStart)(m_pendingPlaybackFile.toUtf8().constData());
+            m_playbackStarted = true;
+            m_wasPlayingBack = true;
+            fprintf(stderr, "input playback started from %s\n",
+                    m_pendingPlaybackFile.toUtf8().constData());
+        }
+        if (!m_pendingRecordFile.isEmpty() && InputRecordStart)
+        {
+            QString stateFile = m_pendingRecordFile + ".state";
+            if (CoreDoCommand)
+            {
+                (*CoreDoCommand)(M64CMD_STATE_SAVE, 1,
+                    const_cast<char *>(stateFile.toUtf8().constData()));
+            }
+            (*InputRecordStart)(m_pendingRecordFile.toUtf8().constData());
+            m_recordStarted = true;
+            fprintf(stderr, "input recording started to %s\n",
+                    m_pendingRecordFile.toUtf8().constData());
+        }
+    }
+
+    // Run frame-targeted dumps.
+    for (const auto &d : m_memDumps) {
+        if (d.frame == static_cast<int>(m_totalFrames))
+            executeMemDump(d);
+    }
+    for (const auto &d : m_regDumps) {
+        if (d.frame == static_cast<int>(m_totalFrames))
+            executeRegDump(d);
+    }
+
+    // Detect playback end (edge trigger).
+    bool playingNow = InputRecordIsPlayingBack && (*InputRecordIsPlayingBack)();
+    if (m_wasPlayingBack && !playingNow && m_playbackStarted && !m_finalExitFired)
+    {
+        fprintf(stderr, "playback finished at frame %llu\n", (unsigned long long)m_totalFrames);
+        writeCrashReport("playback EOF");
+        fireFinalExitDumps();
+    }
+    m_wasPlayingBack = playingNow;
+
+    // Stall detection: poll index should advance while playback is active.
+    if (!m_finalExitFired && m_stallFrames > 0 && m_playbackStarted && InputRecordGetIndex)
+    {
+        uint32_t idx = (*InputRecordGetIndex)();
+        if (idx != m_lastPollIndex) {
+            m_lastPollIndex = idx;
+            m_pollIndexLastChangeFrame = m_totalFrames;
+        } else if (m_totalFrames - m_pollIndexLastChangeFrame >= (uint64_t)m_stallFrames) {
+            fprintf(stderr, "playback stall: no new polls for %d frames (likely game crash), "
+                            "bailing at frame %llu\n",
+                    m_stallFrames, (unsigned long long)m_totalFrames);
+            writeCrashReport(QString("input poll stall (no new polls for %1 frames)")
+                                 .arg(m_stallFrames));
+            fireFinalExitDumps();
+        }
+    }
+
+    // Absolute frame ceiling.
+    if (!m_finalExitFired && m_maxFrames > 0 && m_totalFrames >= (uint64_t)m_maxFrames) {
+        fprintf(stderr, "--max-frames %d reached, bailing\n", m_maxFrames);
+        writeCrashReport(QString("--max-frames %1 reached").arg(m_maxFrames));
+        fireFinalExitDumps();
+    }
+}
+
+void MainWindow::fireFinalExitDumps()
+{
+    if (m_finalExitFired) return;
+    m_finalExitFired = true;
+    // Flush any still-open record file so the caller can read it.
+    if (InputRecordStop) (*InputRecordStop)();
+    if (InputPlaybackStop) (*InputPlaybackStop)();
+    for (const auto &d : m_memDumps) {
+        if (d.frame == -1) executeMemDump(d);
+    }
+    for (const auto &d : m_regDumps) {
+        if (d.frame == -1) executeRegDump(d);
+    }
+    if (m_exitAfterPlayback && CoreDoCommand) {
+        fprintf(stderr, "stopping emulation for exit\n");
+        (*CoreDoCommand)(M64CMD_STOP, 0, NULL);
+    }
+}
+
 int MainWindow::getVerbose()
 {
     return verbose;
@@ -745,6 +1234,10 @@ void MainWindow::openROM(QString filename, QString netplay_ip, int netplay_port,
 
     workerThread = new WorkerThread(netplay_ip, netplay_port, netplay_player, cheats, this);
     workerThread->setFileName(filename);
+    connect(workerThread, &QThread::finished, this, [this]() {
+        if (m_exitAfterPlayback)
+            qApp->quit();
+    });
 
     QStringList list;
     if (settings->contains("RecentROMs2"))
@@ -789,6 +1282,235 @@ void MainWindow::on_actionRefresh_ROM_List_triggered()
 {
     if (m_romBrowser)
         m_romBrowser->refresh();
+}
+
+void MainWindow::on_actionDebugger_Memory_Viewer_triggered()
+{
+    if (!DebuggerState::instance()->coreSupportsDebugger())
+    {
+        QMessageBox::information(this, tr("Debugger"),
+                                 tr("The core was not built with debugger support."));
+        return;
+    }
+    if (!m_memoryViewer)
+        m_memoryViewer = new MemoryViewer(this);
+    m_memoryViewer->show();
+    m_memoryViewer->raise();
+    m_memoryViewer->activateWindow();
+    m_memoryViewer->refresh();
+}
+
+void MainWindow::on_actionDebugger_Load_Symbols_triggered()
+{
+    QString path = QFileDialog::getOpenFileName(
+        this, tr("Load Symbols"), QString(),
+        tr("Symbol files (*.sym *.txt *.map);;All files (*)"));
+    if (path.isEmpty())
+        return;
+    QString err;
+    int n = SymbolTable::instance()->loadFromFile(path, &err);
+    if (n < 0)
+    {
+        QMessageBox::warning(this, tr("Load Symbols"),
+                             tr("Failed to load: %1").arg(err));
+        return;
+    }
+    QMessageBox::information(this, tr("Load Symbols"),
+                             tr("Loaded %1 symbols.").arg(n));
+}
+
+void MainWindow::on_actionDebugger_Clear_Symbols_triggered()
+{
+    SymbolTable::instance()->clear();
+}
+
+void MainWindow::on_actionDebugger_Snapshot_Diff_triggered()
+{
+    if (!DebuggerState::instance()->coreSupportsDebugger())
+    {
+        QMessageBox::information(this, tr("Debugger"),
+                                 tr("The core was not built with debugger support."));
+        return;
+    }
+    if (!m_snapshotDiff)
+    {
+        m_snapshotDiff = new SnapshotDiff(this);
+        connect(m_snapshotDiff, &SnapshotDiff::jumpToAddress, this,
+                [this](uint32_t addr) {
+                    if (!m_memoryViewer)
+                        m_memoryViewer = new MemoryViewer(this);
+                    m_memoryViewer->show();
+                    m_memoryViewer->raise();
+                    m_memoryViewer->activateWindow();
+                    m_memoryViewer->jumpTo(addr);
+                });
+    }
+    m_snapshotDiff->show();
+    m_snapshotDiff->raise();
+    m_snapshotDiff->activateWindow();
+}
+
+void MainWindow::on_actionDebugger_Watch_List_triggered()
+{
+    if (!DebuggerState::instance()->coreSupportsDebugger())
+    {
+        QMessageBox::information(this, tr("Debugger"),
+                                 tr("The core was not built with debugger support."));
+        return;
+    }
+    if (!m_watchList)
+        m_watchList = new WatchList(settings, this);
+    m_watchList->show();
+    m_watchList->raise();
+    m_watchList->activateWindow();
+}
+
+void MainWindow::on_actionDebugger_Memory_Search_triggered()
+{
+    if (!DebuggerState::instance()->coreSupportsDebugger())
+    {
+        QMessageBox::information(this, tr("Debugger"),
+                                 tr("The core was not built with debugger support."));
+        return;
+    }
+    if (!m_memorySearch)
+    {
+        m_memorySearch = new MemorySearch(this);
+        connect(m_memorySearch, &MemorySearch::jumpToAddress, this,
+                [this](uint32_t addr) {
+                    if (!m_memoryViewer)
+                        m_memoryViewer = new MemoryViewer(this);
+                    m_memoryViewer->show();
+                    m_memoryViewer->raise();
+                    m_memoryViewer->activateWindow();
+                    m_memoryViewer->jumpTo(addr);
+                });
+    }
+    m_memorySearch->show();
+    m_memorySearch->raise();
+    m_memorySearch->activateWindow();
+}
+
+void MainWindow::on_actionDebugger_CPU_View_triggered()
+{
+    if (!DebuggerState::instance()->coreSupportsDebugger())
+    {
+        QMessageBox::information(this, tr("Debugger"),
+                                 tr("The core was not built with debugger support."));
+        return;
+    }
+    if (!m_cpuView)
+        m_cpuView = new CpuView(this);
+    m_cpuView->show();
+    m_cpuView->raise();
+    m_cpuView->activateWindow();
+    m_cpuView->refresh();
+}
+
+void MainWindow::on_actionDebugger_Breakpoints_triggered()
+{
+    if (!DebuggerState::instance()->coreSupportsDebugger())
+    {
+        QMessageBox::information(this, tr("Debugger"),
+                                 tr("The core was not built with debugger support."));
+        return;
+    }
+    if (!m_breakpointsDialog)
+        m_breakpointsDialog = new BreakpointsDialog(this);
+    m_breakpointsDialog->reload();
+    m_breakpointsDialog->show();
+    m_breakpointsDialog->raise();
+    m_breakpointsDialog->activateWindow();
+}
+
+void MainWindow::on_actionDebugger_Pause_triggered()
+{
+    DebuggerState::instance()->pause();
+}
+
+void MainWindow::on_actionDebugger_Resume_triggered()
+{
+    DebuggerState::instance()->resume();
+}
+
+void MainWindow::on_actionInput_Start_Recording_triggered()
+{
+    if (!InputRecordStart) {
+        QMessageBox::warning(this, tr("Input Recording"),
+            tr("Core does not export input recording API (rebuild required)."));
+        return;
+    }
+    QString dir = settings->value("inputRecDir").toString();
+    QString filename = QFileDialog::getSaveFileName(this, tr("Record Inputs To..."),
+        dir, tr("Input recording (*.inputs);;All files (*)"));
+    if (filename.isEmpty()) return;
+    settings->setValue("inputRecDir", QFileInfo(filename).absolutePath());
+
+    // Pair with a savestate so the replayer has a deterministic starting point.
+    QString stateFile = filename + ".state";
+    if (CoreDoCommand) {
+        m64p_error rc = (*CoreDoCommand)(M64CMD_STATE_SAVE, 1,
+            const_cast<char *>(stateFile.toUtf8().constData()));
+        if (rc != M64ERR_SUCCESS) {
+            QMessageBox::warning(this, tr("Input Recording"),
+                tr("Could not save companion savestate to %1. Recording will still start, "
+                   "but playback won't be deterministic without a matching starting state.")
+                    .arg(stateFile));
+        }
+    }
+
+    m64p_error rc = (*InputRecordStart)(filename.toUtf8().constData());
+    if (rc != M64ERR_SUCCESS) {
+        QMessageBox::warning(this, tr("Input Recording"),
+            tr("Failed to open %1 for writing.").arg(filename));
+        return;
+    }
+    statusBar()->showMessage(tr("Recording inputs to %1").arg(filename), 5000);
+}
+
+void MainWindow::on_actionInput_Stop_Recording_triggered()
+{
+    if (InputRecordStop) (*InputRecordStop)();
+    statusBar()->showMessage(tr("Input recording stopped"), 3000);
+}
+
+void MainWindow::on_actionInput_Play_File_triggered()
+{
+    if (!InputPlaybackStart) {
+        QMessageBox::warning(this, tr("Input Playback"),
+            tr("Core does not export input playback API (rebuild required)."));
+        return;
+    }
+    QString dir = settings->value("inputRecDir").toString();
+    QString filename = QFileDialog::getOpenFileName(this, tr("Play Input File"),
+        dir, tr("Input recording (*.inputs);;All files (*)"));
+    if (filename.isEmpty()) return;
+    settings->setValue("inputRecDir", QFileInfo(filename).absolutePath());
+
+    // Load companion savestate if present so playback starts from the same spot.
+    QString stateFile = filename + ".state";
+    if (QFile::exists(stateFile) && CoreDoCommand) {
+        m64p_error rc = (*CoreDoCommand)(M64CMD_STATE_LOAD, 1,
+            const_cast<char *>(stateFile.toUtf8().constData()));
+        if (rc != M64ERR_SUCCESS) {
+            QMessageBox::warning(this, tr("Input Playback"),
+                tr("Found companion savestate %1 but failed to load it.").arg(stateFile));
+        }
+    }
+
+    m64p_error rc = (*InputPlaybackStart)(filename.toUtf8().constData());
+    if (rc != M64ERR_SUCCESS) {
+        QMessageBox::warning(this, tr("Input Playback"),
+            tr("Failed to open %1 for reading.").arg(filename));
+        return;
+    }
+    statusBar()->showMessage(tr("Playing inputs from %1").arg(filename), 5000);
+}
+
+void MainWindow::on_actionInput_Stop_Playback_triggered()
+{
+    if (InputPlaybackStop) (*InputPlaybackStop)();
+    statusBar()->showMessage(tr("Input playback stopped"), 3000);
 }
 
 void MainWindow::on_actionPlugin_Paths_triggered()
@@ -1074,6 +1796,34 @@ void MainWindow::loadCoreLib()
 
     CoreAddCheat = (ptr_CoreAddCheat)osal_dynlib_getproc(coreLib, "CoreAddCheat");
 
+    DebugSetCallbacks = (ptr_DebugSetCallbacks)osal_dynlib_getproc(coreLib, "DebugSetCallbacks");
+    DebugSetRunState = (ptr_DebugSetRunState)osal_dynlib_getproc(coreLib, "DebugSetRunState");
+    DebugGetState = (ptr_DebugGetState)osal_dynlib_getproc(coreLib, "DebugGetState");
+    DebugStep = (ptr_DebugStep)osal_dynlib_getproc(coreLib, "DebugStep");
+    DebugDecodeOp = (ptr_DebugDecodeOp)osal_dynlib_getproc(coreLib, "DebugDecodeOp");
+    DebugMemGetPointer = (ptr_DebugMemGetPointer)osal_dynlib_getproc(coreLib, "DebugMemGetPointer");
+    DebugMemRead64 = (ptr_DebugMemRead64)osal_dynlib_getproc(coreLib, "DebugMemRead64");
+    DebugMemRead32 = (ptr_DebugMemRead32)osal_dynlib_getproc(coreLib, "DebugMemRead32");
+    DebugMemRead16 = (ptr_DebugMemRead16)osal_dynlib_getproc(coreLib, "DebugMemRead16");
+    DebugMemRead8 = (ptr_DebugMemRead8)osal_dynlib_getproc(coreLib, "DebugMemRead8");
+    DebugMemWrite64 = (ptr_DebugMemWrite64)osal_dynlib_getproc(coreLib, "DebugMemWrite64");
+    DebugMemWrite32 = (ptr_DebugMemWrite32)osal_dynlib_getproc(coreLib, "DebugMemWrite32");
+    DebugMemWrite16 = (ptr_DebugMemWrite16)osal_dynlib_getproc(coreLib, "DebugMemWrite16");
+    DebugMemWrite8 = (ptr_DebugMemWrite8)osal_dynlib_getproc(coreLib, "DebugMemWrite8");
+    DebugGetCPUDataPtr = (ptr_DebugGetCPUDataPtr)osal_dynlib_getproc(coreLib, "DebugGetCPUDataPtr");
+    DebugBreakpointLookup = (ptr_DebugBreakpointLookup)osal_dynlib_getproc(coreLib, "DebugBreakpointLookup");
+    DebugBreakpointCommand = (ptr_DebugBreakpointCommand)osal_dynlib_getproc(coreLib, "DebugBreakpointCommand");
+    DebugBreakpointTriggeredBy = (ptr_DebugBreakpointTriggeredBy)osal_dynlib_getproc(coreLib, "DebugBreakpointTriggeredBy");
+    DebugVirtualToPhysical = (ptr_DebugVirtualToPhysical)osal_dynlib_getproc(coreLib, "DebugVirtualToPhysical");
+
+    InputRecordStart = (ptr_InputRecordStart)osal_dynlib_getproc(coreLib, "InputRecordStart");
+    InputRecordStop = (ptr_InputRecordStop)osal_dynlib_getproc(coreLib, "InputRecordStop");
+    InputPlaybackStart = (ptr_InputPlaybackStart)osal_dynlib_getproc(coreLib, "InputPlaybackStart");
+    InputPlaybackStop = (ptr_InputPlaybackStop)osal_dynlib_getproc(coreLib, "InputPlaybackStop");
+    InputRecordIsRecording = (ptr_InputRecordIsRecording)osal_dynlib_getproc(coreLib, "InputRecordIsRecording");
+    InputRecordIsPlayingBack = (ptr_InputRecordIsPlayingBack)osal_dynlib_getproc(coreLib, "InputRecordIsPlayingBack");
+    InputRecordGetIndex = (ptr_InputRecordGetIndex)osal_dynlib_getproc(coreLib, "InputRecordGetIndex");
+
     QString qtConfigDir = settings->value("configDirPath").toString();
 
     if (!qtConfigDir.isEmpty())
@@ -1082,6 +1832,17 @@ void MainWindow::loadCoreLib()
         (*CoreStartup)(CORE_API_VERSION, NULL /*Config dir*/, QCoreApplication::applicationDirPath().toUtf8().constData(), (char *)"Core", DebugCallback, NULL, NULL);
 
     CoreOverrideVidExt(&vidExtFunctions);
+
+    if (DebuggerState::instance()->coreSupportsDebugger())
+    {
+        m64p_handle coreCfg = nullptr;
+        if ((*ConfigOpenSection)("Core", &coreCfg) == M64ERR_SUCCESS && coreCfg)
+        {
+            int enable = 1;
+            (*ConfigSetParameter)(coreCfg, "EnableDebugger", M64TYPE_BOOL, &enable);
+        }
+        DebuggerState::instance()->registerCallbacks();
+    }
 }
 
 void MainWindow::closePlugins()
@@ -1243,6 +2004,7 @@ m64p_dynlib_handle MainWindow::getCoreLib()
 void MainWindow::addFrameCount()
 {
     ++frame_count;
+    processScheduledDumpsAndPlayback();
 }
 
 void MainWindow::simulateInput()

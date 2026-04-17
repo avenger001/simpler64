@@ -7,6 +7,12 @@
 #include "logviewer.h"
 #include "keypressfilter.h"
 #include "rombrowser.h"
+#include "debugger/memoryviewer.h"
+#include "debugger/breakpointsdialog.h"
+#include "debugger/cpuview.h"
+#include "debugger/memorysearch.h"
+#include "debugger/watchlist.h"
+#include "debugger/snapshotdiff.h"
 extern "C"
 {
 #include "osal/osal_dynamiclib.h"
@@ -54,6 +60,15 @@ public:
     int getNoGUI();
     void setTest(int value);
     int getTest();
+    void setPendingPlaybackFile(const QString &path);
+    void setPendingRecordFile(const QString &path);
+    void addScheduledMemDump(const QString &spec);
+    void addScheduledRegDump(const QString &spec);
+    void setExitAfterPlayback(bool enable);
+    void setStallFrames(int n);
+    void setMaxFrames(int n);
+    void setCrashReportPrefix(const QString &prefix);
+    void setJsonOutput(bool enable);
     void updatePlugins();
     void resetCore();
     void stopGame();
@@ -145,6 +160,32 @@ private slots:
 
     void on_actionRefresh_ROM_List_triggered();
 
+    void on_actionDebugger_Memory_Viewer_triggered();
+
+    void on_actionDebugger_CPU_View_triggered();
+
+    void on_actionDebugger_Memory_Search_triggered();
+
+    void on_actionDebugger_Watch_List_triggered();
+
+    void on_actionDebugger_Snapshot_Diff_triggered();
+
+    void on_actionDebugger_Load_Symbols_triggered();
+
+    void on_actionDebugger_Clear_Symbols_triggered();
+
+    void on_actionDebugger_Breakpoints_triggered();
+
+    void on_actionDebugger_Pause_triggered();
+
+    void on_actionDebugger_Resume_triggered();
+
+    void on_actionInput_Start_Recording_triggered();
+    void on_actionInput_Stop_Recording_triggered();
+    void on_actionInput_Play_File_triggered();
+    void on_actionInput_Stop_Playback_triggered();
+
+
 private:
     void setupDiscord();
     void updateOpenRecent();
@@ -165,6 +206,12 @@ private:
     QMessageBox *download_message = nullptr;
     VkWindow *my_window = nullptr;
     RomBrowser *m_romBrowser = nullptr;
+    MemoryViewer *m_memoryViewer = nullptr;
+    BreakpointsDialog *m_breakpointsDialog = nullptr;
+    CpuView *m_cpuView = nullptr;
+    MemorySearch *m_memorySearch = nullptr;
+    WatchList *m_watchList = nullptr;
+    SnapshotDiff *m_snapshotDiff = nullptr;
     class QStackedWidget *m_centralStack = nullptr;
     QWidget *m_vkContainer = nullptr;
     WorkerThread *workerThread = nullptr;
@@ -181,6 +228,39 @@ private:
     int m_lastNetplayPort = 0;
     int m_lastNetplayPlayer = 0;
     QJsonObject m_lastCheats;
+
+    struct MemDumpSpec {
+        uint32_t addr;
+        uint32_t length;
+        QString file;
+        int frame; // -1 means "at playback end"
+    };
+    struct RegDumpSpec {
+        QString file;
+        int frame; // -1 means "at playback end"
+    };
+    QString m_pendingPlaybackFile;
+    QString m_pendingRecordFile;
+    QList<MemDumpSpec> m_memDumps;
+    QList<RegDumpSpec> m_regDumps;
+    bool m_exitAfterPlayback = false;
+    bool m_wasPlayingBack = false;
+    bool m_playbackStarted = false;
+    bool m_recordStarted = false;
+    bool m_finalExitFired = false;
+    int m_stallFrames = 0;
+    int m_maxFrames = 0;
+    uint32_t m_lastPollIndex = 0;
+    uint64_t m_pollIndexLastChangeFrame = 0;
+    uint64_t m_totalFrames = 0;
+    void executeMemDump(const MemDumpSpec &spec);
+    void executeRegDump(const RegDumpSpec &spec);
+    void processScheduledDumpsAndPlayback();
+    void fireFinalExitDumps();
+    void writeCrashReport(const QString &reason);
+    QString m_crashReportPrefix;
+    bool m_jsonOutput = false;
+    QString resolveOutputPath(const QString &base) const;
 
     m64p_dynlib_handle coreLib;
     m64p_dynlib_handle rspPlugin;

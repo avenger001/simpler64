@@ -9,6 +9,7 @@ if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
 endif()
 
 include_directories(../mupen64plus-core/src/api)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x0602ff -DNETPLAY_VER=17)
 
@@ -53,6 +54,14 @@ qt_add_executable(simple64-gui
     logviewer.cpp
     keypressfilter.cpp
     rombrowser.cpp
+    debugger/debuggerstate.cpp
+    debugger/memoryviewer.cpp
+    debugger/breakpointsdialog.cpp
+    debugger/cpuview.cpp
+    debugger/memorysearch.cpp
+    debugger/watchlist.cpp
+    debugger/symboltable.cpp
+    debugger/snapshotdiff.cpp
     resources.qrc
     netplay/createroom.cpp
     netplay/joinroom.cpp

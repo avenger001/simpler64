@@ -85,9 +85,32 @@
     <addaction name="actionSupport_on_Patreon"/>
     <addaction name="actionSupport_on_GithubSponser"/>
    </widget>
+   <widget class="QMenu" name="menuDebugger">
+    <property name="title">
+     <string>Debugger</string>
+    </property>
+    <addaction name="actionDebugger_Memory_Viewer"/>
+    <addaction name="actionDebugger_Memory_Search"/>
+    <addaction name="actionDebugger_Watch_List"/>
+    <addaction name="actionDebugger_Snapshot_Diff"/>
+    <addaction name="actionDebugger_CPU_View"/>
+    <addaction name="actionDebugger_Breakpoints"/>
+    <addaction name="separator"/>
+    <addaction name="actionDebugger_Load_Symbols"/>
+    <addaction name="actionDebugger_Clear_Symbols"/>
+    <addaction name="separator"/>
+    <addaction name="actionDebugger_Pause"/>
+    <addaction name="actionDebugger_Resume"/>
+    <addaction name="separator"/>
+    <addaction name="actionInput_Start_Recording"/>
+    <addaction name="actionInput_Stop_Recording"/>
+    <addaction name="actionInput_Play_File"/>
+    <addaction name="actionInput_Stop_Playback"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEmulation"/>
    <addaction name="menuSettings"/>
+   <addaction name="menuDebugger"/>
    <!-- <addaction name="menuNetplay"/> -->
    <addaction name="menuCommunity"/>
   </widget>
@@ -235,6 +258,76 @@
   <action name="actionRefresh_ROM_List">
    <property name="text">
     <string>Refresh ROM list</string>
+   </property>
+  </action>
+  <action name="actionDebugger_Memory_Viewer">
+   <property name="text">
+    <string>Memory Viewer...</string>
+   </property>
+  </action>
+  <action name="actionDebugger_Breakpoints">
+   <property name="text">
+    <string>Breakpoints...</string>
+   </property>
+  </action>
+  <action name="actionDebugger_CPU_View">
+   <property name="text">
+    <string>CPU / Disassembly...</string>
+   </property>
+  </action>
+  <action name="actionDebugger_Memory_Search">
+   <property name="text">
+    <string>Memory Search...</string>
+   </property>
+  </action>
+  <action name="actionDebugger_Watch_List">
+   <property name="text">
+    <string>Watch List...</string>
+   </property>
+  </action>
+  <action name="actionDebugger_Snapshot_Diff">
+   <property name="text">
+    <string>Memory Snapshot Diff...</string>
+   </property>
+  </action>
+  <action name="actionDebugger_Load_Symbols">
+   <property name="text">
+    <string>Load Symbols...</string>
+   </property>
+  </action>
+  <action name="actionDebugger_Clear_Symbols">
+   <property name="text">
+    <string>Clear Symbols</string>
+   </property>
+  </action>
+  <action name="actionDebugger_Pause">
+   <property name="text">
+    <string>Pause (Debugger)</string>
+   </property>
+  </action>
+  <action name="actionDebugger_Resume">
+   <property name="text">
+    <string>Resume (Debugger)</string>
+   </property>
+  </action>
+  <action name="actionInput_Start_Recording">
+   <property name="text">
+    <string>Start Input Recording...</string>
+   </property>
+  </action>
+  <action name="actionInput_Stop_Recording">
+   <property name="text">
+    <string>Stop Input Recording</string>
+   </property>
+  </action>
+  <action name="actionInput_Play_File">
+   <property name="text">
+    <string>Play Input File...</string>
+   </property>
+  </action>
+  <action name="actionInput_Stop_Playback">
+   <property name="text">
+    <string>Stop Input Playback</string>
    </property>
   </action>
  </widget>
