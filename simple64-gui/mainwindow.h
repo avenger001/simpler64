@@ -75,6 +75,7 @@ public:
     void stopGame();
     void updateMenuShortcuts();
     void updateDebugMenuVisibility();
+    void applyPerGameSettings(QString md5);
     m64p_dynlib_handle getCoreLib();
     struct Discord_Application *getDiscordApp();
     explicit MainWindow(QWidget *parent = 0);
@@ -135,6 +136,8 @@ private slots:
     void on_actionToggle_Fullscreen_triggered();
 
     void on_actionCheats_triggered();
+
+    void on_actionPer_Game_Settings_triggered();
 
     void on_actionSave_State_To_triggered();
 

@@ -29,6 +29,7 @@ signals:
     void addLog(QString text);
     void addFrameCount();
     void setCheats(QJsonObject cheatsData, bool netplay);
+    void romLoaded(QString md5);
 
 private:
     QString m_fileName;

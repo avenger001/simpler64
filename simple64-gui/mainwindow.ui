@@ -59,6 +59,7 @@
     <addaction name="actionToggle_Fullscreen"/>
     <addaction name="separator"/>
     <addaction name="actionCheats"/>
+    <addaction name="actionPer_Game_Settings"/>
     <addaction name="separator"/>
     <addaction name="actionMute"/>
     <addaction name="separator"/>
@@ -128,6 +129,11 @@
   <action name="actionPlugin_Paths">
    <property name="text">
     <string>Settings...</string>
+   </property>
+  </action>
+  <action name="actionPer_Game_Settings">
+   <property name="text">
+    <string>Per-Game Settings...</string>
    </property>
   </action>
   <action name="actionStop_Game">

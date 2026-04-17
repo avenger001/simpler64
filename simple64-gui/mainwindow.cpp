@@ -12,6 +12,7 @@
 #include <QJsonArray>
 #include <QSet>
 #include "settingsdialog.h"
+#include "pergamesettingsdialog.h"
 #include "plugindialog.h"
 #include "hotkeydialog.h"
 #include "cheats.h"
@@ -1893,6 +1894,47 @@ void MainWindow::on_actionCheats_triggered()
         msgBox.setText("Game must be running.");
         msgBox.exec();
     }
+}
+
+void MainWindow::on_actionPer_Game_Settings_triggered()
+{
+    int value = M64EMU_STOPPED;
+    if (coreLib && CoreDoCommand)
+        (*CoreDoCommand)(M64CMD_CORE_STATE_QUERY, M64CORE_EMU_STATE, &value);
+
+    if (value == M64EMU_STOPPED)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Game must be running.");
+        msgBox.exec();
+        return;
+    }
+
+    m64p_rom_settings rom_settings;
+    memset(&rom_settings, 0, sizeof(rom_settings));
+    if ((*CoreDoCommand)(M64CMD_ROM_GET_SETTINGS, sizeof(rom_settings), &rom_settings) != M64ERR_SUCCESS)
+        return;
+
+    PerGameSettingsDialog *dlg = new PerGameSettingsDialog(
+        QString(rom_settings.MD5),
+        QString(rom_settings.goodname),
+        this);
+    dlg->setAttribute(Qt::WA_DeleteOnClose);
+    dlg->show();
+}
+
+void MainWindow::applyPerGameSettings(QString md5)
+{
+    if (md5.isEmpty())
+        return;
+    settings->beginGroup("PerGame");
+    settings->beginGroup(md5);
+    const QString symbolFile = settings->value("symbolFilePath").toString();
+    settings->endGroup();
+    settings->endGroup();
+
+    if (!symbolFile.isEmpty() && QFile::exists(symbolFile))
+        SymbolTable::instance()->loadFromFile(symbolFile, nullptr);
 }
 
 void MainWindow::on_actionSave_State_To_triggered()

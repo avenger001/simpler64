@@ -42,6 +42,7 @@ qt_add_executable(simple64-gui
     mainwindow.cpp
     vidext.cpp
     settingsdialog.cpp
+    pergamesettingsdialog.cpp
     interface/common.cpp
     cheats.cpp
     hotkeydialog.cpp

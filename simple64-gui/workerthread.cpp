@@ -33,6 +33,7 @@ void WorkerThread::run()
     connect(this, &WorkerThread::setCheats, w, &MainWindow::setCheats, Qt::BlockingQueuedConnection);
     connect(this, &WorkerThread::addLog, w->getLogViewer(), &LogViewer::addLog, Qt::QueuedConnection);
     connect(this, &WorkerThread::addFrameCount, w, &MainWindow::addFrameCount, Qt::QueuedConnection);
+    connect(this, &WorkerThread::romLoaded, w, &MainWindow::applyPerGameSettings, Qt::QueuedConnection);
 #ifdef _WIN32
     SetThreadExecutionState(ES_CONTINUOUS | ES_DISPLAY_REQUIRED);
 #else
@@ -51,6 +52,7 @@ void WorkerThread::run()
     {
         m64p_rom_settings rom_settings;
         (*CoreDoCommand)(M64CMD_ROM_GET_SETTINGS, sizeof(rom_settings), &rom_settings);
+        emit romLoaded(QString(rom_settings.MD5));
         struct DiscordActivity activity;
         struct DiscordActivityAssets assets;
         struct DiscordActivityTimestamps timestamps;
